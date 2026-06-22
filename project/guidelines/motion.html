@@ -1,0 +1,18 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Motion & easing" subtitle="Cinematic, no bounce. Hover the card to feel the settle." -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;background:var(--ink-850);padding:28px 32px;font-family:var(--font-mono)}
+  .track{position:relative;height:54px;border-bottom:1px solid var(--line-faint);margin-bottom:18px}
+  .dot{position:absolute;top:10px;left:0;width:34px;height:34px;border-radius:var(--r-sm);background:var(--champagne-400);animation:slide 2.6s var(--ease-out) infinite}
+  @keyframes slide{0%{left:0}45%{left:calc(100% - 34px)}55%{left:calc(100% - 34px)}100%{left:0}}
+  .meta{display:flex;gap:28px;font-size:11px;color:var(--text-subtle);letter-spacing:.04em}
+  .meta b{color:var(--text-muted);font-weight:600}
+</style></head><body>
+  <div class="track"><div class="dot"></div></div>
+  <div class="meta">
+    <span><b>ease-out</b> · 0.16, 1, 0.3, 1</span>
+    <span><b>base</b> · 280ms</span>
+    <span><b>cinematic</b> · 900ms</span>
+    <span>fade + slide · never bounce</span>
+  </div>
+</body></html>

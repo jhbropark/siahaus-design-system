@@ -1,0 +1,35 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="08 — KPI Dashboard" subtitle="Metric grid — outcomes at a glance" -->
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="slide.css">
+<style>
+  .kpi .grid{position:absolute;left:var(--slide-margin);right:var(--slide-margin);top:184px;bottom:118px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .kpi .cell{background:var(--ink-850);padding:34px 36px;display:flex;flex-direction:column;justify-content:space-between;}
+  .kpi .cell .lab{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-subtle);}
+  .kpi .cell .num{font-family:var(--font-display);font-weight:200;font-size:62px;letter-spacing:-.03em;line-height:1;color:var(--text-strong);}
+  .kpi .cell .foot{display:flex;align-items:baseline;gap:10px;}
+  .kpi .cell .delta{font-family:var(--font-mono);font-size:13px;font-weight:600;white-space:nowrap;}
+  .kpi .cell .foot{display:flex;align-items:baseline;gap:10px;}
+  .kpi .up{color:var(--signal-positive);} .kpi .dn{color:var(--signal-critical);}
+  .kpi .cell .cap{font-size:13px;color:var(--text-subtle);}
+  .kpi .accent .num{color:var(--accent);}
+</style></head>
+<body><div class="slide kpi" data-screen-label="KPI Dashboard">
+  <div class="s-head">
+    <span class="eyebrow"><span class="mk">//</span>Performance — Campaign Window</span>
+    <span class="s-index">07 / 08</span>
+  </div>
+
+  <div class="grid">
+    <div class="cell"><div class="lab">Total Impressions</div><div class="num">12.4M</div><div class="foot"><span class="delta up">↑ 38%</span><span class="cap">vs. forecast</span></div></div>
+    <div class="cell accent"><div class="lab">Dwell Time</div><div class="num">4:12</div><div class="foot"><span class="delta up">↑ 1:08</span><span class="cap">avg. per visitor</span></div></div>
+    <div class="cell"><div class="lab">Social Reach</div><div class="num">8.9M</div><div class="foot"><span class="delta up">↑ 52%</span><span class="cap">earned media</span></div></div>
+    <div class="cell"><div class="lab">Footfall</div><div class="num">214K</div><div class="foot"><span class="delta up">↑ 19%</span><span class="cap">on-site visitors</span></div></div>
+    <div class="cell"><div class="lab">Cost / Impression</div><div class="num">₩66</div><div class="foot"><span class="delta dn">↓ 24%</span><span class="cap">efficiency gain</span></div></div>
+    <div class="cell"><div class="lab">Brand Recall</div><div class="num">87%</div><div class="foot"><span class="delta up">↑ 12pt</span><span class="cap">exit survey</span></div></div>
+  </div>
+
+  <div class="s-foot">
+    <img src="../assets/wordmark-white.png" alt="sia.haus">
+    <span class="s-index">Figures illustrative</span>
+  </div>
+</div></body></html>

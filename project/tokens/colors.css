@@ -1,0 +1,73 @@
+/* SIA.HAUS — Color System
+   A monochrome backbone (deep ink + warm whites + neutral grays) for premium,
+   gallery-grade dark decks. One brand accent — champagne — drawn from the warmth
+   of architectural lighting. A muted "spectral" set carries data viz (a quiet nod
+   to synesthesia: color as sensation). Built for dark backgrounds first. */
+
+:root {
+  /* ---- Ink / backgrounds (darkest → lighter surfaces) ---- */
+  --ink-900: #08090A;   /* stage / deepest background */
+  --ink-850: #0C0D0F;   /* default slide background */
+  --ink-800: #121316;   /* raised section */
+  --ink-700: #181A1E;   /* card surface */
+  --ink-600: #202329;   /* elevated card / hover */
+  --ink-500: #2A2E35;   /* hairline-on-dark, dividers */
+
+  /* ---- Warm whites / foreground ---- */
+  --paper-000: #FAFAF7; /* pure foreground, hero type */
+  --paper-100: #F2F2EE; /* primary text on dark */
+  --paper-200: #D8D8D2; /* secondary text */
+  --paper-300: #A7A8A3; /* tertiary / captions */
+  --paper-400: #6E7075; /* disabled / faint */
+
+  /* ---- Neutral grays (true neutral, for lines & muted UI) ---- */
+  --gray-500: #8A8C90;
+  --gray-600: #5C5E63;
+  --gray-700: #3A3D43;
+  --gray-800: #26282D;
+
+  /* ---- Brand accent: Champagne ---- */
+  --champagne-300: #E2CFA0;
+  --champagne-400: #C9A86A;  /* primary accent */
+  --champagne-500: #B08F4E;
+  --champagne-600: #8A6F3A;
+
+  /* ---- Spectral data palette (muted, gallery-grade, sit on ink) ---- */
+  --spectral-amber:  #D6A75C;
+  --spectral-slate:  #6E8FB8;
+  --spectral-violet: #9A8FB5;
+  --spectral-sage:   #7FA88E;
+  --spectral-rose:   #C58F8A;
+
+  /* ---- Semantic / signal ---- */
+  --signal-positive: #7FA88E;
+  --signal-warning:  #D6A75C;
+  --signal-critical: #C58F8A;
+
+  /* ---- Semantic aliases (use these in components & slides) ---- */
+  --stage:         var(--ink-900);
+  --bg:            var(--ink-850);
+  --surface:       var(--ink-700);
+  --surface-raised:var(--ink-600);
+  --surface-section:var(--ink-800);
+
+  --text-strong:   var(--paper-000);
+  --text:          var(--paper-100);
+  --text-muted:    var(--paper-200);
+  --text-subtle:   var(--paper-300);
+  --text-faint:    var(--paper-400);
+
+  --accent:        var(--champagne-400);
+  --accent-soft:   var(--champagne-300);
+  --accent-deep:   var(--champagne-600);
+  --on-accent:     var(--ink-900);
+
+  --line:          var(--ink-500);     /* dividers on dark */
+  --line-strong:   var(--gray-700);
+  --line-faint:    rgba(242,242,238,0.08);
+
+  /* Light-mode inversions (rarely used — premium decks run dark) */
+  --on-light-bg:   var(--paper-000);
+  --on-light-text: var(--ink-900);
+}
+

@@ -1,0 +1,37 @@
+/* SIA.HAUS — Effects: elevation, blur, motion, image treatment.
+   Premium dark decks avoid heavy drop-shadows; depth comes from surface lightness
+   + hairlines. Shadows are deep & soft, used sparingly on floating UI. */
+
+:root {
+  /* ---- Elevation (soft, deep, low-opacity — for floating UI only) ---- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.40);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.45);
+  --shadow-lg: 0 24px 64px rgba(0,0,0,0.55);
+  --shadow-xl: 0 40px 120px rgba(0,0,0,0.65);
+  /* champagne glow for active/emphasis states */
+  --glow-accent: 0 0 0 1px rgba(201,168,106,0.40), 0 8px 32px rgba(201,168,106,0.18);
+
+  /* ---- Glass / blur (overlays, lower-thirds, capsules over imagery) ---- */
+  --blur-sm: blur(8px);  /* @kind other */
+  --blur-md: blur(20px); /* @kind other */
+  --blur-lg: blur(40px); /* @kind other */
+  --glass: rgba(12,13,15,0.55);          /* @kind color */
+  --glass-line: rgba(242,242,238,0.10);  /* @kind color */
+
+  /* ---- Protection gradients (legibility over full-bleed photography) ---- */
+  --scrim-bottom: linear-gradient(to top, rgba(8,9,10,0.92) 0%, rgba(8,9,10,0.55) 38%, rgba(8,9,10,0) 75%); /* @kind other */
+  --scrim-left:   linear-gradient(to right, rgba(8,9,10,0.90) 0%, rgba(8,9,10,0.50) 40%, rgba(8,9,10,0) 78%); /* @kind other */
+  --scrim-full:   linear-gradient(to top, rgba(8,9,10,0.85), rgba(8,9,10,0.35)); /* @kind other */
+
+  /* ---- Image treatment: cool, low-key, grain. Keeps photography premium ---- */
+  --img-filter: saturate(0.92) contrast(1.04) brightness(0.92); /* @kind other */
+  --img-filter-bw: grayscale(1) contrast(1.08) brightness(0.9); /* @kind other */
+
+  /* ---- Motion: restrained, cinematic. No bounce. ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);     /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast: 160ms;      /* @kind other */
+  --dur-base: 280ms;      /* @kind other */
+  --dur-slow: 560ms;      /* @kind other */
+  --dur-cinematic: 900ms; /* @kind other */
+}

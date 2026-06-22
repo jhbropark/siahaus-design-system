@@ -1,0 +1,53 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="05 — Timeline" subtitle="Horizontal track of years, projects as nodes" -->
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="slide.css">
+<style>
+  .tl .wrap{position:absolute;left:var(--slide-margin);right:var(--slide-margin);top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;}
+  .tl .track{position:relative;display:grid;grid-template-columns:repeat(5,1fr);}
+  .tl .line{position:absolute;left:0;right:0;top:54px;height:1px;background:var(--line);}
+  .tl .col{position:relative;padding-right:28px;}
+  .tl .yr{font-family:var(--font-display);font-weight:200;font-size:46px;letter-spacing:-.02em;color:var(--text-strong);line-height:1;}
+  .tl .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);margin:30px 0 0;position:relative;z-index:2;box-shadow:0 0 0 5px var(--ink-850);}
+  .tl .col.muted .yr{color:var(--text-subtle);}
+  .tl .col.muted .dot{background:var(--gray-600);}
+  .tl .items{margin-top:30px;display:flex;flex-direction:column;gap:12px;}
+  .tl .it .p{font-family:var(--font-body);font-size:16px;font-weight:500;color:var(--text);line-height:1.25;}
+  .tl .it .c{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-subtle);margin-top:3px;}
+</style></head>
+<body><div class="slide tl" data-screen-label="Timeline">
+  <div class="s-head">
+    <span class="eyebrow"><span class="mk">//</span>Selected Track Record</span>
+    <span class="s-index">04 / 08</span>
+  </div>
+
+  <div class="wrap">
+    <div class="track">
+      <div class="line"></div>
+      <div class="col"><div class="yr">2026</div><div class="dot"></div><div class="items">
+        <div class="it"><div class="p">Journey of Reflection</div><div class="c">KIA · Milan</div></div>
+        <div class="it"><div class="p">History Walk, NLC</div><div class="c">LG</div></div>
+      </div></div>
+      <div class="col"><div class="yr">2025</div><div class="dot"></div><div class="items">
+        <div class="it"><div class="p">Time for Trees</div><div class="c">Venice Biennale</div></div>
+        <div class="it"><div class="p">Heritage Lounge</div><div class="c">FILA Holdings</div></div>
+      </div></div>
+      <div class="col"><div class="yr">2024</div><div class="dot"></div><div class="items">
+        <div class="it"><div class="p">Entropy of Nature</div><div class="c">The Hyundai Seoul</div></div>
+        <div class="it"><div class="p">‘Lucky’ MV Visual</div><div class="c">SM · RIIZE</div></div>
+      </div></div>
+      <div class="col muted"><div class="yr">2023</div><div class="dot"></div><div class="items">
+        <div class="it"><div class="p">Seoul Light Gwanghwa</div><div class="c">Seoul City</div></div>
+        <div class="it"><div class="p">Jamsil Media Facade</div><div class="c">Lotte</div></div>
+      </div></div>
+      <div class="col muted"><div class="yr">2018→</div><div class="dot"></div><div class="items">
+        <div class="it"><div class="p">Love Alarm Zone</div><div class="c">Netflix</div></div>
+        <div class="it"><div class="p">LUX Soundroom</div><div class="c">Samsung</div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="s-foot">
+    <img src="../assets/wordmark-white.png" alt="sia.haus">
+    <span class="s-index">2018 — 2026</span>
+  </div>
+</div></body></html>

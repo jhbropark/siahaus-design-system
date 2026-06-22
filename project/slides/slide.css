@@ -1,0 +1,67 @@
+/* SIA.HAUS — Slide frame helpers (local to the slides/ specimens).
+   Each slide is a 1280×720 canvas. Links styles.css for tokens + this for layout. */
+
+html,body{margin:0;height:100%}
+.slide{
+  position:relative;
+  width:1280px;height:720px;
+  background:var(--ink-850);
+  color:var(--text);
+  font-family:var(--font-body);
+  overflow:hidden;
+}
+.slide.stage{background:var(--ink-900);}
+
+/* Header / footer chrome */
+.s-head{
+  position:absolute;top:var(--slide-margin);left:var(--slide-margin);right:var(--slide-margin);
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.s-foot{
+  position:absolute;bottom:40px;left:var(--slide-margin);right:var(--slide-margin);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.s-foot img{height:16px;opacity:.55}
+.s-index{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;color:var(--text-subtle)}
+
+.eyebrow{
+  font-family:var(--font-mono);font-size:12px;font-weight:500;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--accent);
+}
+.eyebrow .mk{opacity:.65;margin-right:8px}
+
+.title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:64px;line-height:1.04;letter-spacing:-.02em;color:var(--text-strong);
+  margin:0;text-wrap:balance;
+}
+.lead{
+  font-family:var(--font-body);font-weight:300;font-size:24px;line-height:1.45;
+  letter-spacing:-.01em;color:var(--text-muted);margin:0;max-width:640px;text-wrap:pretty;
+}
+.kr{font-feature-settings:"ss01";}
+
+/* Photography placeholder — refined tonal zone with grain + framing label.
+   Replace with real architecture photography (full-bleed or framed). */
+.photo{
+  position:relative;overflow:hidden;background:
+    radial-gradient(120% 90% at 70% 10%, #1b1e24 0%, #111317 45%, #0a0b0d 100%);
+}
+.photo::after{
+  content:attr(data-label);
+  position:absolute;left:16px;bottom:14px;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(242,242,238,.35);
+}
+.photo::before{
+  content:"";position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(115deg, rgba(255,255,255,.018) 0 2px, transparent 2px 7px);
+  mix-blend-mode:overlay;
+}
+.grain{
+  position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+.scrim-b{position:absolute;inset:0;background:var(--scrim-bottom);}
+.scrim-l{position:absolute;inset:0;background:var(--scrim-left);}

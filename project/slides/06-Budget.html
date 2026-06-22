@@ -1,0 +1,42 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="06 — Budget" subtitle="Total figure + line-item breakdown bars" -->
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="slide.css">
+<style>
+  .bg .grid{position:absolute;left:var(--slide-margin);right:var(--slide-margin);top:188px;bottom:118px;display:grid;grid-template-columns:.85fr 1.15fr;gap:96px;align-items:start;}
+  .bg .total .lab{font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-subtle);}
+  .bg .total .num{font-family:var(--font-display);font-weight:200;font-size:104px;letter-spacing:-.03em;line-height:.95;color:var(--text-strong);margin:14px 0 0;}
+  .bg .total .num b{color:var(--accent);font-weight:200;}
+  .bg .total p{font-size:16px;color:var(--text-subtle);line-height:1.55;max-width:320px;margin:24px 0 0;}
+  .bg .rows{display:flex;flex-direction:column;gap:24px;padding-top:8px;}
+  .row .rh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px;}
+  .row .rl{font-family:var(--font-mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);}
+  .row .rv{font-family:var(--font-display);font-size:19px;font-weight:500;color:var(--text-strong);}
+  .row .rv small{font-family:var(--font-mono);font-size:12px;color:var(--text-subtle);margin-left:8px;}
+  .row .track{height:6px;background:var(--ink-600);border-radius:999px;overflow:hidden;}
+  .row .fill{height:100%;border-radius:999px;}
+</style></head>
+<body><div class="slide bg" data-screen-label="Budget">
+  <div class="s-head">
+    <span class="eyebrow"><span class="mk">//</span>Budget — Phase 1</span>
+    <span class="s-index">05 / 08</span>
+  </div>
+
+  <div class="grid">
+    <div class="total">
+      <div class="lab">Total Investment</div>
+      <div class="num">₩<b>819</b>M</div>
+      <p>Fixed-scope estimate across production, hardware, creative and operations. Excludes VAT and venue fees.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="rh"><span class="rl">Production & Engineering</span><span class="rv">₩344M<small>42%</small></span></div><div class="track"><div class="fill" style="width:42%;background:var(--spectral-amber)"></div></div></div>
+      <div class="row"><div class="rh"><span class="rl">Hardware & LED</span><span class="rv">₩254M<small>31%</small></span></div><div class="track"><div class="fill" style="width:31%;background:var(--spectral-slate)"></div></div></div>
+      <div class="row"><div class="rh"><span class="rl">Creative & Content</span><span class="rv">₩131M<small>16%</small></span></div><div class="track"><div class="fill" style="width:16%;background:var(--spectral-violet)"></div></div></div>
+      <div class="row"><div class="rh"><span class="rl">Operations & Install</span><span class="rv">₩90M<small>11%</small></span></div><div class="track"><div class="fill" style="width:11%;background:var(--spectral-sage)"></div></div></div>
+    </div>
+  </div>
+
+  <div class="s-foot">
+    <img src="../assets/wordmark-white.png" alt="sia.haus">
+    <span class="s-index">Figures illustrative</span>
+  </div>
+</div></body></html>
