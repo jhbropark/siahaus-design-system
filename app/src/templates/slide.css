@@ -1,0 +1,63 @@
+/* SIA.HAUS — Slide frame helpers (ported from project/slides/slide.css).
+   Each template is a 1280×720 canvas. Root class is `.tslide` (not `.slide`)
+   so it never collides with the proposal deck's own `.slide` rules. */
+
+.tslide {
+  position: relative;
+  width: 1280px; height: 720px;
+  background: var(--ink-850);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+.tslide.stage { background: var(--ink-900); }
+
+/* Header / footer chrome */
+.tslide .s-head {
+  position: absolute; top: var(--slide-margin); left: var(--slide-margin); right: var(--slide-margin);
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.tslide .s-foot {
+  position: absolute; bottom: 40px; left: var(--slide-margin); right: var(--slide-margin);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.tslide .s-foot img { height: 16px; opacity: 0.55; }
+.tslide .s-index { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--text-subtle); }
+
+.tslide .eyebrow {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent);
+}
+.tslide .eyebrow .mk { opacity: 0.65; margin-right: 8px; }
+
+.tslide .title {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 64px; line-height: 1.04; letter-spacing: -0.02em; color: var(--text-strong);
+  margin: 0; text-wrap: balance;
+}
+.tslide .lead {
+  font-family: var(--font-body); font-weight: 300; font-size: 24px; line-height: 1.45;
+  letter-spacing: -0.01em; color: var(--text-muted); margin: 0; max-width: 640px; text-wrap: pretty;
+}
+
+/* Korean wraps at word boundaries only. */
+.tslide, .tslide * { word-break: keep-all; }
+
+/* Photography placeholder — tonal zone with grain + framing label. */
+.tslide .photo {
+  position: relative; overflow: hidden;
+  background: radial-gradient(120% 90% at 70% 10%, #1b1e24 0%, #111317 45%, #0a0b0d 100%);
+}
+.tslide .photo::after {
+  content: attr(data-label);
+  position: absolute; left: 16px; bottom: 14px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(242, 242, 238, 0.35);
+}
+.tslide .photo::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.018) 0 2px, transparent 2px 7px);
+  mix-blend-mode: overlay;
+}
+.tslide .scrim-b { position: absolute; inset: 0; background: var(--scrim-bottom); }
+.tslide .scrim-l { position: absolute; inset: 0; background: var(--scrim-left); }

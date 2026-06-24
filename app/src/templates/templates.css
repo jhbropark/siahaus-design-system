@@ -1,0 +1,98 @@
+/* SIA.HAUS — Per-template styles, ported from project/slides/*.html <style> blocks.
+   Each block is scoped by the template's root class (.cover, .exec, …). */
+
+/* 01 — Cover */
+.cover .photo { position: absolute; inset: 0; }
+.cover-content { position: absolute; left: var(--slide-margin); bottom: 120px; right: var(--slide-margin); }
+.cover .title { font-weight: 200; font-size: 104px; line-height: 0.98; letter-spacing: -0.03em; max-width: 980px; }
+.cover .title b { font-weight: 600; color: var(--text-strong); }
+.cover .sub { margin-top: 28px; }
+.cover .top { position: absolute; top: var(--slide-margin); left: var(--slide-margin); right: var(--slide-margin); display: flex; justify-content: space-between; align-items: center; }
+.cover .top img { height: 22px; }
+
+/* 02 — Executive Summary */
+.exec .body { position: absolute; left: var(--slide-margin); top: 188px; right: var(--slide-margin); }
+.exec .title { max-width: 880px; font-weight: 300; font-size: 52px; line-height: 1.12; }
+.exec .title b { font-weight: 600; }
+.exec .stats { position: absolute; left: var(--slide-margin); right: var(--slide-margin); bottom: 118px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.exec .stat { padding-right: 48px; border-left: 1px solid var(--line); padding-left: 32px; }
+.exec .stat:first-child { border-left: 0; padding-left: 0; }
+.exec .stat .num { font-family: var(--font-display); font-weight: 200; font-size: 68px; letter-spacing: -0.03em; line-height: 1; color: var(--text-strong); }
+.exec .stat .lab { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-subtle); margin-bottom: 16px; }
+.exec .stat .cap { font-size: 14px; color: var(--text-subtle); margin-top: 12px; line-height: 1.5; max-width: 240px; }
+
+/* 03 — Market Opportunity */
+.mkt .grid { position: absolute; left: var(--slide-margin); right: var(--slide-margin); top: 184px; bottom: 118px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 88px; align-items: center; }
+.mkt .big .lab { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle); }
+.mkt .big .num { font-family: var(--font-display); font-weight: 200; font-size: 150px; line-height: 0.9; letter-spacing: -0.04em; color: var(--accent); margin: 14px 0 0; }
+.mkt .big .num small { font-size: 54px; color: var(--text-strong); font-weight: 200; }
+.mkt .big p { font-size: 20px; line-height: 1.5; color: var(--text-muted); max-width: 430px; margin: 26px 0 0; font-weight: 300; }
+.mkt .rows { display: flex; flex-direction: column; gap: 26px; }
+.mkt .row .rh { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.mkt .row .rl { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.mkt .row .rv { font-family: var(--font-display); font-size: 20px; font-weight: 500; color: var(--text-strong); }
+.mkt .row .track { height: 6px; background: var(--ink-600); border-radius: 999px; overflow: hidden; }
+.mkt .row .fill { height: 100%; border-radius: 999px; }
+
+/* 04 — Case Study */
+.cs .photo { position: absolute; inset: 0; }
+.cs .panel { position: absolute; left: var(--slide-margin); top: 0; bottom: 0; width: 560px; display: flex; flex-direction: column; justify-content: center; }
+.cs .title { font-weight: 300; font-size: 60px; line-height: 1.02; margin-top: 18px; }
+.cs .title b { font-weight: 600; }
+.cs .meta { display: flex; gap: 48px; margin-top: 34px; }
+.cs .meta .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle); }
+.cs .meta .v { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--text-strong); margin-top: 8px; }
+.cs p { font-size: 18px; line-height: 1.6; color: var(--text-muted); font-weight: 300; max-width: 480px; margin: 30px 0 0; }
+.cs .tags { display: flex; gap: 10px; margin-top: 26px; }
+.cs .tg { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--line-strong); border-radius: 999px; padding: 5px 12px; }
+
+/* 05 — Timeline */
+.tl .wrap { position: absolute; left: var(--slide-margin); right: var(--slide-margin); top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+.tl .track { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); }
+.tl .line { position: absolute; left: 0; right: 0; top: 54px; height: 1px; background: var(--line); }
+.tl .col { position: relative; padding-right: 28px; }
+.tl .yr { font-family: var(--font-display); font-weight: 200; font-size: 46px; letter-spacing: -0.02em; color: var(--text-strong); line-height: 1; }
+.tl .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--accent); margin: 30px 0 0; position: relative; z-index: 2; box-shadow: 0 0 0 5px var(--ink-850); }
+.tl .col.muted .yr { color: var(--text-subtle); }
+.tl .col.muted .dot { background: var(--gray-600); }
+.tl .items { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; }
+.tl .it .p { font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.25; }
+.tl .it .c { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-subtle); margin-top: 3px; }
+
+/* 06 — Budget */
+.bg .grid { position: absolute; left: var(--slide-margin); right: var(--slide-margin); top: 188px; bottom: 118px; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 96px; align-items: start; }
+.bg .total .lab { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-subtle); }
+.bg .total .num { font-family: var(--font-display); font-weight: 200; font-size: 104px; letter-spacing: -0.03em; line-height: 0.95; color: var(--text-strong); margin: 14px 0 0; }
+.bg .total .num b { color: var(--accent); font-weight: 200; }
+.bg .total p { font-size: 16px; color: var(--text-subtle); line-height: 1.55; max-width: 320px; margin: 24px 0 0; }
+.bg .rows { display: flex; flex-direction: column; gap: 24px; padding-top: 8px; }
+.bg .row .rh { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 9px; }
+.bg .row .rl { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.bg .row .rv { font-family: var(--font-display); font-size: 19px; font-weight: 500; color: var(--text-strong); }
+.bg .row .rv small { font-family: var(--font-mono); font-size: 12px; color: var(--text-subtle); margin-left: 8px; }
+.bg .row .track { height: 6px; background: var(--ink-600); border-radius: 999px; overflow: hidden; }
+.bg .row .fill { height: 100%; border-radius: 999px; }
+
+/* 07 — Proposal */
+.pr .intro { position: absolute; left: var(--slide-margin); top: 184px; max-width: 560px; }
+.pr .intro .title { font-weight: 300; font-size: 46px; line-height: 1.1; }
+.pr .intro .title b { font-weight: 600; }
+.pr .phases { position: absolute; left: var(--slide-margin); right: var(--slide-margin); bottom: 118px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); }
+.pr .ph { padding: 28px 32px 0 0; border-left: 1px solid var(--line); padding-left: 28px; }
+.pr .ph:first-child { border-left: 0; padding-left: 0; }
+.pr .ph .n { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; color: var(--accent); }
+.pr .ph h3 { font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--text-strong); margin: 14px 0 0; letter-spacing: -0.01em; }
+.pr .ph p { font-size: 14px; line-height: 1.55; color: var(--text-subtle); margin: 12px 0 0; }
+.pr .ph .d { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 18px; }
+
+/* 08 — KPI Dashboard */
+.kpi .grid { position: absolute; left: var(--slide-margin); right: var(--slide-margin); top: 184px; bottom: 118px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.kpi .cell { background: var(--ink-850); padding: 34px 36px; display: flex; flex-direction: column; justify-content: space-between; }
+.kpi .cell .lab { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-subtle); }
+.kpi .cell .num { font-family: var(--font-display); font-weight: 200; font-size: 62px; letter-spacing: -0.03em; line-height: 1; color: var(--text-strong); }
+.kpi .cell .foot { display: flex; align-items: baseline; gap: 10px; }
+.kpi .cell .delta { font-family: var(--font-mono); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.kpi .up { color: var(--signal-positive); }
+.kpi .dn { color: var(--signal-critical); }
+.kpi .cell .cap { font-size: 13px; color: var(--text-subtle); }
+.kpi .accent .num { color: var(--accent); }

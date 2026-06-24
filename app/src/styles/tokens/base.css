@@ -1,0 +1,31 @@
+/* SIA.HAUS — Base resets & primitive helpers.
+   Lightweight; components & slides own their layout. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--w-regular);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv01";
+}
+
+/* Mono eyebrow / kicker — the system's signature label treatment */
+.sia-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--w-medium);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Hairline divider */
+.sia-rule { border: 0; border-top: var(--bw-hair) solid var(--line); }
+
+::selection { background: var(--champagne-400); color: var(--ink-900); }
