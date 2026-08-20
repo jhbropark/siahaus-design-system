@@ -32,7 +32,7 @@ DNS          Cloudflare (curt / liz.ns.cloudflare.com) — DNS-only, 프록시 �
 | DMARC | 통과 (`p=none`) |
 | DKIM | **미설정** |
 | HTTPS 강제 | **미적용** — 평문 HTTP가 그대로 200 응답 |
-| 보안 헤더 | **전무** — 6종 모두 없음 |
+| 보안 헤더 | **전무** — 6종 모두 없음 (미적용 결정, 2026-08-20) |
 
 ---
 
@@ -60,12 +60,13 @@ curl -sSI http://sia.haus | head -3
 
 ---
 
-## 2. 보안 헤더 — 아임웹에서는 불가능
+## 2. 보안 헤더 — 미적용 (2026-08-20 결정)
 
-응답 헤더는 CDN이나 오리진에서 붙이는데 둘 다 아임웹 소유입니다.
-아임웹 관리 화면에서 임의의 HTTP 응답 헤더를 추가하는 기능은 제공되지 않습니다.
+**결정: 현 상태를 수용한다. Cloudflare 프록시는 도입하지 않는다.**
 
-현재 빠진 헤더:
+응답 헤더는 CDN이나 오리진에서 붙는데 둘 다 아임웹 소유이고, 아임웹 관리 화면에는
+임의의 HTTP 응답 헤더를 추가하는 기능이 없습니다. 따라서 아임웹을 쓰는 한
+아래 헤더들은 붙지 않습니다.
 
 ```
 strict-transport-security
@@ -76,56 +77,49 @@ referrer-policy
 permissions-policy
 ```
 
-### 선택지 A — 그대로 둔다 (기본 권장)
+### 수용 근거
 
-정적인 소개 · 포트폴리오 사이트에서 이 헤더들이 막는 공격은 제한적입니다.
-로그인이나 결제를 직접 처리하지 않는다면 실질 위험은 낮습니다.
+sia.haus는 소개 · 포트폴리오 성격의 사이트로 로그인이나 결제를 직접 처리하지 않습니다.
+이 헤더들이 막는 공격(클릭재킹, MIME 스니핑, 레퍼러 유출)의 실질 피해 범위가 좁고,
+헤더를 붙이기 위해 감수해야 할 구조 변경이 그보다 큽니다.
 
-다만 제안서를 받는 기관 · 대기업 보안팀이 도메인을 스캔하면 등급 F로 잡힙니다.
-평가 항목에 보안 점검이 있는 입찰이라면 감점 요인이 될 수 있습니다.
+### 감수하는 리스크
 
-### 선택지 B — Cloudflare 프록시를 켠다
+**보안 스캐너에서 등급 F로 표시됩니다.** 제안서를 받는 기관이나 대기업 보안팀이
+도메인을 점검하면 드러나며, 보안 점검이 배점에 포함된 입찰에서는 감점 요인이 될 수
+있습니다. 그런 상황이 실제로 생기면 아래 대안을 다시 검토하세요.
 
-DNS가 이미 Cloudflare에 있으므로, 프록시(주황 구름)를 켜면 아임웹을 건드리지 않고
-헤더를 붙일 수 있습니다. **다만 트래픽 경로가 바뀌는 구조 변경입니다.**
+### 검토했으나 채택하지 않은 대안 — Cloudflare 프록시
+
+DNS가 이미 Cloudflare에 있어, 프록시(주황 구름)를 켜면 아임웹을 건드리지 않고
+Transform Rules로 헤더를 주입할 수 있습니다.
 
 ```
 현재:  방문자 → CloudFront(아임웹) → 오리진
-변경:  방문자 → Cloudflare → CloudFront(아임웹) → 오리진
+대안:  방문자 → Cloudflare → CloudFront(아임웹) → 오리진
 ```
 
-설정 순서:
+채택하지 않은 이유:
 
-1. **SSL/TLS → Overview → `Full (strict)`**
-   아임웹 인증서가 유효하므로 strict가 정상 동작합니다. 이걸 먼저 하지 않으면
-   리다이렉트 루프가 납니다.
-2. **DNS → `sia.haus`, `www` 레코드의 프록시 토글을 주황색으로**
-3. **SSL/TLS → Edge Certificates → Always Use HTTPS 켜기**
-   → 선택지 1의 HTTPS 강제도 여기서 해결됩니다.
-4. **Rules → Transform Rules → Modify Response Header → 정적 헤더 추가**
-   ```
-   X-Content-Type-Options: nosniff
-   X-Frame-Options: SAMEORIGIN
-   Referrer-Policy: strict-origin-when-cross-origin
-   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
-   ```
-5. **SSL/TLS → Edge Certificates → HSTS** — 4번까지 정상 확인 후에만.
-   `max-age`를 300초로 시작해 1일 → 1년으로 올립니다.
+- **아임웹이 공식 지원하지 않는 구성** — 장애 발생 시 고객지원을 받지 못할 수 있음
+- **방문자 IP가 Cloudflare IP로 기록** — 아임웹 방문자 통계 왜곡
+- **캐시가 두 겹** — 사이트 수정 반영이 지연됨 (Cloudflare purge 필요)
 
-#### 감수해야 하는 것
+재검토하게 될 경우의 설정 순서만 남겨둡니다. **SSL을 먼저 `Full (strict)`로 바꾸지 않으면
+리다이렉트 루프가 납니다.**
 
-- **아임웹이 공식 지원하지 않는 구성입니다.** 문제 발생 시 지원을 못 받을 수 있습니다.
-- **방문자 IP가 Cloudflare IP로 보입니다** — 아임웹 방문자 통계가 왜곡될 수 있습니다.
-- **캐시가 두 겹이 됩니다** — 사이트를 수정해도 반영이 늦어질 수 있습니다.
-  (Cloudflare 캐시 purge로 해결)
-- Cloudflare 무료 플랜의 Transform Rules 개수 제한을 확인하세요.
+1. SSL/TLS → Overview → `Full (strict)`
+2. DNS → `sia.haus`, `www` 레코드 프록시 토글을 주황색으로
+3. SSL/TLS → Edge Certificates → Always Use HTTPS 켜기
+4. Rules → Transform Rules → Modify Response Header → 정적 헤더 추가
+5. SSL/TLS → Edge Certificates → HSTS — 4번까지 정상 확인 후, `max-age=300`부터 단계적으로
 
-**진행하기 전에 아임웹 지원팀에 Cloudflare 프록시 사용 가능 여부를 먼저 문의하시길 권합니다.**
+진행 전 아임웹 지원팀에 Cloudflare 프록시 사용 가능 여부를 먼저 확인할 것.
 
-### CSP는 어느 쪽이든 보류
+### CSP는 어느 경로든 보류
 
-사이트가 스크립트 소스를 91개 참조하고 있어 검증 없이 강제하면 페이지가 깨집니다.
-아임웹이 스크립트를 동적으로 주입하므로 허용 목록을 안정적으로 유지하기도 어렵습니다.
+사이트가 스크립트 소스를 91개 참조하고, 아임웹이 이를 동적으로 주입하므로
+허용 목록을 안정적으로 유지하기 어렵습니다.
 
 ---
 
