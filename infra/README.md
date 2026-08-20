@@ -29,7 +29,7 @@ DNS          Cloudflare (curt / liz.ns.cloudflare.com) — DNS-only, 프록시 �
 | 웹 응답 | 200 (`sia.haus` → 301 → `www.sia.haus`) |
 | TLS 인증서 | 유효 |
 | SPF | 통과 |
-| DMARC | 통과 (`p=none`) |
+| DMARC | 통과 (`p=none`), 리포트 수신 주소 등록 완료 |
 | DKIM | **미설정** |
 | HTTPS 강제 | **미적용** — 평문 HTTP가 그대로 200 응답 |
 | 보안 헤더 | **전무** — 6종 모두 없음 (미적용 결정, 2026-08-20) |
@@ -140,6 +140,9 @@ SPF     v=spf1 include:_spf.daum.net ~all
 DMARC   v=DMARC1; p=none; rua=mailto:dmarc@sia.haus; fo=1
 ```
 
+`dmarc@sia.haus`는 `sia@sia.haus`의 별칭으로 등록되어 있습니다 (2026-08-20).
+집계 리포트는 이 주소로 들어옵니다.
+
 Gmail 수신 테스트에서 확인:
 
 ```
@@ -155,8 +158,11 @@ Authentication-Results: mx.google.com;
       받아 Cloudflare에 `<셀렉터>._domainkey` TXT로 등록하세요.
       미지원이면 DMARC는 `p=none`이 상한입니다 — 전달(forward)된 메일에서 SPF가 깨지는데
       이를 받쳐줄 서명이 없기 때문입니다.
-- [ ] **`dmarc@sia.haus` 수신 계정** — 없으면 집계 리포트가 전부 반송됩니다.
-      계정을 만들거나 `sia@sia.haus`의 별칭으로 등록하세요.
+- [ ] **첫 DMARC 리포트 수신 확인** — 레코드 게시 후 24~48시간 내 도착합니다.
+      Google · Microsoft · Naver 등이 각각 하루 1회, gzip 첨부 XML로 보냅니다.
+      기한이 지나도 오지 않으면 별칭이 실제로 수신하는지 다시 확인하세요.
+      XML을 직접 읽기 번거로우면 Cloudflare DMARC Management로 전환하는 방법도 있습니다
+      (DNS가 이미 Cloudflare이므로 `rua` 자동 설정 + 대시보드 제공).
 - [ ] **DMARC 강화** — DKIM 설정 후 리포트를 2주 관찰하고
       `p=quarantine; pct=25` → `pct=100` → `p=reject` 순으로 올립니다.
 
