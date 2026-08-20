@@ -1,0 +1,40 @@
+{
+  "Name": "siahaus-security-headers",
+  "Comment": "sia.haus security headers - HSTS, nosniff, frame-options, referrer-policy, permissions-policy",
+  "SecurityHeadersConfig": {
+    "StrictTransportSecurity": {
+      "Override": true,
+      "AccessControlMaxAgeSec": 300,
+      "IncludeSubdomains": false,
+      "Preload": false
+    },
+    "ContentTypeOptions": {
+      "Override": true
+    },
+    "FrameOptions": {
+      "Override": true,
+      "FrameOption": "SAMEORIGIN"
+    },
+    "ReferrerPolicy": {
+      "Override": true,
+      "ReferrerPolicy": "strict-origin-when-cross-origin"
+    }
+  },
+  "CustomHeadersConfig": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "Header": "Permissions-Policy",
+        "Value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+        "Override": true
+      }
+    ]
+  },
+  "RemoveHeadersConfig": {
+    "Quantity": 2,
+    "Items": [
+      { "Header": "Server" },
+      { "Header": "X-Powered-By" }
+    ]
+  }
+}

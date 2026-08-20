@@ -1,0 +1,2 @@
+# apply.sh가 남기는 배포 설정 백업 — 계정/오리진 정보가 들어있으므로 커밋 금지
+cloudfront-config.backup.*.json
