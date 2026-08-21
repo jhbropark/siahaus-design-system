@@ -59,7 +59,7 @@ curl -s  https://sia.haus/llms.txt | head -c 200    # HTML 이 나오면 없는 
 | 🔴 1 | 본문 정의문 노출 | 가져다쓰기 | ⭕ 페이지 편집 |
 | 🔴 2 | Organization + WebSite JSON-LD | 가져다쓰기 | ⭕ head 삽입 |
 | 🟠 3 | FAQ 본문 + FAQPage JSON-LD | 가져다쓰기 | ⭕ 페이지 편집 + head |
-| 🟠 4 | HTTPS 강제 | 찾아가기 | ⭕ 아임웹 설정 (별도 과제) |
+| 🟠 4 | HTTPS 강제 + canonical www 확정 | 찾아가기 | ⭕ 아임웹 설정 — 아래 참고 |
 | 🟡 5 | llms.txt 게시 | 읽기 | ❓ 루트 파일 업로드 지원 여부 |
 | ⬜ 6 | robots.txt 수정 | 읽기 | ❌ 어려움 — 단, **차단 상태가 아니라 급하지 않음** |
 
@@ -70,6 +70,34 @@ curl -s  https://sia.haus/llms.txt | head -c 200    # HTML 이 나오면 없는 
 
 **둘 다 없어도 인용은 됩니다. 화면에 인용할 문장이 없으면 둘 다 있어도 인용되지
 않습니다.** 그래서 1~3번이 먼저입니다.
+
+### canonical 은 www 로 확정 (2026-08-21)
+
+현재 `sia.haus` → 301 → `www.sia.haus` 로 가고 있어 **www 를 정본으로 유지**합니다.
+스니펫의 모든 URL 이 `https://www.sia.haus/` 기준입니다.
+
+**HTTPS 강제 설정과 한 번에 처리하세요.** 지금은 리다이렉트가 `http://sia.haus` →
+`http://www.sia.haus` 로 끝나 평문에 머무릅니다. 목표 형태는 이것입니다.
+
+```
+http://sia.haus       ─┐
+http://www.sia.haus   ─┼─▶  https://www.sia.haus/   (301, 한 번에)
+https://sia.haus      ─┘
+```
+
+리다이렉트를 두 번 태우면(평문 www 를 거쳐 https 로) 체인이 길어지고 첫 구간이
+평문으로 남습니다. 아임웹 설정에서 **HTTPS 강제와 www 통일이 한 단계로 처리되는지**
+확인하고, 나뉘어 있으면 둘 다 켜세요.
+
+확인:
+
+```bash
+curl -sI http://sia.haus      | grep -iE '^(HTTP|location)'
+curl -sI http://www.sia.haus  | grep -iE '^(HTTP|location)'
+curl -sI https://sia.haus     | grep -iE '^(HTTP|location)'
+```
+
+세 경우 모두 최종 도착지가 `https://www.sia.haus/` 여야 합니다.
 
 ### 엔티티 연결 — 두 도메인을 하나의 주체로
 
