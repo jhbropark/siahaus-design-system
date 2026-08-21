@@ -1,0 +1,123 @@
+<!--
+  SIA.HAUS — 아임웹 head 커스텀 HTML 삽입용 구조화 데이터
+  아임웹 관리자 → 사이트 설정 → 고급 설정 → head 커스텀 HTML 에 통째로 붙여넣습니다.
+
+  ⚠️ FAQPage 는 화면에 같은 문답이 실제로 보일 때만 넣으세요.
+     본문에 없는 FAQ 를 스키마로만 선언하면 구조화 데이터 위반으로 리치 결과가
+     거부되고, 반복되면 사이트 전체 신뢰도가 깎입니다.
+     faq-draft.md 의 문답을 페이지에 먼저 노출한 뒤 이 블록을 살리세요.
+
+  ⚠️ canonical 을 www 로 잡았습니다. 현재 sia.haus 는 www 로 301 되고 있습니다.
+     정책을 non-www 로 바꾸면 이 파일의 URL 도 함께 바꿔야 합니다.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.sia.haus/#organization",
+      "name": "SIA.HAUS",
+      "alternateName": ["시아하우스", "sia.haus"],
+      "url": "https://www.sia.haus/",
+      "description": "SIA.HAUS는 기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 미디어아트 스튜디오이며, 그렇게 제작한 미디어아트를 작가 IP로 축적해 공간 사업자에게 구독 방식으로 라이선싱합니다.",
+      "email": "sia@sia.haus",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "서울"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "마포구 매봉산로 75 동아디지털미디어센터(DDMC) 18층",
+        "addressLocality": "서울특별시",
+        "postalCode": "03926",
+        "addressCountry": {
+          "@type": "Country",
+          "name": "KR"
+        }
+      },
+      "knowsAbout": [
+        "미디어 파사드",
+        "프로젝션 매핑",
+        "몰입형 전시",
+        "미디어 A/V",
+        "사운드 디자인",
+        "미디어아트 IP 라이선싱"
+      ],
+      "sameAs": [
+        "https://www.behance.net/sia_haus"
+      ],
+      "subOrganization": {
+        "@id": "https://varis.kr/#organization"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.sia.haus/#website",
+      "url": "https://www.sia.haus/",
+      "name": "SIA.HAUS",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://www.sia.haus/#organization"
+      }
+    }
+  ]
+}
+</script>
+
+<!--
+  ── FAQPage — 화면에 문답을 노출한 뒤에만 주석을 해제하세요 ──
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://www.sia.haus/#faq",
+  "isPartOf": { "@id": "https://www.sia.haus/#website" },
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "SIA.HAUS는 어떤 회사인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SIA.HAUS는 서울 상암에 기반을 둔 미디어아트 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 기획부터 운영까지 전 과정을 외주 분할 없이 자체 수행합니다. 2018년부터 국내외 대형 공간 프로젝트를 제작해 왔습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "제작은 어떤 과정으로 진행되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "기획, 프리프로덕션, 프로덕션, 운영 네 단계로 진행됩니다. SIA.HAUS는 이 네 구간을 한 팀이 담당하는 수직통합 구조입니다. 콘텐츠 제작과 현장 설치, 이후 운영까지 책임 주체가 나뉘지 않아 일정과 품질 관리가 한 곳에서 이루어집니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "미디어아트 IP 구독 라이선싱은 무엇인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SIA.HAUS가 자체 제작한 미디어아트를 작가 IP로 축적하고, 공간 사업자가 이를 구독 형태로 이용하도록 라이선싱하는 방식입니다. 매번 새 작품을 커미션하지 않고도 검증된 콘텐츠를 자사 공간에 운영할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "어떤 규모의 프로젝트를 진행하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "건축 외피 전체를 사용하는 대형 미디어 파사드부터 실내 전시 공간까지 다룹니다. 롯데월드타워 잠실 미디어 파사드는 819제곱미터, 21미터 곱하기 39미터 규모였습니다. 밀라노 디자인위크, 베니스 비엔날레 등 국제 행사 프로젝트도 수행했습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "VARIS와 SIA.HAUS는 어떤 관계인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "VARIS는 SIA.HAUS가 운영하는 미디어아트 교육 브랜드입니다. SIA.HAUS의 실무 제작 파이프라인과 서울 상암 DDMC 제작 공간을 교육에 활용하며, 입문 VOD부터 6개월 전문가 과정, 1대1 제작 멘토링까지 운영합니다."
+      }
+    }
+  ]
+}
+</script>
+
+  ── FAQPage 끝 ──
+-->
