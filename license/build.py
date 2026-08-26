@@ -132,8 +132,7 @@ def build_html(d: dict, today: str) -> str:
             <p class="work-sum">{esc(w['summary'])}</p>
             <dl class="spec">
               <div><dt>러닝타임</dt><dd>{esc(val(w['runtime'], f"works.{w['id']}.runtime"))}</dd></div>
-              <div><dt>해상도</dt><dd>{esc(val(w['resolution'], f"works.{w['id']}.resolution"))}</dd></div>
-              <div><dt>비율</dt><dd>{esc(val(w['ratio'], f"works.{w['id']}.ratio"))}</dd></div>
+              <div><dt>원본 비율</dt><dd>{esc(val(w['ratio'], f"works.{w['id']}.ratio"))}</dd></div>
             </dl>
           </div>
         </article>'''
@@ -406,6 +405,7 @@ footer{{border-top:1px solid var(--line-faint);padding:36px 0;background:var(--s
         <span class="eyebrow">{esc(cat['eyebrow'])}</span>
         <h2>{esc(cat['title'])}</h2>
         <p class="lead">{esc(cat['lead'])}</p>
+        <p class="pricing-note">{esc(cat['delivery'])}</p>
         <div class="works">
 {cards}
         </div>
@@ -481,6 +481,8 @@ def build_llms(d: dict) -> str:
 {chr(10).join(f"{s['n']}. **{s['t']}** — {s['d']}" for s in d['how']['steps'])}
 
 ## 구독 가능한 작품
+
+{cat['delivery']}
 
 {works}
 

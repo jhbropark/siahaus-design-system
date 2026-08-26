@@ -46,7 +46,7 @@
   "catalog": {
     "eyebrow": "CATALOG",
     "title": "구독 가능한 작품",
-    "lead": "SIA.HAUS가 제작한 작품입니다. 공간의 비율과 해상도에 맞춰 재출력해 공급합니다.",
+    "lead": "SIA.HAUS가 제작한 작품입니다. 원본 비율을 기준으로 공간 규격에 맞춰 재출력합니다.",
     "note": "이미지는 자리표시자입니다. 실제 작품 스틸로 교체하세요.",
     "works": [
       {
@@ -56,7 +56,6 @@
         "kind": "미디어아트",
         "summary": "도시의 움직임을 빛의 밀도로 환산해 화면 전체를 하나의 맥박으로 다루는 작품입니다.",
         "runtime": null,
-        "resolution": null,
         "ratio": null,
         "tone": "slate"
       },
@@ -67,7 +66,6 @@
         "kind": "키네틱 디스플레이",
         "summary": "물리적으로 움직이는 디스플레이 구조와 영상을 함께 설계한 키네틱 작품입니다.",
         "runtime": null,
-        "resolution": null,
         "ratio": null,
         "tone": "violet"
       },
@@ -78,7 +76,6 @@
         "kind": "아나모픽 미디어파사드",
         "summary": "건축 외피의 모서리를 이용해 입체로 읽히도록 설계한 아나모픽 미디어파사드입니다.",
         "runtime": null,
-        "resolution": null,
         "ratio": null,
         "tone": "amber"
       },
@@ -89,7 +86,6 @@
         "kind": "IP 갤러리 프로젝트",
         "summary": "SIA.HAUS가 자체 IP로 전개한 갤러리 프로젝트입니다. 시리즈 단위로 구성돼 로테이션 운영에 적합합니다.",
         "runtime": null,
-        "resolution": null,
         "ratio": null,
         "tone": "sage"
       },
@@ -100,11 +96,11 @@
         "kind": "몰입형 전시",
         "summary": "작가의 작업 세계를 공간 전체로 옮긴 몰입형 전시 콘텐츠입니다.",
         "runtime": null,
-        "resolution": null,
         "ratio": null,
         "tone": "rose"
       }
-    ]
+    ],
+    "delivery": "해상도는 공간의 화면 규격에 맞춰 재출력해 공급합니다. 아래는 각 작품의 원본 비율과 러닝타임입니다."
   },
   "plans": {
     "eyebrow": "PLANS",
