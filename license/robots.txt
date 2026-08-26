@@ -1,0 +1,44 @@
+# https://license.sia.haus/robots.txt
+# 모든 크롤러 전체 허용 — 차단 경로 없음
+
+User-agent: *
+Allow: /
+
+# 생성형 검색엔진 · AI 크롤러 (명시적 허용)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: https://license.sia.haus/sitemap.xml
