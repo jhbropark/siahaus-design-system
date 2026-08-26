@@ -1,0 +1,20 @@
+{
+  "name": "siahaus-wangsong-deck",
+  "private": true,
+  "version": "1.0.0",
+  "description": "SIA.HAUS — 왕송호수 레일바이크 야간 미디어아트 도입 제안 (15-slide premium dark proposal deck)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

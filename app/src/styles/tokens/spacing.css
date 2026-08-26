@@ -1,0 +1,41 @@
+/* SIA.HAUS — Spacing & Layout
+   8px base grid. Generous negative space — the deck breathes (70% visual / 30% text).
+   Slide canvas is 1280×720 (16:9); margins are deliberately wide. */
+
+:root {
+  /* ---- Spacing scale (8px base) ---- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ---- Slide canvas ---- */
+  --slide-w: 1280px;
+  --slide-h: 720px;
+  --slide-margin: 88px;     /* outer safe margin on a slide */
+  --slide-margin-tight: 64px;
+
+  /* ---- Content rhythm ---- */
+  --gutter: 32px;           /* default grid gutter */
+  --stack: 24px;            /* default vertical stack gap */
+  --col-12: repeat(12, 1fr); /* @kind other */
+
+  /* ---- Radii (restrained; near-square premium) ---- */
+  --r-none: 0; /* @kind radius */
+  --r-xs: 2px;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+
+  /* ---- Hairline borders ---- */
+  --bw-hair: 1px;
+  --bw-thick: 2px;
+}
