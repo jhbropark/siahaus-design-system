@@ -145,6 +145,9 @@ def build_html(d: dict, today: str) -> str:
         price = p.get("price_monthly")
         if price:
             price_html = f'<span class="num">₩{int(price):,}</span><span class="per">/ 월</span>'
+        elif plans.get("pricing_mode") == "quote":
+            # 정가를 공개하지 않는 것은 결정된 정책이지 미확정 값이 아니다.
+            price_html = '<span class="quote">별도 문의</span>'
         else:
             placeholders.append(f"plans.{p['id']}.price_monthly")
             price_html = f'<span class="tbd">{TBD}</span>'
@@ -327,6 +330,9 @@ header.top{{position:sticky;top:0;z-index:50;background:rgba(12,13,15,0.86);
 .plan-price .per{{font-size:13px;color:var(--text-faint)}}
 .plan-price .tbd{{font-size:19px;color:var(--accent-soft);font-family:var(--font-mono);
   border-bottom:1px dashed var(--accent-deep);padding-bottom:2px}}
+.plan-price .quote{{font-size:24px;font-weight:300;color:var(--text-strong);letter-spacing:-0.01em}}
+.pricing-note{{margin-top:14px;font-size:14px;color:var(--text-subtle);max-width:64ch;
+  padding-left:14px;border-left:2px solid var(--accent-deep)}}
 .plan-term{{font-size:12.5px;color:var(--text-faint);font-family:var(--font-mono)}}
 .plan-feats{{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:9px;flex:1}}
 .plan-feats li{{font-size:14px;color:var(--text-muted);padding-left:18px;position:relative;line-height:1.6}}
@@ -412,6 +418,7 @@ footer{{border-top:1px solid var(--line-faint);padding:36px 0;background:var(--s
         <span class="eyebrow">{esc(plans['eyebrow'])}</span>
         <h2>{esc(plans['title'])}</h2>
         <p class="lead">{esc(plans['lead'])}</p>
+        <p class="pricing-note">{esc(plans['pricing_note'])}</p>
         <div class="plans-grid">
 {plan_cards}
         </div>
@@ -460,7 +467,7 @@ def build_llms(d: dict) -> str:
     )
     plan_lines = "\n".join(
         f"- **{p['name']}** — {p['tagline']}. "
-        + (f"월 {int(p['price_monthly']):,}원." if p.get("price_monthly") else "가격 문의.")
+        + (f"월 {int(p['price_monthly']):,}원." if p.get("price_monthly") else "구독료 별도 문의.")
         for p in plans["items"]
     )
     return f"""# {site['name']}
@@ -481,7 +488,7 @@ def build_llms(d: dict) -> str:
 
 {plan_lines}
 
-계약 기간과 상영 조건은 공간 조건에 따라 조율합니다.
+{plans['pricing_note']}
 
 ## 링크
 
