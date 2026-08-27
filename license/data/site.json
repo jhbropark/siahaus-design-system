@@ -1,0 +1,244 @@
+{
+  "_note": "이 파일이 단일 진실 원천입니다. 값을 고친 뒤 `python3 build.py` 를 돌리면 index.html · llms.txt · sitemap.xml 이 다시 생성됩니다. null 인 값은 '확정 예정' 으로 렌더링되고 빌드 로그에 개수가 표시됩니다.",
+  "site": {
+    "name": "SIA.HAUS 라이선스",
+    "domain": "license.sia.haus",
+    "url": "https://license.sia.haus/",
+    "parent_org_id": "https://www.sia.haus/#organization",
+    "email": "sia@sia.haus",
+    "address": {
+      "street": "마포구 매봉산로 75 동아디지털미디어센터(DDMC) 18층",
+      "locality": "서울특별시",
+      "postal": "03926"
+    },
+    "locale": "ko",
+    "path": "",
+    "lang_label": "한국어",
+    "area_served": "Worldwide",
+    "alt_label": "English"
+  },
+  "meta": {
+    "title": "SIA.HAUS 라이선스 — 미디어아트 구독 라이선싱",
+    "description": "미디어아트를 새로 의뢰하지 않고 구독으로 운영하세요. SIA.HAUS가 제작한 작품을 월 단위로 라이선스해 미디어 파사드·전시 공간에 상영합니다."
+  },
+  "hero": {
+    "eyebrow": "MEDIA ART LICENSING",
+    "headline": "만들지 않고,\n빌려서 운영합니다.",
+    "definition": "SIA.HAUS 라이선스는 미디어아트 작품을 구독 방식으로 빌려 쓰는 서비스입니다. 공간 사업자는 작품을 새로 의뢰하지 않고, SIA.HAUS가 직접 제작해 축적한 미디어아트를 월 단위로 라이선스해 자사 공간에 상영합니다."
+  },
+  "how": {
+    "eyebrow": "HOW IT WORKS",
+    "title": "제작사가 곧 공급자입니다",
+    "lead": "SIA.HAUS는 기획·프리프로덕션·프로덕션·운영 네 단계를 한 팀이 담당합니다. 외주로 나뉘지 않기 때문에 제작한 작품의 권리가 그대로 남고, 그 축적분을 라이선스로 공급할 수 있습니다.",
+    "steps": [
+      {
+        "n": "01",
+        "t": "제작",
+        "d": "커미션 프로젝트를 기획부터 현장 운영까지 자체 수행합니다. 이 과정에서 작품의 원본 자산과 권리가 스튜디오에 남습니다."
+      },
+      {
+        "n": "02",
+        "t": "축적",
+        "d": "완료된 작품을 규격화해 카탈로그로 관리합니다. 해상도·비율·러닝타임을 공간 조건에 맞게 재출력할 수 있는 형태로 보관합니다."
+      },
+      {
+        "n": "03",
+        "t": "구독",
+        "d": "공간 사업자가 플랜을 선택하면 해당 작품의 상영 권리와 파일을 제공합니다. 계약 기간 동안 교체·재출력을 지원합니다."
+      }
+    ]
+  },
+  "catalog": {
+    "eyebrow": "CATALOG",
+    "title": "구독 가능한 작품",
+    "lead": "SIA.HAUS가 제작한 작품입니다. 원본 비율을 기준으로 공간 규격에 맞춰 재출력합니다.",
+    "note": "이미지는 자리표시자입니다. 실제 작품 스틸로 교체하세요.",
+    "works": [
+      {
+        "id": "seoul-pulse",
+        "title": "시공간의 만개 · 서울의 맥박",
+        "year": null,
+        "kind": "미디어아트",
+        "summary": "도시의 움직임을 빛의 밀도로 환산해 화면 전체를 하나의 맥박으로 다루는 작품입니다.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "slate"
+      },
+      {
+        "id": "aria",
+        "title": "ARIA",
+        "year": "2025",
+        "kind": "키네틱 디스플레이",
+        "summary": "물리적으로 움직이는 디스플레이 구조와 영상을 함께 설계한 키네틱 작품입니다.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "violet"
+      },
+      {
+        "id": "grand-josun",
+        "title": "그랜드 조선",
+        "year": "2025",
+        "kind": "아나모픽 미디어파사드",
+        "summary": "건축 외피의 모서리를 이용해 입체로 읽히도록 설계한 아나모픽 미디어파사드입니다.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "amber"
+      },
+      {
+        "id": "arfa",
+        "title": "ARFA",
+        "year": null,
+        "kind": "IP 갤러리 프로젝트",
+        "summary": "SIA.HAUS가 자체 IP로 전개한 갤러리 프로젝트입니다. 시리즈 단위로 구성돼 로테이션 운영에 적합합니다.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "sage"
+      },
+      {
+        "id": "kim-tschang-yeul",
+        "title": "김창열 아틀리에",
+        "year": "2026",
+        "kind": "몰입형 전시",
+        "summary": "작가의 작업 세계를 공간 전체로 옮긴 몰입형 전시 콘텐츠입니다.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "rose"
+      }
+    ],
+    "delivery": "해상도는 공간의 화면 규격에 맞춰 재출력해 공급합니다.",
+    "hide_unknown_specs": true,
+    "delivery_specs": "작품별 원본 비율과 러닝타임은 각 카드에 표기했습니다."
+  },
+  "plans": {
+    "eyebrow": "PLANS",
+    "title": "구독 플랜",
+    "lead": "공간 수와 작품 수로 나뉩니다. 어느 구간에 해당하는지 먼저 가늠하신 뒤 문의 주세요.",
+    "items": [
+      {
+        "id": "single",
+        "name": "Single",
+        "tagline": "작품 1편 · 공간 1곳",
+        "price_monthly": null,
+        "term": "문의 시 조율",
+        "features": [
+          "카탈로그에서 작품 1편 선택",
+          "공간 1곳 상영 권리",
+          "공간 규격에 맞춘 재출력 1회",
+          "계약 기간 내 기술 지원"
+        ],
+        "featured": false
+      },
+      {
+        "id": "collection",
+        "name": "Collection",
+        "tagline": "작품 5편 로테이션 · 공간 1곳",
+        "price_monthly": null,
+        "term": "문의 시 조율",
+        "features": [
+          "카탈로그에서 작품 5편 선택",
+          "공간 1곳 상영 권리",
+          "분기별 작품 교체",
+          "공간 규격에 맞춘 재출력 무제한",
+          "계약 기간 내 기술 지원"
+        ],
+        "featured": true
+      },
+      {
+        "id": "estate",
+        "name": "Estate",
+        "tagline": "전 카탈로그 · 복수 공간",
+        "price_monthly": null,
+        "term": "문의 시 조율",
+        "features": [
+          "전체 카탈로그 이용",
+          "복수 공간 상영 권리",
+          "신규 작품 우선 제공",
+          "공간별 개별 재출력",
+          "전담 운영 지원"
+        ],
+        "featured": false
+      }
+    ],
+    "pricing_mode": "quote",
+    "pricing_note": "구독료는 공간 규격, 선택 작품 수, 계약 기간에 따라 산정합니다. 문의 주시면 조건을 확인해 안내드립니다."
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "자주 묻는 질문",
+    "items": [
+      {
+        "q": "미디어아트 구독 라이선싱은 무엇인가요?",
+        "a": "SIA.HAUS가 제작한 미디어아트를 공간 사업자가 구독 형태로 이용하는 방식입니다. 작품을 새로 의뢰하지 않고 이미 완성된 작품의 상영 권리를 월 단위로 확보합니다. 제작 기간과 초기 비용 없이 검증된 콘텐츠를 운영할 수 있습니다."
+      },
+      {
+        "q": "새로 제작하는 것과 무엇이 다른가요?",
+        "a": "커미션 제작은 기획부터 납품까지 수개월이 걸리고 비용이 한 번에 발생합니다. 구독은 완성된 작품을 골라 바로 운영하고 비용을 기간에 분산합니다. 공간에 맞춘 재출력은 포함되므로 비율과 해상도는 그대로 맞춰집니다."
+      },
+      {
+        "q": "어떤 공간에 적용할 수 있나요?",
+        "a": "건축 외피를 사용하는 미디어 파사드, 실내 전시 공간, 로비와 라운지의 대형 디스플레이에 적용합니다. 공간의 비율과 해상도를 확인한 뒤 해당 규격으로 작품을 재출력해 공급합니다."
+      },
+      {
+        "q": "구독료는 어떻게 책정되나요?",
+        "a": "공개 정가 없이 개별 산정합니다. 공간 규격, 선택한 작품 수, 계약 기간 세 가지가 기준이며 문의 시 조건을 확인해 안내드립니다. 플랜은 공간 수와 작품 수로 나뉘어 있어 어느 구간에 해당하는지 먼저 가늠하실 수 있습니다."
+      },
+      {
+        "q": "작품을 도중에 바꿀 수 있나요?",
+        "a": "Collection 플랜부터 분기별 교체를 지원합니다. Single 플랜은 계약 기간 동안 선택한 작품을 운영하며, 변경이 필요하면 문의 시 조율합니다."
+      },
+      {
+        "q": "SIA.HAUS는 어떤 회사인가요?",
+        "a": "서울 상암에 기반을 둔 미디어아트 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시를 기획부터 운영까지 자체 수행하며, 2018년부터 국내외 대형 공간 프로젝트를 제작해 왔습니다. 라이선스 카탈로그는 그 작업의 축적분입니다."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "title": "공간 조건부터 알려주세요",
+    "lead": "설치 위치, 화면 규격, 운영 기간을 알려주시면 적용 가능한 작품과 플랜을 정리해 회신합니다.",
+    "formspree_id": null
+  },
+  "strings": {
+    "how": "작동 방식",
+    "works": "구독 가능한 작품",
+    "plans": "플랜",
+    "links": "링크",
+    "contact": "연락",
+    "email": "이메일",
+    "address": "주소",
+    "quote": "구독료 별도 문의.",
+    "per_month": "월 {price}원.",
+    "link_self": "카탈로그, 플랜, 문의",
+    "link_studio": "미디어아트 스튜디오 본체",
+    "link_varis": "SIA.HAUS가 운영하는 미디어아트 교육 브랜드",
+    "logo_suffix": "라이선스",
+    "nav_how": "작동 방식",
+    "nav_works": "작품",
+    "nav_plans": "플랜",
+    "cta_works": "작품 보기",
+    "cta_contact": "문의하기",
+    "spec_runtime": "러닝타임",
+    "spec_ratio": "원본 비율",
+    "img_placeholder": "작품 이미지 자리표시자",
+    "price_per": "/ 월",
+    "price_quote": "별도 문의",
+    "plan_badge": "권장",
+    "plan_term": "계약 기간",
+    "tbd": "확정 예정",
+    "service_type": "미디어아트 구독 라이선싱",
+    "form_company": "회사 / 기관",
+    "form_name": "담당자",
+    "form_phone": "연락처",
+    "form_email": "이메일",
+    "form_space": "공간 조건",
+    "form_space_ph": "설치 위치, 화면 규격, 운영 기간",
+    "form_submit": "문의 보내기",
+    "mail_subject": "[SIA.HAUS 라이선스] 구독 문의",
+    "mail_body": "회사 / 기관:%0D%0A담당자:%0D%0A연락처:%0D%0A%0D%0A설치 위치:%0D%0A화면 규격:%0D%0A운영 기간:%0D%0A",
+    "mail_note": "폼 연동 전입니다. 아래 버튼을 누르면 항목이 채워진 메일이 열립니다.",
+    "mail_cta": "메일로 문의하기",
+    "mail_alt": "또는 직접 보내기",
+    "foot_studio": "스튜디오",
+    "foot_varis": "VARIS 아카데미"
+  }
+}

@@ -178,6 +178,27 @@ ChatGPT · Perplexity · Gemini 에 **월 1회** 던지고 sia.haus 인용 여�
 
 ---
 
+## 구독 라이선싱 제품 — `license/`
+
+정의문이 말하는 구독 라이선싱의 실제 페이지는 [`../../license/`](../../license/) 에
+만들어져 있습니다 (`license.sia.haus`, Vercel 정적 배포).
+
+**본체 스키마 적용이 선행되어야 합니다.** `license.sia.haus` 의 `Service` 가
+`https://www.sia.haus/#organization` 을 참조하는데, 이 폴더의 스니펫을 아임웹에
+붙여넣기 전까지는 그 대상이 존재하지 않습니다.
+
+```
+license.sia.haus/#service ──provider──▶ www.sia.haus/#organization  ← 아임웹 head
+                                              │
+                                        subOrganization
+                                              ▼
+                                        varis.kr/#organization      ← 이미 존재
+```
+
+> **정의문의 "라이선싱합니다" 는 license.sia.haus 가 배포된 시점부터 참입니다.**
+> 그 전에 본체에 정의문을 올리면 없는 서비스를 설명하게 됩니다.
+> 순서는 ① license 배포 → ② 본체 정의문·스키마 적용 입니다.
+
 ## 확정이 필요한 값
 
 `page-copy-draft.md` 3번 표를 보세요. 가장 중요한 것은 **구독 라이선싱 출시 여부**입니다.
