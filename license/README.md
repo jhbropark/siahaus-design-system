@@ -45,6 +45,15 @@ JSON 을 클라이언트에서 fetch 해 렌더링하면 봇이 받는 원본 HT
 처음 영어 빌드를 돌렸을 때 **영어 페이지가 한국어 가구를 쓰고 있었습니다** —
 본문만 번역되고 내비와 버튼은 한국어였습니다. 그래서 전부 데이터로 뺐습니다.
 
+### 영어는 미국식 철자로 씁니다
+
+제품 이름이 `SIA.HAUS License` 입니다. **영국식으로 쓰면 명사가 `licence`, 동사가
+`license` 라 한 페이지에 두 철자가 계속 나옵니다** — 브랜드명은 Licence 인데 본문은
+"we license the work" 가 되는 식입니다.
+
+그래서 `catalog` · `standardized` · `organization` 처럼 미국식으로 통일했습니다.
+문구를 추가하실 때도 미국식으로 맞춰 주세요.
+
 ### 로케일을 더 추가하려면
 
 1. `data/site.<코드>.json` 을 만들고 `site.locale` · `site.path` · `site.url` 을 채운다
