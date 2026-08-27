@@ -17,8 +17,8 @@ from datetime import date, timezone, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-DATA = ROOT / "data" / "site.json"
-TBD = "확정 예정"
+DATA_FILES = [ROOT / "data" / "site.json", ROOT / "data" / "site.en.json"]
+TBD = "확정 예정"   # 로케일별 값은 strings.tbd 로 덮어씀
 
 placeholders: list[str] = []
 
@@ -26,7 +26,7 @@ placeholders: list[str] = []
 def val(v, path: str, unit: str = "") -> str:
     """None 이면 '확정 예정' 으로 렌더링하고 미확정 목록에 기록한다."""
     if v in (None, "", []):
-        placeholders.append(path)
+        placeholders.append(tag(path))
         return TBD
     return f"{v}{unit}"
 
@@ -36,25 +36,32 @@ def esc(s: str) -> str:
 
 
 hidden_specs: list[str] = []
+current_locale = ""
 
 
-def spec_row(label: str, v, path: str, hide: bool) -> str:
+def tag(path: str) -> str:
+    """미확정 경로에 로케일을 붙인다. ko 와 en 은 각기 다른 파일이라
+    같은 키라도 양쪽 모두 채워야 한다."""
+    return f"[{current_locale}] {path}" if current_locale else path
+
+
+def spec_row(label: str, v, path: str, hide: bool, tbd: str = TBD) -> str:
     """스펙 한 줄. hide=True 이고 값이 없으면 행 자체를 내보내지 않는다.
 
     숨기더라도 미확정 목록에는 그대로 기록한다. 화면에서 안 보이는 것과
     값이 채워진 것은 다르고, 빌드 경고까지 조용해지면 영영 안 채워진다.
     """
     if v in (None, "", []):
-        placeholders.append(path)
+        placeholders.append(tag(path))
         if hide:
-            hidden_specs.append(path)
+            hidden_specs.append(tag(path))
             return ""
-        return f"              <div><dt>{esc(label)}</dt><dd>{TBD}</dd></div>"
+        return f"              <div><dt>{esc(label)}</dt><dd>{esc(tbd)}</dd></div>"
     return f"              <div><dt>{esc(label)}</dt><dd>{esc(v)}</dd></div>"
 
 
-def build_html(d: dict, today: str) -> str:
-    site, meta = d["site"], d["meta"]
+def build_html(d: dict, today: str, locales: list) -> str:
+    site, meta, S = d["site"], d["meta"], d["strings"]
     hero, how, cat, plans, faq, contact = (
         d["hero"], d["how"], d["catalog"], d["plans"], d["faq"], d["contact"]
     )
@@ -66,17 +73,17 @@ def build_html(d: dict, today: str) -> str:
             "@id": f"{site['url']}#website",
             "url": site["url"],
             "name": site["name"],
-            "inLanguage": "ko",
+            "inLanguage": site["locale"],
             "publisher": {"@id": site["parent_org_id"]},
         },
         {
             "@type": "Service",
             "@id": f"{site['url']}#service",
             "name": site["name"],
-            "serviceType": "미디어아트 구독 라이선싱",
+            "serviceType": S["service_type"],
             "description": hero["definition"],
             "provider": {"@id": site["parent_org_id"]},
-            "areaServed": {"@type": "Country", "name": "KR"},
+            "areaServed": site["area_served"],
             "hasOfferCatalog": {
                 "@type": "OfferCatalog",
                 "name": plans["title"],
@@ -144,8 +151,8 @@ def build_html(d: dict, today: str) -> str:
 
     def work_card(w: dict) -> str:
         rows = [
-            spec_row("러닝타임", w.get("runtime"), f"works.{w['id']}.runtime", hide),
-            spec_row("원본 비율", w.get("ratio"), f"works.{w['id']}.ratio", hide),
+            spec_row(S["spec_runtime"], w.get("runtime"), f"works.{w['id']}.runtime", hide, S["tbd"]),
+            spec_row(S["spec_ratio"], w.get("ratio"), f"works.{w['id']}.ratio", hide, S["tbd"]),
         ]
         rows = [r for r in rows if r]
         dl = ("            <dl class=\"spec\">\n" + "\n".join(rows) + "\n            </dl>\n"
@@ -154,7 +161,7 @@ def build_html(d: dict, today: str) -> str:
         return (
             f'        <article class="work" id="work-{esc(w["id"])}">\n'
             f'          <div class="work-visual tone-{esc(w["tone"])}" role="img"\n'
-            f'               aria-label="{esc(w["title"])} — 작품 이미지 자리표시자"></div>\n'
+            f'               aria-label="{esc(w["title"])} — {esc(S[chr(34)+chr(34)]) if False else esc(S["img_placeholder"])}"></div>\n'
             f'          <div class="work-body">\n'
             f'            <span class="work-kind">{esc(w["kind"])}{year}</span>\n'
             f'            <h3 class="work-title">{esc(w["title"])}</h3>\n'
@@ -171,24 +178,24 @@ def build_html(d: dict, today: str) -> str:
     def plan_card(p: dict) -> str:
         price = p.get("price_monthly")
         if price:
-            price_html = f'<span class="num">₩{int(price):,}</span><span class="per">/ 월</span>'
+            price_html = f'<span class="num">₩{int(price):,}</span><span class="per">{esc(S["price_per"])}</span>'
         elif plans.get("pricing_mode") == "quote":
             # 정가를 공개하지 않는 것은 결정된 정책이지 미확정 값이 아니다.
-            price_html = '<span class="quote">별도 문의</span>'
+            price_html = f'<span class="quote">{esc(S["price_quote"])}</span>'
         else:
-            placeholders.append(f"plans.{p['id']}.price_monthly")
-            price_html = f'<span class="tbd">{TBD}</span>'
+            placeholders.append(tag(f"plans.{p['id']}.price_monthly"))
+            price_html = f'<span class="tbd">{esc(S["tbd"])}</span>'
         feats = "\n".join(f"              <li>{esc(f)}</li>" for f in p["features"])
         return f'''        <article class="plan{' feat' if p.get('featured') else ''}">
-          {'<span class="plan-badge">권장</span>' if p.get('featured') else ''}
+          {f'<span class="plan-badge">{esc(S["plan_badge"])}</span>' if p.get('featured') else ''}
           <h3 class="plan-name">{esc(p['name'])}</h3>
           <p class="plan-tag">{esc(p['tagline'])}</p>
           <p class="plan-price">{price_html}</p>
-          <p class="plan-term">계약 기간 {esc(val(p.get('term'), f"plans.{p['id']}.term"))}</p>
+          <p class="plan-term">{esc(S["plan_term"])} {esc(val(p.get('term'), f"plans.{p['id']}.term"))}</p>
           <ul class="plan-feats">
 {feats}
           </ul>
-          <a class="btn btn-{'accent' if p.get('featured') else 'outline'}" href="#contact">문의하기</a>
+          <a class="btn btn-{'accent' if p.get('featured') else 'outline'}" href="#contact">{esc(S["cta_contact"])}</a>
         </article>'''
 
     plan_cards = "\n".join(plan_card(p) for p in plans["items"])
@@ -213,22 +220,36 @@ def build_html(d: dict, today: str) -> str:
     # ── 문의 ───────────────────────────────────────────────────────────────
     if contact.get("formspree_id"):
         form = f'''      <form class="cform" action="https://formspree.io/f/{esc(contact['formspree_id'])}" method="POST">
-        <label>회사 / 기관 <input type="text" name="company" required></label>
-        <label>담당자 <input type="text" name="name" required></label>
-        <label>연락처 <input type="text" name="phone" required></label>
-        <label>이메일 <input type="email" name="email" required></label>
-        <label>공간 조건 <textarea name="space" rows="4" placeholder="설치 위치, 화면 규격, 운영 기간" required></textarea></label>
-        <button class="btn btn-accent btn-lg" type="submit">문의 보내기</button>
+        <label>{esc(S["form_company"])} <input type="text" name="company" required></label>
+        <label>{esc(S["form_name"])} <input type="text" name="name" required></label>
+        <label>{esc(S["form_phone"])} <input type="text" name="phone" required></label>
+        <label>{esc(S["form_email"])} <input type="email" name="email" required></label>
+        <label>{esc(S["form_space"])} <textarea name="space" rows="4" placeholder="{esc(S["form_space_ph"])}" required></textarea></label>
+        <button class="btn btn-accent btn-lg" type="submit">{esc(S["form_submit"])}</button>
       </form>'''
     else:
-        placeholders.append("contact.formspree_id")
-        subject = "[SIA.HAUS 라이선스] 구독 문의"
-        body = "회사 / 기관:%0D%0A담당자:%0D%0A연락처:%0D%0A%0D%0A설치 위치:%0D%0A화면 규격:%0D%0A운영 기간:%0D%0A"
+        placeholders.append(tag("contact.formspree_id"))
+        subject = S["mail_subject"]
+        body = S["mail_body"]
         form = f'''      <div class="cform cform-mail">
-        <p class="cform-note">폼 연동 전입니다. 아래 버튼을 누르면 항목이 채워진 메일이 열립니다.</p>
-        <a class="btn btn-accent btn-lg" href="mailto:{esc(site['email'])}?subject={subject}&amp;body={body}">메일로 문의하기</a>
-        <p class="cform-alt">또는 직접 보내기 · <a href="mailto:{esc(site['email'])}">{esc(site['email'])}</a></p>
+        <p class="cform-note">{esc(S["mail_note"])}</p>
+        <a class="btn btn-accent btn-lg" href="mailto:{esc(site['email'])}?subject={subject}&amp;body={body}">{esc(S["mail_cta"])}</a>
+        <p class="cform-alt">{esc(S["mail_alt"])} · <a href="mailto:{esc(site['email'])}">{esc(site['email'])}</a></p>
       </div>'''
+
+    # hreflang — 로케일끼리 서로를 가리키고, x-default 는 한국어 루트
+    hl = []
+    for loc in locales:
+        hl.append(f'<link rel="alternate" hreflang="{loc["locale"]}" href="{loc["url"]}" />')
+    root = next((l["url"] for l in locales if l["locale"] == "ko"), locales[0]["url"])
+    hl.append(f'<link rel="alternate" hreflang="x-default" href="{root}" />')
+    hreflang = "\n".join(hl)
+
+    other = next((l for l in locales if l["locale"] != site["locale"]), None)
+    lang_switch = (
+        f'<a href="{other["url"]}" hreflang="{other["locale"]}">{esc(site["alt_label"])}</a>'
+        if other else ""
+    )
 
     any_spec = "<dl" in cards
     delivery_html = esc(cat["delivery"])
@@ -240,13 +261,14 @@ def build_html(d: dict, today: str) -> str:
     definition_html = f"<b>{esc(_first)}{esc(_sep)}</b>{esc(_rest)}"
 
     return f'''<!DOCTYPE html>
-<html lang="ko">
+<html lang="{esc(site["locale"])}">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{esc(meta['title'])}</title>
 <meta name="description" content="{esc(meta['description'])}" />
 <link rel="canonical" href="{esc(site['url'])}" />
+{hreflang}
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="{esc(site['name'])}" />
 <meta property="og:title" content="{esc(meta['title'])}" />
@@ -399,12 +421,13 @@ footer{{border-top:1px solid var(--line-faint);padding:36px 0;background:var(--s
 <body>
   <header class="top">
     <div class="top-in">
-      <a class="logo" href="#top">sia<b>.</b>haus <span style="color:var(--text-faint)">라이선스</span></a>
+      <a class="logo" href="#top">sia<b>.</b>haus <span style="color:var(--text-faint)">{esc(S["logo_suffix"])}</span></a>
       <nav>
-        <a href="#how">작동 방식</a>
-        <a href="#catalog">작품</a>
-        <a href="#plans">플랜</a>
+        <a href="#how">{esc(S["nav_how"])}</a>
+        <a href="#catalog">{esc(S["nav_works"])}</a>
+        <a href="#plans">{esc(S["nav_plans"])}</a>
         <a href="#faq">FAQ</a>
+        {lang_switch}
       </nav>
     </div>
   </header>
@@ -416,8 +439,8 @@ footer{{border-top:1px solid var(--line-faint);padding:36px 0;background:var(--s
         <h1>{headline}</h1>
         <p class="definition">{definition_html}</p>
         <div class="hero-cta">
-          <a class="btn btn-accent btn-lg" href="#catalog">작품 보기</a>
-          <a class="btn btn-outline btn-lg" href="#contact">문의하기</a>
+          <a class="btn btn-accent btn-lg" href="#catalog">{esc(S["cta_works"])}</a>
+          <a class="btn btn-outline btn-lg" href="#contact">{esc(S["cta_contact"])}</a>
         </div>
       </div>
     </section>
@@ -483,8 +506,8 @@ footer{{border-top:1px solid var(--line-faint);padding:36px 0;background:var(--s
       <span>SIA.HAUS</span>
       <span>{esc(site['address']['locality'])} {esc(site['address']['street'])}, {esc(site['address']['postal'])}</span>
       <a href="mailto:{esc(site['email'])}">{esc(site['email'])}</a>
-      <a href="https://www.sia.haus/">스튜디오</a>
-      <a href="https://varis.kr/">VARIS 아카데미</a>
+      <a href="https://www.sia.haus/">{esc(S["foot_studio"])}</a>
+      <a href="https://varis.kr/">{esc(S["foot_varis"])}</a>
     </div>
   </footer>
 </body>
@@ -494,91 +517,117 @@ footer{{border-top:1px solid var(--line-faint);padding:36px 0;background:var(--s
 
 def build_llms(d: dict) -> str:
     site, hero, cat, plans = d["site"], d["hero"], d["catalog"], d["plans"]
+    S = d["strings"]
     works = "\n".join(
         f"- **{w['title']}**{' (' + w['year'] + ')' if w.get('year') else ''} — {w['kind']}. {w['summary']}"
         for w in cat["works"]
     )
     plan_lines = "\n".join(
         f"- **{p['name']}** — {p['tagline']}. "
-        + (f"월 {int(p['price_monthly']):,}원." if p.get("price_monthly") else "구독료 별도 문의.")
+        + (S["per_month"].format(price=f"{int(p['price_monthly']):,}")
+           if p.get("price_monthly") else S["quote"])
         for p in plans["items"]
     )
     return f"""# {site['name']}
 
 > {hero['definition']}
 
-## 작동 방식
+## {S["how"]}
 
 {d['how']['lead']}
 
 {chr(10).join(f"{s['n']}. **{s['t']}** — {s['d']}" for s in d['how']['steps'])}
 
-## 구독 가능한 작품
+## {S["works"]}
 
 {cat['delivery']}
 
 {works}
 
-## 플랜
+## {S["plans"]}
 
 {plan_lines}
 
 {plans['pricing_note']}
 
-## 링크
+## {S["links"]}
 
-- [{site['name']}]({site['url']}) — 카탈로그, 플랜, 문의
-- [SIA.HAUS](https://www.sia.haus/) — 미디어아트 스튜디오 본체
-- [VARIS](https://varis.kr/) — SIA.HAUS가 운영하는 미디어아트 교육 브랜드
+- [{site['name']}]({site['url']}) — {S['link_self']}
+- [SIA.HAUS](https://www.sia.haus/) — {S['link_studio']}
+- [VARIS](https://varis.kr/) — {S['link_varis']}
 
-## 연락
+## {S["contact"]}
 
-- 이메일: {site['email']}
-- 주소: {site['address']['locality']} {site['address']['street']}, {site['address']['postal']}
+- {S["email"]}: {site['email']}
+- {S["address"]}: {site['address']['locality']} {site['address']['street']}, {site['address']['postal']}
 """
 
 
-def build_sitemap(d: dict, today: str) -> str:
-    return f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>{d['site']['url']}</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-</urlset>
-"""
+def build_sitemap(locales: list, today: str) -> str:
+    """루트에 하나만 둔다. 각 URL 이 서로를 hreflang 대체본으로 가리킨다."""
+    entries = []
+    for loc in locales:
+        alts = "\n".join(
+            f'    <xhtml:link rel="alternate" hreflang="{o["locale"]}" href="{o["url"]}" />'
+            for o in locales
+        )
+        entries.append(
+            f"  <url>\n"
+            f"    <loc>{loc['url']}</loc>\n"
+            f"{alts}\n"
+            f"    <lastmod>{today}</lastmod>\n"
+            f"    <changefreq>weekly</changefreq>\n"
+            f"    <priority>{'1.0' if loc['locale'] == 'ko' else '0.9'}</priority>\n"
+            f"  </url>"
+        )
+    body = "\n".join(entries)
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+        '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+        f"{body}\n"
+        "</urlset>\n"
+    )
 
 
 def main() -> int:
     check_only = "--check" in sys.argv
-    d = json.loads(DATA.read_text(encoding="utf-8"))
     today = date.today().isoformat()
 
-    out = {
-        "index.html": build_html(d, today),
-        "llms.txt": build_llms(d),
-        "sitemap.xml": build_sitemap(d, today),
-    }
+    docs = [json.loads(f.read_text(encoding="utf-8")) for f in DATA_FILES]
+    locales = [d["site"] for d in docs]
 
-    # 생성한 JSON-LD 가 파싱되는지 자체 검증
-    for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>',
-                         out["index.html"], re.S):
-        json.loads(m.group(1))
+    out: dict[str, str] = {}
+    global current_locale
+    for d in docs:
+        current_locale = d["site"]["locale"]
+        path = d["site"]["path"]
+        html_doc = build_html(d, today, locales)
+        # 생성한 JSON-LD 가 파싱되는지 자체 검증
+        for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>',
+                             html_doc, re.S):
+            json.loads(m.group(1))
+        out[path + "index.html"] = html_doc
+        out[path + "llms.txt"] = build_llms(d)
+    out["sitemap.xml"] = build_sitemap(locales, today)
 
     if not check_only:
         for name, text in out.items():
-            (ROOT / name).write_text(text, encoding="utf-8")
+            target = ROOT / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(text, encoding="utf-8")
 
     verb = "검사만" if check_only else "생성"
     print(f"  {verb}: " + " · ".join(f"{n} {len(t):,}B" for n, t in out.items()))
-    print(f"  작품 {len(d['catalog']['works'])} · 플랜 {len(d['plans']['items'])} · FAQ {len(d['faq']['items'])}")
+    for d in docs:
+        s_ = d["site"]
+        print(f"  [{s_['locale']}] {s_['url']} — 작품 {len(d['catalog']['works'])}"
+              f" · 플랜 {len(d['plans']['items'])} · FAQ {len(d['faq']['items'])}")
     if hidden_specs:
         print(f"  스펙 행 {len(hidden_specs)}개는 값이 없어 화면에서 숨겼습니다 "
               f"(hide_unknown_specs=true)")
     if placeholders:
-        print(f"\n  ⚠️  확정 필요 값 {len(placeholders)}개 — data/site.json 에서 채우세요")
+        print(f"\n  ⚠️  확정 필요 값 {len(placeholders)}개 — 해당 로케일의 data/site*.json 에서 채우세요")
         for p in placeholders:
             print(f"       · {p}")
     return 0

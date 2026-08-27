@@ -1,0 +1,244 @@
+{
+  "_note": "English locale. Mirrors data/site.json structure — same keys, translated copy. Facts (address, email, works, plan structure) must stay identical to the Korean file; only the wording differs. Run `python3 build.py` after editing.",
+  "site": {
+    "name": "SIA.HAUS License",
+    "domain": "license.sia.haus",
+    "url": "https://license.sia.haus/en/",
+    "locale": "en",
+    "path": "en/",
+    "lang_label": "English",
+    "alt_label": "한국어",
+    "area_served": "Worldwide",
+    "parent_org_id": "https://www.sia.haus/#organization",
+    "email": "sia@sia.haus",
+    "address": {
+      "street": "18F DDMC, 75 Maebongsan-ro, Mapo-gu",
+      "locality": "Seoul",
+      "postal": "03926"
+    }
+  },
+  "meta": {
+    "title": "SIA.HAUS License — Media Art Subscription Licensing",
+    "description": "Run media art without commissioning it. License works produced by SIA.HAUS by the month and show them on your media facade or exhibition space."
+  },
+  "hero": {
+    "eyebrow": "MEDIA ART LICENSING",
+    "headline": "Don't commission it.\nLicense it.",
+    "definition": "SIA.HAUS License lets space operators subscribe to media art instead of commissioning it. Rather than ordering a new piece, you license work SIA.HAUS produced and has accumulated, month by month, and show it in your own space."
+  },
+  "how": {
+    "eyebrow": "HOW IT WORKS",
+    "title": "The studio that made it is the one supplying it",
+    "lead": "SIA.HAUS runs all four stages in-house — planning, pre-production, production and operation. Nothing is split out to subcontractors, so the rights to what we make stay with us, and that body of work is what we license.",
+    "steps": [
+      {
+        "n": "01",
+        "t": "Produce",
+        "d": "We take commissioned projects from planning through to on-site operation ourselves. The master assets and the rights remain with the studio."
+      },
+      {
+        "n": "02",
+        "t": "Accumulate",
+        "d": "Finished works are standardised and held in a catalogue, stored so that resolution, ratio and runtime can be re-rendered to fit a given space."
+      },
+      {
+        "n": "03",
+        "t": "Subscribe",
+        "d": "Once an operator picks a plan, we supply the screening rights and the files for that work, and support swaps and re-renders for the length of the contract."
+      }
+    ]
+  },
+  "catalog": {
+    "eyebrow": "CATALOG",
+    "title": "Works available to license",
+    "lead": "Works produced by SIA.HAUS. We re-render each one to your space, starting from its native ratio.",
+    "delivery": "Resolution is re-rendered to match your screen specification.",
+    "delivery_specs": "Native ratio and runtime are listed on each card.",
+    "hide_unknown_specs": true,
+    "note": "Images are placeholders. Replace with the actual work stills.",
+    "works": [
+      {
+        "id": "seoul-pulse",
+        "title": "Blooming of Time and Space · Pulse of Seoul",
+        "year": null,
+        "kind": "Media art",
+        "summary": "The movement of the city rendered as density of light, treating the whole screen as a single pulse.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "slate"
+      },
+      {
+        "id": "aria",
+        "title": "ARIA",
+        "year": "2025",
+        "kind": "Kinetic display",
+        "summary": "A kinetic piece in which the physically moving display structure and the moving image were designed together.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "violet"
+      },
+      {
+        "id": "grand-josun",
+        "title": "Grand Josun",
+        "year": "2025",
+        "kind": "Anamorphic media facade",
+        "summary": "An anamorphic media facade built around the corner of the building so that it reads as three-dimensional.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "amber"
+      },
+      {
+        "id": "arfa",
+        "title": "ARFA",
+        "year": null,
+        "kind": "IP gallery project",
+        "summary": "A gallery project developed on SIA.HAUS's own IP. It is built as a series, which suits rotation.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "sage"
+      },
+      {
+        "id": "kim-tschang-yeul",
+        "title": "Kim Tschang-Yeul Atelier",
+        "year": "2026",
+        "kind": "Immersive exhibition",
+        "summary": "Immersive exhibition content that moves the artist's working world into the space as a whole.",
+        "runtime": null,
+        "ratio": null,
+        "tone": "rose"
+      }
+    ]
+  },
+  "plans": {
+    "eyebrow": "PLANS",
+    "title": "Subscription plans",
+    "lead": "Plans differ by number of spaces and number of works. Work out roughly where you sit, then get in touch.",
+    "pricing_mode": "quote",
+    "pricing_note": "Subscription fees are quoted per case, based on screen dimensions, how many works you select, and contract length. Get in touch and we will confirm the terms for your space.",
+    "items": [
+      {
+        "id": "single",
+        "name": "Single",
+        "tagline": "1 work · 1 space",
+        "price_monthly": null,
+        "term": "Agreed on enquiry",
+        "features": [
+          "One work chosen from the catalogue",
+          "Screening rights for one space",
+          "One re-render to your space specification",
+          "Technical support for the contract term"
+        ],
+        "featured": false
+      },
+      {
+        "id": "collection",
+        "name": "Collection",
+        "tagline": "5 works in rotation · 1 space",
+        "price_monthly": null,
+        "term": "Agreed on enquiry",
+        "features": [
+          "Five works chosen from the catalogue",
+          "Screening rights for one space",
+          "Quarterly rotation",
+          "Unlimited re-renders to your space specification",
+          "Technical support for the contract term"
+        ],
+        "featured": true
+      },
+      {
+        "id": "estate",
+        "name": "Estate",
+        "tagline": "Full catalogue · multiple spaces",
+        "price_monthly": null,
+        "term": "Agreed on enquiry",
+        "features": [
+          "Access to the full catalogue",
+          "Screening rights for multiple spaces",
+          "First access to new works",
+          "Per-space re-rendering",
+          "Dedicated operational support"
+        ],
+        "featured": false
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "What is media art subscription licensing?",
+        "a": "It is a way for space operators to use media art produced by SIA.HAUS on a subscription basis. Instead of commissioning a new piece, you take monthly screening rights to a work that is already finished. There is no production lead time and no large upfront cost."
+      },
+      {
+        "q": "How does this differ from commissioning a new work?",
+        "a": "A commission runs for several months from planning to delivery, and the cost lands at once. A subscription lets you pick a finished work and run it straight away, with the cost spread over the term. Re-rendering is included, so ratio and resolution still match your screen."
+      },
+      {
+        "q": "What kinds of space does this suit?",
+        "a": "Media facades that use a building envelope, indoor exhibition spaces, and large displays in lobbies and lounges. We confirm your screen dimensions and ratio first, then re-render the work to that specification."
+      },
+      {
+        "q": "How are subscription fees set?",
+        "a": "There is no published rate card; fees are quoted per case. Screen dimensions, how many works you select and the contract length are the three inputs, and we confirm the terms on enquiry. The plans are split by number of spaces and works, so you can gauge which band applies."
+      },
+      {
+        "q": "Can the work be changed mid-contract?",
+        "a": "Quarterly rotation is supported from the Collection plan upwards. On Single, you run the work you chose for the term; if a change is needed, we arrange it on enquiry."
+      },
+      {
+        "q": "Who is SIA.HAUS?",
+        "a": "A media art studio based in Sangam, Seoul. We handle media facades, projection mapping and immersive exhibitions from planning through to operation, and have produced large-scale spatial projects in Korea and abroad since 2018. The licensing catalogue is drawn from that body of work."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "title": "Start with your space",
+    "lead": "Tell us the installation site, screen dimensions and how long you plan to run it, and we will come back with the works and plans that fit.",
+    "formspree_id": null
+  },
+  "strings": {
+    "how": "How it works",
+    "works": "Works available to license",
+    "plans": "Plans",
+    "links": "Links",
+    "contact": "Contact",
+    "email": "Email",
+    "address": "Address",
+    "quote": "Subscription fee on enquiry.",
+    "per_month": "KRW {price} / month.",
+    "link_self": "catalogue, plans, enquiries",
+    "link_studio": "the media art studio itself",
+    "link_varis": "media art education brand run by SIA.HAUS",
+    "logo_suffix": "License",
+    "nav_how": "How it works",
+    "nav_works": "Works",
+    "nav_plans": "Plans",
+    "cta_works": "View works",
+    "cta_contact": "Get in touch",
+    "spec_runtime": "Runtime",
+    "spec_ratio": "Native ratio",
+    "img_placeholder": "work image placeholder",
+    "price_per": "/ month",
+    "price_quote": "On enquiry",
+    "plan_badge": "Recommended",
+    "plan_term": "Contract term",
+    "tbd": "To be confirmed",
+    "service_type": "Media art subscription licensing",
+    "form_company": "Company / organisation",
+    "form_name": "Contact name",
+    "form_phone": "Phone",
+    "form_email": "Email",
+    "form_space": "About your space",
+    "form_space_ph": "Installation site, screen dimensions, how long you plan to run it",
+    "form_submit": "Send enquiry",
+    "mail_subject": "[SIA.HAUS License] Subscription enquiry",
+    "mail_body": "Company / organisation:%0D%0AContact name:%0D%0APhone:%0D%0A%0D%0AInstallation site:%0D%0AScreen dimensions:%0D%0ARun period:%0D%0A",
+    "mail_note": "The form is not wired up yet. This button opens a pre-filled email.",
+    "mail_cta": "Email us",
+    "mail_alt": "Or write to us directly",
+    "foot_studio": "Studio",
+    "foot_varis": "VARIS Academy"
+  }
+}
