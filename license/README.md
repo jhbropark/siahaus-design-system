@@ -24,6 +24,51 @@ JSON 을 클라이언트에서 fetch 해 렌더링하면 봇이 받는 원본 HT
 이 사이트의 목적 자체가 생성형 엔진에 인용되는 것이라 그 방식은 쓸 수 없습니다.
 현재 `index.html` 의 `<script>` 는 **JSON-LD 하나뿐이고 실행 스크립트는 0개**입니다.
 
+## 로케일 — 한국어 · 영어
+
+`data/` 의 파일 하나가 로케일 하나입니다.
+
+| 파일 | 로케일 | 출력 | URL |
+|---|---|---|---|
+| `data/site.json` | ko | `index.html` · `llms.txt` | `https://license.sia.haus/` |
+| `data/site.en.json` | en | `en/index.html` · `en/llms.txt` | `https://license.sia.haus/en/` |
+
+`sitemap.xml` 은 루트에 하나만 두고 두 URL 을 `xhtml:link` 로 서로 연결합니다.
+페이지끼리는 `hreflang` 으로 상호 참조하며 `x-default` 는 한국어 루트입니다.
+내비게이션의 언어 전환 링크도 자동 생성됩니다.
+
+### 읽는 사람에게 보이는 문자열은 전부 데이터에 있습니다
+
+내비 라벨, 버튼, 스펙 제목, 메일 본문 초안, "확정 예정" 까지 **29종이 각 로케일의
+`strings` 블록**에 있습니다. 템플릿에는 한국어가 남아 있지 않습니다.
+
+처음 영어 빌드를 돌렸을 때 **영어 페이지가 한국어 가구를 쓰고 있었습니다** —
+본문만 번역되고 내비와 버튼은 한국어였습니다. 그래서 전부 데이터로 뺐습니다.
+
+### 로케일을 더 추가하려면
+
+1. `data/site.<코드>.json` 을 만들고 `site.locale` · `site.path` · `site.url` 을 채운다
+2. `build.py` 상단 `DATA_FILES` 에 경로를 추가한다
+
+hreflang · sitemap · 언어 전환은 자동으로 따라옵니다.
+
+### 두 파일은 같은 사실을 담아야 합니다
+
+작품 id, 플랜 id, 주소, 이메일은 **양쪽이 동일해야 합니다.** 문구만 다릅니다.
+검증용 스니펫:
+
+```bash
+python3 -c "
+import json
+ko=json.load(open('data/site.json')); en=json.load(open('data/site.en.json'))
+assert [w['id'] for w in ko['catalog']['works']]==[w['id'] for w in en['catalog']['works']]
+assert [p['id'] for p in ko['plans']['items']]==[p['id'] for p in en['plans']['items']]
+assert ko['site']['email']==en['site']['email']
+print('사실 일치 OK')"
+```
+
+미확정 값은 **로케일별로 표시**됩니다(`[ko]` / `[en]`). 별개 파일이라 양쪽 다 채워야 합니다.
+
 ## 사용법
 
 ```bash
@@ -147,6 +192,16 @@ done
 
 구조화 데이터: https://validator.schema.org/ 에 `https://license.sia.haus/` 입력.
 `WebSite` · `Service` · `ItemList` · `FAQPage` 가 잡혀야 합니다.
+
+## 서비스 범위는 전 세계입니다
+
+`site.area_served` 가 `"Worldwide"` 이고 JSON-LD 의 `Service.areaServed` 로 나갑니다.
+
+처음에는 `{"@type":"Country","name":"KR"}` 이었는데, **그러면 생성형 엔진이 해외 문의에
+"한국 내 서비스"라고 답합니다.** 밀라노 디자인위크·베니스 비엔날레 실적이 있는
+스튜디오에는 맞지 않는 선언이었습니다.
+
+특정 국가로 좁히려면 이 값을 바꾸세요. 문자열, 또는 `Country` 객체 배열도 됩니다.
 
 ## 엔티티 연결
 
