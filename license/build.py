@@ -257,8 +257,13 @@ def build_html(d: dict, today: str, locales: list) -> str:
         delivery_html += " " + esc(cat["delivery_specs"])
 
     headline = esc(hero["headline"]).replace("\n", "<br />")
-    _first, _sep, _rest = hero["definition"].partition(".")
-    definition_html = f"<b>{esc(_first)}{esc(_sep)}</b>{esc(_rest)}"
+    # 첫 문장만 굵게. 마침표 하나로 자르면 'SIA.HAUS' 가 SIA. / HAUS 로 쪼개진다 —
+    # 문장 끝은 마침표 뒤에 공백이 오는 자리로 판단한다.
+    _parts = re.split(r"(?<=\.)\s+", hero["definition"], maxsplit=1)
+    if len(_parts) == 2:
+        definition_html = f"<b>{esc(_parts[0])}</b> {esc(_parts[1])}"
+    else:
+        definition_html = esc(hero["definition"])
 
     return f'''<!DOCTYPE html>
 <html lang="{esc(site["locale"])}">
