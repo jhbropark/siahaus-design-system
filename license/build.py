@@ -35,6 +35,24 @@ def esc(s: str) -> str:
     return html.escape(str(s), quote=True)
 
 
+hidden_specs: list[str] = []
+
+
+def spec_row(label: str, v, path: str, hide: bool) -> str:
+    """스펙 한 줄. hide=True 이고 값이 없으면 행 자체를 내보내지 않는다.
+
+    숨기더라도 미확정 목록에는 그대로 기록한다. 화면에서 안 보이는 것과
+    값이 채워진 것은 다르고, 빌드 경고까지 조용해지면 영영 안 채워진다.
+    """
+    if v in (None, "", []):
+        placeholders.append(path)
+        if hide:
+            hidden_specs.append(path)
+            return ""
+        return f"              <div><dt>{esc(label)}</dt><dd>{TBD}</dd></div>"
+    return f"              <div><dt>{esc(label)}</dt><dd>{esc(v)}</dd></div>"
+
+
 def build_html(d: dict, today: str) -> str:
     site, meta = d["site"], d["meta"]
     hero, how, cat, plans, faq, contact = (
@@ -122,22 +140,32 @@ def build_html(d: dict, today: str) -> str:
                     ensure_ascii=False, indent=2)
 
     # ── 카탈로그 카드 ───────────────────────────────────────────────────────
-    cards = "\n".join(
-        f'''        <article class="work" id="work-{esc(w['id'])}">
-          <div class="work-visual tone-{esc(w['tone'])}" role="img"
-               aria-label="{esc(w['title'])} — 작품 이미지 자리표시자"></div>
-          <div class="work-body">
-            <span class="work-kind">{esc(w['kind'])}{' · ' + esc(w['year']) if w.get('year') else ''}</span>
-            <h3 class="work-title">{esc(w['title'])}</h3>
-            <p class="work-sum">{esc(w['summary'])}</p>
-            <dl class="spec">
-              <div><dt>러닝타임</dt><dd>{esc(val(w['runtime'], f"works.{w['id']}.runtime"))}</dd></div>
-              <div><dt>원본 비율</dt><dd>{esc(val(w['ratio'], f"works.{w['id']}.ratio"))}</dd></div>
-            </dl>
-          </div>
-        </article>'''
-        for w in cat["works"]
-    )
+    hide = bool(cat.get("hide_unknown_specs"))
+
+    def work_card(w: dict) -> str:
+        rows = [
+            spec_row("러닝타임", w.get("runtime"), f"works.{w['id']}.runtime", hide),
+            spec_row("원본 비율", w.get("ratio"), f"works.{w['id']}.ratio", hide),
+        ]
+        rows = [r for r in rows if r]
+        dl = ("            <dl class=\"spec\">\n" + "\n".join(rows) + "\n            </dl>\n"
+              if rows else "")
+        year = f" · {esc(w['year'])}" if w.get("year") else ""
+        return (
+            f'        <article class="work" id="work-{esc(w["id"])}">\n'
+            f'          <div class="work-visual tone-{esc(w["tone"])}" role="img"\n'
+            f'               aria-label="{esc(w["title"])} — 작품 이미지 자리표시자"></div>\n'
+            f'          <div class="work-body">\n'
+            f'            <span class="work-kind">{esc(w["kind"])}{year}</span>\n'
+            f'            <h3 class="work-title">{esc(w["title"])}</h3>\n'
+            f'            <p class="work-sum">{esc(w["summary"])}</p>\n'
+            f'{dl}'
+            f'          </div>\n'
+            f'        </article>'
+        )
+
+    cards = "\n".join(work_card(w) for w in cat["works"])
+
 
     # ── 플랜 카드 ──────────────────────────────────────────────────────────
     def plan_card(p: dict) -> str:
@@ -201,6 +229,11 @@ def build_html(d: dict, today: str) -> str:
         <a class="btn btn-accent btn-lg" href="mailto:{esc(site['email'])}?subject={subject}&amp;body={body}">메일로 문의하기</a>
         <p class="cform-alt">또는 직접 보내기 · <a href="mailto:{esc(site['email'])}">{esc(site['email'])}</a></p>
       </div>'''
+
+    any_spec = "<dl" in cards
+    delivery_html = esc(cat["delivery"])
+    if any_spec and cat.get("delivery_specs"):
+        delivery_html += " " + esc(cat["delivery_specs"])
 
     headline = esc(hero["headline"]).replace("\n", "<br />")
     _first, _sep, _rest = hero["definition"].partition(".")
@@ -405,7 +438,7 @@ footer{{border-top:1px solid var(--line-faint);padding:36px 0;background:var(--s
         <span class="eyebrow">{esc(cat['eyebrow'])}</span>
         <h2>{esc(cat['title'])}</h2>
         <p class="lead">{esc(cat['lead'])}</p>
-        <p class="pricing-note">{esc(cat['delivery'])}</p>
+        <p class="pricing-note">{delivery_html}</p>
         <div class="works">
 {cards}
         </div>
@@ -541,6 +574,9 @@ def main() -> int:
     verb = "검사만" if check_only else "생성"
     print(f"  {verb}: " + " · ".join(f"{n} {len(t):,}B" for n, t in out.items()))
     print(f"  작품 {len(d['catalog']['works'])} · 플랜 {len(d['plans']['items'])} · FAQ {len(d['faq']['items'])}")
+    if hidden_specs:
+        print(f"  스펙 행 {len(hidden_specs)}개는 값이 없어 화면에서 숨겼습니다 "
+              f"(hide_unknown_specs=true)")
     if placeholders:
         print(f"\n  ⚠️  확정 필요 값 {len(placeholders)}개 — data/site.json 에서 채우세요")
         for p in placeholders:

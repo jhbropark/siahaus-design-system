@@ -100,7 +100,9 @@
         "tone": "rose"
       }
     ],
-    "delivery": "해상도는 공간의 화면 규격에 맞춰 재출력해 공급합니다. 아래는 각 작품의 원본 비율과 러닝타임입니다."
+    "delivery": "해상도는 공간의 화면 규격에 맞춰 재출력해 공급합니다.",
+    "hide_unknown_specs": true,
+    "delivery_specs": "작품별 원본 비율과 러닝타임은 각 카드에 표기했습니다."
   },
   "plans": {
     "eyebrow": "PLANS",
