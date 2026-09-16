@@ -1,0 +1,8 @@
+# Vercel 은 Root Directory 안의 파일을 그대로 서빙합니다. 이 목록이 없으면
+# license.sia.haus/build.py · /README.md · /data/site.json 이 그대로 공개됩니다.
+# 비밀은 아니지만 내보낼 이유도 없습니다 — 배포에 필요한 것은 산출물뿐입니다.
+#
+# en/ 은 영어판 산출물이므로 제외하지 않습니다.
+build.py
+README.md
+data
