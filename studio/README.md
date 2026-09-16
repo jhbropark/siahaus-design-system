@@ -57,7 +57,9 @@ www.sia.haus/#organization  ──subOrganization──▶  varis.kr/#organizati
 |---|---|
 | `studio/data/site.json` → `site.org_id` | 이 사이트가 선언하는 자기 `@id` |
 | `academy-varis/build_jsonld.py` → `PARENT_ORG_ID` | varis.kr 이 부모로 가리키는 값 |
-| `infra/geo/imweb-head-snippet.html` | 아임웹 시절 스니펫 (이사 후 폐기) |
+
+두 곳뿐입니다. 아임웹 시절 스니펫(`infra/geo/imweb-head-snippet.html`)에도 같은
+`@id` 가 있었지만, 붙여넣을 곳이 없어져 2026-09-16 에 삭제했습니다.
 
 **대표 도메인을 non-www 로 바꾸면 위를 함께 고칠 것.** 한쪽만 고치면 관계가 조용히
 끊기고, 끊겨도 아무 오류가 나지 않아 눈치채기 어렵습니다.

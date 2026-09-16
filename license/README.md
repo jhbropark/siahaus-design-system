@@ -215,8 +215,8 @@ done
 ## 엔티티 연결
 
 `Service` 와 `WebSite` 가 `https://www.sia.haus/#organization` 을 참조합니다.
-sia.haus 본체의 Organization 스키마(`infra/geo/imweb-head-snippet.html`)를 붙여넣어야
-이 참조가 성립합니다. **본체 적용이 선행되어야 합니다.**
+sia.haus 본체의 Organization 스키마는 `studio/` 사이트가 게시합니다
+(`studio/build.py` 의 `build_jsonld()`). **본체 배포가 선행되어야** 이 참조가 성립합니다.
 
 ```
 license.sia.haus/#service ──provider──▶ www.sia.haus/#organization
