@@ -1,6 +1,10 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/about", "destination": "/", "statusCode": 301 },
+    { "source": "/contact", "destination": "/#contact", "statusCode": 301 }
+  ],
   "headers": [
     {
       "source": "/(.*)",
