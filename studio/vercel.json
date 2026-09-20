@@ -3,7 +3,23 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/about", "destination": "/", "statusCode": 301 },
-    { "source": "/contact", "destination": "/#contact", "statusCode": 301 }
+    { "source": "/contact", "destination": "/#contact", "statusCode": 301 },
+    { "source": "/PROJECTS", "destination": "/#work", "statusCode": 301 },
+    { "source": "/SLW2025", "destination": "/#work", "statusCode": 301 },
+    { "source": "/seoullight", "destination": "/#work", "statusCode": 301 },
+    { "source": "/busan", "destination": "/#work", "statusCode": 301 },
+    { "source": "/heachi", "destination": "/#work", "statusCode": 301 },
+    { "source": "/reawakening", "destination": "/#work", "statusCode": 301 },
+    { "source": "/waterdrops", "destination": "/#work", "statusCode": 301 },
+    { "source": "/fluxcollision", "destination": "/#work", "statusCode": 301 },
+    { "source": "/luvita", "destination": "/#work", "statusCode": 301 },
+    { "source": "/universe-cube", "destination": "/#work", "statusCode": 301 },
+    { "source": "/38", "destination": "/", "statusCode": 301 },
+    { "source": "/Material", "destination": "/", "statusCode": 301 },
+    { "source": "/LGISE", "destination": "/", "statusCode": 301 },
+    { "source": "/Artist", "destination": "/", "statusCode": 301 },
+    { "source": "/36", "destination": "/", "statusCode": 301 },
+    { "source": "/37", "destination": "/", "statusCode": 301 }
   ],
   "headers": [
     {
