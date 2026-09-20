@@ -228,20 +228,47 @@ h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-0.035em;
   letter-spacing:0.08em;color:var(--text-faint)}
 .field p{margin-top:14px;font-size:14.5px;color:var(--text-subtle);line-height:1.65}
 
-/* work */
+/* work — 프로젝트 행
+   Esme(Webflow 템플릿)의 행 구조를 가져왔습니다. 핵심은 세 가지입니다.
+
+   1. 중간 크기를 두지 않습니다. 클라이언트명은 디스플레이 크기(최대 44px),
+      나머지 정보는 전부 14~16px. 그 사이 단계가 없어야 한 줄이 한 작업으로 읽힙니다.
+   2. 연도를 같은 베이스라인의 오른쪽 끝에 붙입니다. 가운데로 모으지 않고
+      양 끝으로 밀어 그 사이 여백이 구분선 역할을 합니다.
+   3. 행 전체가 링크입니다. 원본은 행마다 "View Project" 라는 같은 문구를 쓰는데,
+      그러면 스크린리더에 이름이 똑같은 링크가 13개 생깁니다. 행을 통째로 감싸면
+      클라이언트명과 작업명이 링크의 접근성 이름에 들어갑니다.
+
+   원본은 전면 사진 위에 텍스트를 얹지만 이 저장소에는 작업 이미지가 없어
+   타이포그래피만으로 구성했습니다. */
 .work-list{border-top:1px solid var(--line-faint)}
-.work-row{display:flex;align-items:baseline;gap:clamp(14px,2.5vw,28px);
-  padding:20px 2px;border-bottom:1px solid var(--line-faint)}
-.work-client{font-weight:700;color:var(--text-strong);font-size:clamp(15px,1.7vw,19px);
-  letter-spacing:-0.02em;flex:0 0 auto;min-width:min(42vw,220px)}
-.work-name{color:var(--text-muted);font-size:clamp(14px,1.5vw,16px);flex:1 1 auto}
-.work-ctx{display:block;margin-top:3px;font-size:13px;color:var(--text-faint)}
-.work-year{font-family:var(--font-mono);font-size:12.5px;color:var(--accent);
-  flex:0 0 auto;letter-spacing:0.06em}
+.work-row{display:grid;grid-template-columns:1fr auto;
+  column-gap:clamp(16px,3vw,40px);align-items:baseline;
+  padding:clamp(22px,3vw,34px) 2px;border-bottom:1px solid var(--line-faint)}
+/* h2(최대 40px)보다 작게 유지합니다. 행 하나가 섹션 제목보다 커지면 목록이
+   제목을 눌러 위계가 뒤집힙니다 — 1280px 에서 44px 로 뒀다가 실제로 그랬습니다. */
+.work-client{grid-column:1;grid-row:1;
+  font-size:clamp(20px,2.9vw,34px);font-weight:800;letter-spacing:-0.04em;
+  line-height:1.15;color:var(--text-strong)}
+.work-meta{grid-column:1;grid-row:2;margin-top:clamp(8px,1vw,12px);
+  font-size:clamp(14px,1.5vw,16px);color:var(--text-muted)}
+.work-ctx{color:var(--text-faint)}
+.work-ctx::before{content:" · "}
+.work-year{grid-column:2;grid-row:1;justify-self:end;
+  font-family:var(--font-mono);font-size:12.5px;letter-spacing:0.06em;color:var(--accent)}
+.work-go{grid-column:2;grid-row:2;justify-self:end;margin-top:clamp(8px,1vw,12px);
+  font-size:13px;color:var(--text-faint);white-space:nowrap}
+.work-go::after{content:" →"}
+a.work-row{transition:none}
+a.work-row:hover .work-client,a.work-row:focus-visible .work-client{color:var(--accent)}
+a.work-row:hover .work-go,a.work-row:focus-visible .work-go{color:var(--accent)}
+a.work-row:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .work-note{margin-top:18px;font-size:13px;color:var(--text-faint)}
 @media(max-width:640px){
-  .work-row{flex-wrap:wrap;gap:6px 14px}
-  .work-client{min-width:100%}
+  .work-row{grid-template-columns:1fr}
+  .work-client,.work-meta,.work-year,.work-go{
+    grid-column:1;grid-row:auto;justify-self:start}
+  .work-year{margin-top:8px}
 }
 
 /* faq */
@@ -314,10 +341,19 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
     )
 
     def work_row(w: dict) -> str:
+        # url 은 선택입니다. 프로젝트 상세 페이지를 만들거나 외부 링크(Behance 등)를
+        # 걸기로 정하면 그때 data/site.json 의 항목에 넣으면 됩니다. 없으면 행은
+        # 링크가 아닌 그냥 행으로 렌더됩니다 — 갈 곳 없는 링크를 만들지 않습니다.
+        url = (w.get("url") or "").strip()
         ctx = f'<span class="work-ctx">{esc(w["context"])}</span>' if w["context"] else ""
         year = f'<span class="work-year">{esc(w["year"])}</span>' if w["year"] else ""
-        return (f'<div class="work-row"><span class="work-client">{esc(w["client"])}</span>'
-                f'<span class="work-name">{esc(w["name"])}{ctx}</span>{year}</div>')
+        go = f'<span class="work-go">{esc(t["work_go"])}</span>' if url else ""
+        inner = (f'<span class="work-client">{esc(w["client"])}</span>'
+                 f'<span class="work-meta">{esc(w["name"])}{ctx}</span>'
+                 f'{year}{go}')
+        if url:
+            return f'<a class="work-row" href="{esc(url)}">{inner}</a>'
+        return f'<div class="work-row">{inner}</div>'
 
     works = "".join(work_row(w) for w in d["work"]["items"])
 
