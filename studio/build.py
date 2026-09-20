@@ -186,10 +186,24 @@ nav.main a:hover{color:var(--text-strong)}
 
 section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--line-faint)}
 section:first-of-type{border-top:0}
-.sec-head{max-width:760px;margin-bottom:clamp(32px,5vw,56px)}
-h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-0.035em;
-  color:var(--text-strong);margin:14px 0 0}
+/* 섹션 머리 — 비대칭 2단.
+   제목을 가운데로 모으지 않고 왼쪽 끝에 붙이고, 설명문을 오른쪽 열로 보내
+   아랫변을 맞춥니다. 둘 사이 여백이 구분선 역할을 합니다. 제목과 설명문 사이에
+   중간 크기를 두지 않는 것이 이 구조의 전제입니다 — 56px 과 16px, 그 사이가 없습니다. */
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.8fr);
+  column-gap:clamp(24px,5vw,72px);align-items:end;
+  margin-bottom:clamp(40px,6vw,80px)}
+.sec-head .eyebrow{grid-column:1;grid-row:1}
+h2{font-size:clamp(28px,4.6vw,56px);font-weight:800;letter-spacing:-0.04em;
+  line-height:1.1;color:var(--text-strong);margin:14px 0 0;
+  grid-column:1;grid-row:2}
 .lead{margin-top:18px;font-size:clamp(15px,1.5vw,17px);color:var(--text-muted);max-width:70ch}
+.sec-head .lead{grid-column:2;grid-row:2;margin:0 0 0.35em}
+@media(max-width:820px){
+  .sec-head{grid-template-columns:1fr}
+  .sec-head .eyebrow,.sec-head h2,.sec-head .lead{grid-column:1;grid-row:auto}
+  .sec-head .lead{margin:18px 0 0}
+}
 
 /* hero */
 .hero{padding:clamp(80px,13vw,180px) 0 clamp(56px,8vw,96px)}
@@ -206,10 +220,11 @@ h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-0.035em;
 .btn-ghost{border-color:var(--line);color:var(--text-muted)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
-/* pipeline · fields
+/* pipeline
    칸 수가 열 수로 나눠떨어지지 않으면 마지막 줄에 빈 칸이 남습니다. 칸 사이를
    gap 으로 벌려 컨테이너 배경을 선처럼 보이게 하면 그 빈 칸이 통째로 선 색으로
-   밝게 뜹니다. 그래서 gap 대신 칸에 테두리를 그려 빈 칸이 배경과 구별되지 않게 합니다. */
+   밝게 뜹니다. 그래서 gap 대신 칸에 테두리를 그려 빈 칸이 배경과 구별되지 않게 합니다.
+   분야(.fields)는 행 목록으로 바꿔 이 문제 자체가 없어졌습니다 — 아래 참고. */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
   background:var(--surface-section);border:1px solid var(--line-faint)}
 .step{padding:clamp(22px,3vw,32px);
@@ -219,14 +234,25 @@ h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-0.035em;
 .step-en{margin-top:4px;font-family:var(--font-mono);font-size:11px;
   letter-spacing:0.08em;color:var(--text-faint)}
 
-.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  background:var(--surface-section);border:1px solid var(--line-faint)}
-.field{padding:clamp(24px,3vw,32px);
-  border-right:1px solid var(--line-faint);border-bottom:1px solid var(--line-faint)}
-.field h3{font-size:18px;font-weight:700;color:var(--text-strong);letter-spacing:-0.02em}
-.field .en{margin-top:5px;font-family:var(--font-mono);font-size:11px;
-  letter-spacing:0.08em;color:var(--text-faint)}
-.field p{margin-top:14px;font-size:14.5px;color:var(--text-subtle);line-height:1.65}
+/* fields — 실적 행과 같은 기하 구조입니다.
+   두 목록이 같은 리듬으로 읽히게 하려고 열·여백·구분선을 일부러 맞췄습니다.
+   카드 격자를 버린 덕에 5개가 4열에 안 맞아 빈 칸이 생기던 문제도 사라졌습니다. */
+.fields{border-top:1px solid var(--line-faint)}
+.field-row{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  column-gap:clamp(16px,3vw,40px);align-items:baseline;
+  padding:clamp(22px,3vw,34px) 2px;border-bottom:1px solid var(--line-faint)}
+.field-name{grid-column:1;grid-row:1;
+  font-size:clamp(20px,2.9vw,34px);font-weight:800;letter-spacing:-0.04em;
+  line-height:1.15;color:var(--text-strong)}
+.field-en{grid-column:2;grid-row:1;justify-self:end;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;color:var(--text-faint)}
+.field-desc{grid-column:1;grid-row:2;margin-top:clamp(8px,1vw,12px);
+  font-size:clamp(14px,1.5vw,16px);color:var(--text-subtle);max-width:70ch}
+@media(max-width:640px){
+  .field-row{grid-template-columns:1fr}
+  .field-name,.field-en,.field-desc{grid-column:1;grid-row:auto;justify-self:start}
+  .field-en{margin-top:6px}
+}
 
 /* work — 프로젝트 행
    Esme(Webflow 템플릿)의 행 구조를 가져왔습니다. 핵심은 세 가지입니다.
@@ -285,8 +311,10 @@ a.work-row:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   text-transform:uppercase;color:var(--text-faint)}
 .c-block dd{margin-top:10px;font-size:15.5px;color:var(--text-muted);line-height:1.6}
 .c-block a:hover{color:var(--accent)}
-.c-mail{font-size:clamp(20px,2.8vw,30px);font-weight:700;color:var(--accent);
-  letter-spacing:-0.02em}
+/* 이메일 주소가 이 섹션의 제목 노릇을 합니다 — 라벨보다 주소가 커야 합니다.
+   h2(최대 56px)보다는 작게 둡니다. */
+.c-mail{font-size:clamp(22px,3.4vw,42px);font-weight:800;color:var(--accent);
+  letter-spacing:-0.035em;line-height:1.2}
 .link-row{display:block;padding:14px 0;border-bottom:1px solid var(--line-faint)}
 .link-row b{color:var(--text-strong);font-weight:600}
 .link-row span{display:block;margin-top:3px;font-size:13.5px;color:var(--text-faint)}
@@ -335,8 +363,9 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
     )
 
     fields = "".join(
-        f'<div class="field"><h3>{esc(f["name"])}</h3>'
-        f'<div class="en">{esc(f["en"])}</div><p>{esc(f["desc"])}</p></div>'
+        f'<div class="field-row"><h3 class="field-name">{esc(f["name"])}</h3>'
+        f'<span class="field-en">{esc(f["en"])}</span>'
+        f'<p class="field-desc">{esc(f["desc"])}</p></div>'
         for f in d["fields"]["items"]
     )
 
