@@ -284,7 +284,7 @@ h2{font-size:clamp(28px,4.6vw,56px);font-weight:800;letter-spacing:-0.04em;
 /* work — 프로젝트 행
    Esme(Webflow 템플릿)의 행 구조를 가져왔습니다. 핵심은 세 가지입니다.
 
-   1. 중간 크기를 두지 않습니다. 클라이언트명은 디스플레이 크기(최대 44px),
+   1. 중간 크기를 두지 않습니다. 클라이언트명은 디스플레이 크기(최대 34px),
       나머지 정보는 전부 14~16px. 그 사이 단계가 없어야 한 줄이 한 작업으로 읽힙니다.
    2. 연도를 같은 베이스라인의 오른쪽 끝에 붙입니다. 가운데로 모으지 않고
       양 끝으로 밀어 그 사이 여백이 구분선 역할을 합니다.
@@ -298,7 +298,7 @@ h2{font-size:clamp(28px,4.6vw,56px);font-weight:800;letter-spacing:-0.04em;
 .work-row{display:grid;grid-template-columns:1fr auto;
   column-gap:clamp(16px,3vw,40px);align-items:baseline;
   padding:clamp(22px,3vw,34px) 2px;border-bottom:1px solid var(--line-faint)}
-/* h2(최대 40px)보다 작게 유지합니다. 행 하나가 섹션 제목보다 커지면 목록이
+/* h2(최대 56px)보다 작게 유지합니다. 행 하나가 섹션 제목보다 커지면 목록이
    제목을 눌러 위계가 뒤집힙니다 — 1280px 에서 44px 로 뒀다가 실제로 그랬습니다. */
 .work-client{grid-column:1;grid-row:1;
   font-size:clamp(20px,2.9vw,34px);font-weight:800;letter-spacing:-0.04em;
