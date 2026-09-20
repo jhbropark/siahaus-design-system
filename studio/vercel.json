@@ -2,39 +2,146 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/about", "destination": "/", "statusCode": 301 },
-    { "source": "/contact", "destination": "/#contact", "statusCode": 301 },
-    { "source": "/PROJECTS", "destination": "/#work", "statusCode": 301 },
-    { "source": "/projects", "destination": "/#work", "statusCode": 301 },
-    { "source": "/SLW2025", "destination": "/#work", "statusCode": 301 },
-    { "source": "/slw2025", "destination": "/#work", "statusCode": 301 },
-    { "source": "/seoullight", "destination": "/#work", "statusCode": 301 },
-    { "source": "/busan", "destination": "/#work", "statusCode": 301 },
-    { "source": "/heachi", "destination": "/#work", "statusCode": 301 },
-    { "source": "/reawakening", "destination": "/#work", "statusCode": 301 },
-    { "source": "/waterdrops", "destination": "/#work", "statusCode": 301 },
-    { "source": "/fluxcollision", "destination": "/#work", "statusCode": 301 },
-    { "source": "/luvita", "destination": "/#work", "statusCode": 301 },
-    { "source": "/universe-cube", "destination": "/#work", "statusCode": 301 },
-    { "source": "/38", "destination": "/", "statusCode": 301 },
-    { "source": "/Material", "destination": "/", "statusCode": 301 },
-    { "source": "/material", "destination": "/", "statusCode": 301 },
-    { "source": "/LGISE", "destination": "/", "statusCode": 301 },
-    { "source": "/lgise", "destination": "/", "statusCode": 301 },
-    { "source": "/Artist", "destination": "/", "statusCode": 301 },
-    { "source": "/artist", "destination": "/", "statusCode": 301 },
-    { "source": "/36", "destination": "/", "statusCode": 301 },
-    { "source": "/37", "destination": "/", "statusCode": 301 }
+    {
+      "source": "/about",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "destination": "/#contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/PROJECTS",
+      "destination": "/#work",
+      "statusCode": 301
+    },
+    {
+      "source": "/projects",
+      "destination": "/#work",
+      "statusCode": 301
+    },
+    {
+      "source": "/SLW2025",
+      "destination": "/projects/aria-swl/",
+      "statusCode": 301
+    },
+    {
+      "source": "/slw2025",
+      "destination": "/projects/aria-swl/",
+      "statusCode": 301
+    },
+    {
+      "source": "/seoullight",
+      "destination": "/projects/seoullight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/busan",
+      "destination": "/projects/busan/",
+      "statusCode": 301
+    },
+    {
+      "source": "/heachi",
+      "destination": "/#work",
+      "statusCode": 301
+    },
+    {
+      "source": "/reawakening",
+      "destination": "/#work",
+      "statusCode": 301
+    },
+    {
+      "source": "/waterdrops",
+      "destination": "/projects/waterdrops/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fluxcollision",
+      "destination": "/#work",
+      "statusCode": 301
+    },
+    {
+      "source": "/luvita",
+      "destination": "/#work",
+      "statusCode": 301
+    },
+    {
+      "source": "/universe-cube",
+      "destination": "/#work",
+      "statusCode": 301
+    },
+    {
+      "source": "/38",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/Material",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/material",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/LGISE",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/lgise",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/Artist",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/artist",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/36",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/37",
+      "destination": "/",
+      "statusCode": 301
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000"
+        }
       ]
     }
   ]

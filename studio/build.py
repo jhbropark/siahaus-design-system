@@ -526,6 +526,135 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 """
 
 
+# ─────────────────────── project detail pages ───────────────────────
+
+def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
+    """프로젝트 상세 페이지. 본문은 data/site.json 의 work.items 에서 옵니다.
+
+    지금은 클라이언트명 · 작업명 · 컨텍스트 · 연도만 있으나, 나중에 description · images ·
+    specs 등을 추가하면 이 함수가 렌더합니다. 화면에 없는 내용을 스키마로만
+    선언하지 않는다는 원칙을 지킵니다.
+    """
+    s = d["site"]
+    t = d["strings"]
+    slug = w["slug"]
+    url = f'{s["url"]}projects/{slug}/'
+    title = f'{w["client"]} — {w["name"]} | {s["name"]}'
+    desc = w.get("description", f'{w["client"]} · {w["name"]}')
+    if w["context"]:
+        desc += f' · {w["context"]}'
+
+    nav = "" .join(
+        f'<a href="/#{i}">{esc(t[k])}</a>'
+        for i, k in [("structure", "nav_structure"), ("fields", "nav_fields"),
+                     ("work", "nav_work"), ("faq", "nav_faq"), ("contact", "nav_contact")]
+    )
+
+    lang_link = "".join(
+        f'<a class="lang" href="/{o["path"]}" hreflang="{o["lang"]}">{esc(o["lang_label"])}</a>'
+        for o in locales if o["locale"] != s["locale"]
+    )
+
+    year_html = f'<span class="proj-year">{esc(w["year"])}</span>' if w["year"] else ""
+    ctx_html = f'<span class="proj-ctx">{esc(w["context"])}</span>' if w["context"] else ""
+    desc_html = f'<p class="proj-desc">{esc(w["description"])}</p>' if w.get("description") else ""
+
+    # 이전/다음 프로젝트 네비게이션
+    items = [x for x in d["work"]["items"] if x.get("slug")]
+    idx = next((i for i, x in enumerate(items) if x["slug"] == slug), 0)
+    prev_item = items[idx - 1] if idx > 0 else None
+    next_item = items[idx + 1] if idx < len(items) - 1 else None
+    prev_link = (
+        f'<a class="proj-nav-link" href="/projects/{prev_item["slug"]}/">'
+        f'← {esc(prev_item["client"])}</a>'
+    ) if prev_item else '<span></span>'
+    next_link = (
+        f'<a class="proj-nav-link" href="/projects/{next_item["slug"]}/">'
+        f'{esc(next_item["client"])} →</a>'
+    ) if next_item else '<span></span>'
+
+    return f"""<!DOCTYPE html>
+<html lang="{s["lang"]}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}" />
+<link rel="canonical" href="{esc(url)}" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="{esc(s["name"])}" />
+<meta property="og:url" content="{esc(url)}" />
+<meta property="og:title" content="{esc(title)}" />
+<meta property="og:description" content="{esc(desc)}" />
+<meta property="og:locale" content="{esc(s["locale"])}" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+<style>{CSS}
+.proj-hero{{padding:clamp(80px,13vw,160px) 0 clamp(56px,8vw,96px)}}
+.proj-client{{font-size:clamp(34px,6.4vw,76px);font-weight:800;letter-spacing:-0.045em;
+  line-height:1.12;color:var(--text-strong);margin:20px 0 0}}
+.proj-name{{margin-top:12px;font-size:clamp(18px,2.4vw,28px);color:var(--text-muted)}}
+.proj-ctx{{font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em;
+  color:var(--text-faint);margin-top:8px;display:block}}
+.proj-year{{font-family:var(--font-mono);font-size:14px;letter-spacing:0.06em;
+  color:var(--accent);display:block;margin-top:16px}}
+.proj-desc{{margin-top:clamp(28px,4vw,44px);font-size:clamp(16px,1.75vw,20px);
+  line-height:1.75;color:var(--text-muted);max-width:60ch;
+  border-left:2px solid var(--accent);padding-left:clamp(18px,2.4vw,28px)}}
+.proj-nav{{display:flex;justify-content:space-between;align-items:center;
+  padding:clamp(32px,4vw,56px) 0;border-top:1px solid var(--line-faint);
+  margin-top:clamp(48px,6vw,80px)}}
+.proj-nav-link{{font-size:15px;color:var(--text-subtle)}}
+.proj-nav-link:hover{{color:var(--accent)}}
+.back-link{{display:inline-block;margin-top:clamp(32px,4vw,48px);
+  font-size:14px;color:var(--text-faint)}}
+.back-link:hover{{color:var(--accent)}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">{esc(t["skip"])}</a>
+
+<header class="site">
+  <div class="wrap hdr">
+    <a class="logo" href="/">SIA<span>.</span>HAUS</a>
+    <nav class="main">{nav}</nav>
+    {lang_link}
+  </div>
+</header>
+
+<main id="main">
+  <section class="proj-hero">
+    <div class="wrap">
+      <p class="eyebrow">PROJECT</p>
+      <h1 class="proj-client">{esc(w["client"])}</h1>
+      <p class="proj-name">{esc(w["name"])}</p>
+      {ctx_html}
+      {year_html}
+      {desc_html}
+      <a class="back-link" href="/#work">← {esc(t["nav_work"])}</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="proj-nav">
+      {prev_link}
+      {next_link}
+    </nav>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span>© {date.today().year} {esc(t["footer_note"])}</span>
+    <span class="sep"><a href="mailto:{s["email"]}">{esc(s["email"])}</a></span>
+  </div>
+</footer>
+</body>
+</html>
+"""
+
+
 # ─────────────────────────── llms.txt · sitemap ───────────────────────────
 
 def build_llms(d: dict, launched: bool) -> str:
@@ -561,7 +690,7 @@ def build_llms(d: dict, launched: bool) -> str:
     return "\n".join(lines)
 
 
-def build_sitemap(locales: list, today: str) -> str:
+def build_sitemap(locales: list, today: str, project_urls: list[str] | None = None) -> str:
     urls = []
     for o in locales:
         alts = "".join(
@@ -571,6 +700,11 @@ def build_sitemap(locales: list, today: str) -> str:
         urls.append(
             f'  <url>\n    <loc>{o["url"]}</loc>\n'
             f'    <lastmod>{today}</lastmod>{alts}\n  </url>'
+        )
+    for pu in (project_urls or []):
+        urls.append(
+            f'  <url>\n    <loc>{pu}</loc>\n'
+            f'    <lastmod>{today}</lastmod>\n  </url>'
         )
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
@@ -602,7 +736,26 @@ def main() -> int:
 
         out[path + "index.html"] = doc
         out[path + "llms.txt"] = build_llms(d, launched)
-    out["sitemap.xml"] = build_sitemap(locales, today)
+
+        # 프로젝트 상세 페이지 생성
+        for w in d["work"]["items"]:
+            if not w.get("slug"):
+                continue
+            proj_doc = build_project_html(d, w, locales, launched)
+            # JSON-LD 검증 (도입하면)
+            for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', proj_doc, re.S):
+                json.loads(m.group(1))
+            for m in re.finditer(r'<script(?![^>]*type="application/ld\+json")[^>]*>', proj_doc):
+                raise SystemExit(f"실행 스크립트가 들어갔습니다: {m.group(0)}")
+            out[path + f'projects/{w["slug"]}/index.html'] = proj_doc
+
+    # sitemap 에 프로젝트 URL 포함
+    project_urls = []
+    for d2 in docs:
+        for w2 in d2["work"]["items"]:
+            if w2.get("slug"):
+                project_urls.append(d2["site"]["url"] + "projects/" + w2["slug"] + "/")
+    out["sitemap.xml"] = build_sitemap(locales, today, project_urls)
 
     if not check_only:
         for name, text in out.items():

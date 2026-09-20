@@ -1,6 +1,5 @@
 {
   "_note": "www.sia.haus 단일 진실 원천. build.py 가 이 파일에서 index.html · llms.txt · sitemap.xml 을 생성합니다. 화면에 보이는 문자열은 전부 여기 있습니다. 값의 출처는 infra/geo/llms.txt · infra/geo/page-copy-draft.md · project/readme.md 이며, 출처 없는 값은 넣지 않습니다.",
-
   "site": {
     "name": "SIA.HAUS",
     "domain": "www.sia.haus",
@@ -15,7 +14,9 @@
       "postal_code": "03926",
       "country": "KR"
     },
-    "same_as": ["https://www.behance.net/sia_haus"],
+    "same_as": [
+      "https://www.behance.net/sia_haus"
+    ],
     "locale": "ko",
     "lang": "ko",
     "path": "",
@@ -23,70 +24,190 @@
     "alt_label": "EN",
     "area_served": "대한민국"
   },
-
   "licensing": {
     "_decision": "2026-09-16 확인 — 구독 라이선싱은 아직 출시 전이라 false. 출시하면 true 로 바꾸면 정의문과 라이선싱 FAQ 가 함께 복구됩니다. null(모름)로 두면 build.py 가 false 와 같게 동작하되 빌드마다 경고를 냅니다 — 없는 서비스를 정의문에 넣으면 첫 문의부터 어긋나므로, 모를 때 더 크게 주장하지 않습니다.",
     "launched": false
   },
-
   "meta": {
     "title": "SIA.HAUS — 미디어 파사드 · 몰입형 전시 미디어아트 스튜디오",
     "description": "기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 미디어아트 스튜디오. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인."
   },
-
   "hero": {
     "eyebrow": "SEOUL · SINCE 2018",
     "headline": "기술은 도구이고, 경험은 감각입니다.",
     "definition_launched": "SIA.HAUS는 기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 미디어아트 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 그렇게 제작한 미디어아트를 작가 IP로 축적해 공간 사업자에게 구독 방식으로 라이선싱합니다.",
     "definition_prelaunch": "SIA.HAUS는 기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 미디어아트 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 그렇게 제작한 미디어아트를 작가 IP로 축적하고 있습니다."
   },
-
   "pipeline": {
     "eyebrow": "STRUCTURE",
     "title": "네 단계를 한 팀이 맡습니다",
     "lead": "SIA.HAUS의 파이프라인은 기획, 프리프로덕션, 프로덕션, 운영 네 단계이며 외주 분할 없이 한 팀이 전 구간을 담당합니다. 콘텐츠 제작과 현장 설치, 이후 운영까지 책임 주체가 나뉘지 않아 일정과 품질 관리가 한 곳에서 이루어집니다.",
     "steps": [
-      { "n": "01", "name": "기획", "en": "Planning" },
-      { "n": "02", "name": "프리프로덕션", "en": "Pre-Production" },
-      { "n": "03", "name": "프로덕션", "en": "Production" },
-      { "n": "04", "name": "운영", "en": "Operation" }
+      {
+        "n": "01",
+        "name": "기획",
+        "en": "Planning"
+      },
+      {
+        "n": "02",
+        "name": "프리프로덕션",
+        "en": "Pre-Production"
+      },
+      {
+        "n": "03",
+        "name": "프로덕션",
+        "en": "Production"
+      },
+      {
+        "n": "04",
+        "name": "운영",
+        "en": "Operation"
+      }
     ]
   },
-
   "fields": {
     "eyebrow": "WHAT WE DO",
     "title": "다루는 분야",
     "items": [
-      { "name": "미디어 파사드", "en": "Media Facade", "desc": "건축 외피를 캔버스로 사용하는 대형 영상 연출" },
-      { "name": "프로젝션 매핑", "en": "Projection Mapping", "desc": "비정형 표면에 맞춘 영상 투사" },
-      { "name": "몰입형 전시", "en": "Immersive Exhibition", "desc": "공간 전체를 사용하는 체험형 전시" },
-      { "name": "미디어 A/V · 사운드 디자인", "en": "Media A/V · Sound Design", "desc": "영상과 음향의 통합 설계" },
-      { "name": "3D · VFX · 기술 시각화", "en": "3D · VFX · Technical Visualization", "desc": "제작 전 과정을 뒷받침하는 기술 기반" }
+      {
+        "name": "미디어 파사드",
+        "en": "Media Facade",
+        "desc": "건축 외피를 캔버스로 사용하는 대형 영상 연출"
+      },
+      {
+        "name": "프로젝션 매핑",
+        "en": "Projection Mapping",
+        "desc": "비정형 표면에 맞춘 영상 투사"
+      },
+      {
+        "name": "몰입형 전시",
+        "en": "Immersive Exhibition",
+        "desc": "공간 전체를 사용하는 체험형 전시"
+      },
+      {
+        "name": "미디어 A/V · 사운드 디자인",
+        "en": "Media A/V · Sound Design",
+        "desc": "영상과 음향의 통합 설계"
+      },
+      {
+        "name": "3D · VFX · 기술 시각화",
+        "en": "3D · VFX · Technical Visualization",
+        "desc": "제작 전 과정을 뒷받침하는 기술 기반"
+      }
     ]
   },
-
   "work": {
     "eyebrow": "SELECTED WORK",
     "title": "실적",
     "lead": "2018년부터 축적된 작업입니다.",
     "note": "연도는 확인된 것만 표기합니다.",
     "items": [
-      { "client": "KIA", "name": "Journey of Reflection", "context": "Milan Design Week", "year": "2026" },
-      { "client": "김창열 아틀리에", "name": "Kim Tschang-Yeul Atelier", "context": "", "year": "2026" },
-      { "client": "베니스 비엔날레", "name": "Time for Trees", "context": "", "year": "2025" },
-      { "client": "그랜드 조선", "name": "미디어 파사드", "context": "", "year": "2025" },
-      { "client": "ARIA", "name": "SWL 키네틱 디스플레이", "context": "", "year": "2025" },
-      { "client": "The Hyundai Seoul", "name": "Entropy of Nature", "context": "", "year": "2024" },
-      { "client": "롯데월드타워 잠실", "name": "미디어 파사드", "context": "819㎡ · 21m × 39m", "year": "" },
-      { "client": "LG NLC", "name": "History Walk", "context": "", "year": "" },
-      { "client": "FILA Holdings", "name": "Heritage Lounge", "context": "", "year": "" },
-      { "client": "Netflix", "name": "Love Alarm 존", "context": "", "year": "" },
-      { "client": "삼성", "name": "LUX Soundroom", "context": "", "year": "" },
-      { "client": "서울라이트", "name": "광화문", "context": "", "year": "" },
-      { "client": "SM · RIIZE", "name": "Lucky MV", "context": "", "year": "" }
+      {
+        "client": "KIA",
+        "name": "Journey of Reflection",
+        "context": "Milan Design Week",
+        "year": "2026",
+        "slug": "kia-milan",
+        "url": "/projects/kia-milan"
+      },
+      {
+        "client": "김창열 아틀리에",
+        "name": "Kim Tschang-Yeul Atelier",
+        "context": "",
+        "year": "2026",
+        "slug": "waterdrops",
+        "url": "/projects/waterdrops"
+      },
+      {
+        "client": "베니스 비엔날레",
+        "name": "Time for Trees",
+        "context": "",
+        "year": "2025",
+        "slug": "venice-biennale",
+        "url": "/projects/venice-biennale"
+      },
+      {
+        "client": "그랜드 조선",
+        "name": "미디어 파사드",
+        "context": "",
+        "year": "2025",
+        "slug": "busan",
+        "url": "/projects/busan"
+      },
+      {
+        "client": "ARIA",
+        "name": "SWL 키네틱 디스플레이",
+        "context": "",
+        "year": "2025",
+        "slug": "aria-swl",
+        "url": "/projects/aria-swl"
+      },
+      {
+        "client": "The Hyundai Seoul",
+        "name": "Entropy of Nature",
+        "context": "",
+        "year": "2024",
+        "slug": "hyundai-seoul",
+        "url": "/projects/hyundai-seoul"
+      },
+      {
+        "client": "롯데월드타워 잠실",
+        "name": "미디어 파사드",
+        "context": "819㎡ · 21m × 39m",
+        "year": "",
+        "slug": "lotte-world-tower",
+        "url": "/projects/lotte-world-tower"
+      },
+      {
+        "client": "LG NLC",
+        "name": "History Walk",
+        "context": "",
+        "year": "",
+        "slug": "lg-nlc",
+        "url": "/projects/lg-nlc"
+      },
+      {
+        "client": "FILA Holdings",
+        "name": "Heritage Lounge",
+        "context": "",
+        "year": "",
+        "slug": "fila-heritage",
+        "url": "/projects/fila-heritage"
+      },
+      {
+        "client": "Netflix",
+        "name": "Love Alarm 존",
+        "context": "",
+        "year": "",
+        "slug": "netflix-love-alarm",
+        "url": "/projects/netflix-love-alarm"
+      },
+      {
+        "client": "삼성",
+        "name": "LUX Soundroom",
+        "context": "",
+        "year": "",
+        "slug": "samsung-lux",
+        "url": "/projects/samsung-lux"
+      },
+      {
+        "client": "서울라이트",
+        "name": "광화문",
+        "context": "",
+        "year": "",
+        "slug": "seoullight",
+        "url": "/projects/seoullight"
+      },
+      {
+        "client": "SM · RIIZE",
+        "name": "Lucky MV",
+        "context": "",
+        "year": "",
+        "slug": "sm-riize",
+        "url": "/projects/sm-riize"
+      }
     ]
   },
-
   "faq": {
     "eyebrow": "FAQ",
     "title": "자주 묻는 질문",
@@ -121,18 +242,23 @@
       }
     ]
   },
-
   "contact": {
     "eyebrow": "CONTACT",
     "title": "프로젝트를 논의하고 싶으시면",
     "lead": "공간과 일정, 예산 범위를 알려주시면 가능한 방향부터 회신드립니다."
   },
-
   "links": [
-    { "label": "Behance 포트폴리오", "desc": "프로젝트별 상세 이미지와 제작 기록", "url": "https://www.behance.net/sia_haus" },
-    { "label": "VARIS", "desc": "SIA.HAUS가 운영하는 미디어아트 교육 브랜드", "url": "https://varis.kr/" }
+    {
+      "label": "Behance 포트폴리오",
+      "desc": "프로젝트별 상세 이미지와 제작 기록",
+      "url": "https://www.behance.net/sia_haus"
+    },
+    {
+      "label": "VARIS",
+      "desc": "SIA.HAUS가 운영하는 미디어아트 교육 브랜드",
+      "url": "https://varis.kr/"
+    }
   ],
-
   "strings": {
     "nav_structure": "제작 구조",
     "nav_fields": "분야",
