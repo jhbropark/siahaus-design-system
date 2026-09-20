@@ -94,11 +94,26 @@ www.sia.haus/#organization  ──subOrganization──▶  varis.kr/#organizati
 
 Vercel 정적 배포. Root Directory 는 `studio` 입니다.
 
-`vercel.json` 의 `Strict-Transport-Security` 가 **`max-age=300`(5분)** 인 것은
-의도적입니다. 지금 `sia.haus` 는 HTTPS 강제가 안 걸려 있어, 긴 HSTS 를 먼저 걸면
-전환 중 문제가 생겼을 때 브라우저가 몇 달간 http 로 못 돌아갑니다.
-**도메인 전환이 끝나고 https 가 확실히 동작하는 것을 확인한 뒤** 올리세요
-(varis.kr 은 `max-age=63072000`).
+### HSTS
+
+`Strict-Transport-Security` 는 **`max-age=63072000`(2년)** 입니다. varis.kr 과 같은
+값입니다. 초기에는 전환 사고를 대비해 `max-age=300` 으로 두었다가 2026-09-20 에
+올렸습니다.
+
+**`includeSubDomains` 와 `preload` 는 일부러 빼두었습니다.**
+
+- `includeSubDomains` 를 켜면 `license.sia.haus` 를 포함한 **모든 서브도메인**이
+  2년간 HTTPS 로 고정됩니다. 아직 배포되지 않은 서브도메인이 있어, 그중 하나라도
+  HTTPS 로 서빙하지 않으면 접속 자체가 막힙니다.
+- `preload` 는 **되돌리기가 사실상 불가능합니다.** 브라우저 preload 목록에서
+  빼는 데 수개월이 걸립니다.
+
+varis.kr 도 같은 이유로 둘 다 없이 `max-age` 만 씁니다. 서브도메인이 전부 배포되고
+HTTPS 가 확인된 뒤에 검토할 일입니다.
+
+이 헤더는 **도메인이 Vercel 에 붙은 뒤부터** 방문자에게 적용됩니다. Vercel 은
+인증서를 발급한 뒤에야 도메인을 서빙하므로, 방문자가 처음 닿는 시점에는 이미
+HTTPS 가 동작합니다.
 
 ### 전환 순서
 
@@ -106,7 +121,7 @@ Vercel 정적 배포. Root Directory 는 `studio` 입니다.
 2. ~~프리뷰 URL 로 내용 확인~~ ✅ 완료 — https://siahaus-design-system.vercel.app
 3. 옛 URL → 새 주소 301 `redirects` 작성 ← **진행 중, 아래 참고**
 4. DNS 를 Vercel 로 전환
-5. https 확인 후 HSTS `max-age` 상향
+5. ~~https 확인 후 HSTS `max-age` 상향~~ ✅ 완료 (2026-09-20, `max-age=63072000`)
 
 3번을 건너뛰면 **기존 검색 순위를 그대로 날립니다.** 옛 주소를 알아야 리다이렉트를 깝니다.
 
