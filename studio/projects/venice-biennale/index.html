@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>롯데월드타워 잠실 미디어 파사드 — SIA.HAUS</title>
-<meta name="description" content="유동 인구가 집중되는 롯데백화점 잠실점의 외관을 첨단 디지털 기술로 재해석했습니다." />
-<link rel="canonical" href="https://www.sia.haus/work/lotte-jamsil-cluster" />
+<title>베니스 비엔날레 — Time for Trees | SIA.HAUS</title>
+<meta name="description" content="베니스 비엔날레 · Time for Trees" />
+<link rel="canonical" href="https://www.sia.haus/projects/venice-biennale/" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="SIA.HAUS" />
-<meta property="og:url" content="https://www.sia.haus/work/lotte-jamsil-cluster" />
-<meta property="og:title" content="롯데월드타워 잠실 미디어 파사드 — SIA.HAUS" />
-<meta property="og:description" content="유동 인구가 집중되는 롯데백화점 잠실점의 외관을 첨단 디지털 기술로 재해석했습니다." />
+<meta property="og:url" content="https://www.sia.haus/projects/venice-biennale/" />
+<meta property="og:title" content="베니스 비엔날레 — Time for Trees | SIA.HAUS" />
+<meta property="og:description" content="베니스 비엔날레 · Time for Trees" />
 <meta property="og:locale" content="ko" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" />
@@ -134,7 +134,7 @@ h2{font-size:clamp(28px,4.6vw,56px);font-weight:800;letter-spacing:-0.04em;
 /* work — 프로젝트 행
    Esme(Webflow 템플릿)의 행 구조를 가져왔습니다. 핵심은 세 가지입니다.
 
-   1. 중간 크기를 두지 않습니다. 클라이언트명은 디스플레이 크기(최대 34px),
+   1. 중간 크기를 두지 않습니다. 클라이언트명은 디스플레이 크기(최대 44px),
       나머지 정보는 전부 14~16px. 그 사이 단계가 없어야 한 줄이 한 작업으로 읽힙니다.
    2. 연도를 같은 베이스라인의 오른쪽 끝에 붙입니다. 가운데로 모으지 않고
       양 끝으로 밀어 그 사이 여백이 구분선 역할을 합니다.
@@ -148,7 +148,7 @@ h2{font-size:clamp(28px,4.6vw,56px);font-weight:800;letter-spacing:-0.04em;
 .work-row{display:grid;grid-template-columns:1fr auto;
   column-gap:clamp(16px,3vw,40px);align-items:baseline;
   padding:clamp(22px,3vw,34px) 2px;border-bottom:1px solid var(--line-faint)}
-/* h2(최대 56px)보다 작게 유지합니다. 행 하나가 섹션 제목보다 커지면 목록이
+/* h2(최대 40px)보다 작게 유지합니다. 행 하나가 섹션 제목보다 커지면 목록이
    제목을 눌러 위계가 뒤집힙니다 — 1280px 에서 44px 로 뒀다가 실제로 그랬습니다. */
 .work-client{grid-column:1;grid-row:1;
   font-size:clamp(20px,2.9vw,34px);font-weight:800;letter-spacing:-0.04em;
@@ -173,27 +173,6 @@ a.work-row:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
     grid-column:1;grid-row:auto;justify-self:start}
   .work-year{margin-top:8px}
 }
-
-/* 프로젝트 상세
-   목록 행과 같은 크기 체계를 씁니다 — 클라이언트명이 디스플레이 크기, 본문 16px,
-   그 사이가 비어 있습니다. 한 페이지에 한 프로젝트만 있으므로 h1 을 씁니다. */
-.project{padding:clamp(72px,10vw,132px) 0 clamp(56px,8vw,96px)}
-.p-client{font-size:clamp(34px,6.4vw,76px);font-weight:800;letter-spacing:-0.045em;
-  line-height:1.1;color:var(--text-strong);margin:16px 0 0}
-.p-name{margin-top:clamp(10px,1.4vw,16px);font-size:clamp(17px,2.1vw,24px);
-  color:var(--text-muted);letter-spacing:-0.02em}
-.p-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:clamp(20px,3vw,40px);margin-top:clamp(40px,6vw,72px);
-  padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line-faint)}
-.p-facts dt{font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--text-faint)}
-.p-facts dd{margin-top:8px;font-size:15.5px;color:var(--text-muted)}
-.p-body{margin-top:clamp(40px,6vw,72px);max-width:62ch}
-.p-body p{font-size:clamp(16px,1.75vw,19px);line-height:1.85;color:var(--text)}
-.p-back{display:inline-block;margin-top:clamp(40px,6vw,72px);
-  font-size:14px;color:var(--text-subtle);
-  border-bottom:1px solid var(--line);padding-bottom:3px}
-.p-back:hover{color:var(--accent);border-color:var(--accent)}
 
 /* faq */
 .faq-list{display:grid;background:var(--surface-section);border:1px solid var(--line-faint)}
@@ -223,47 +202,27 @@ footer.site{border-top:1px solid var(--line-faint);padding:36px 0 56px;
 .foot .sep{margin-left:auto}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.proj-hero{padding:clamp(80px,13vw,160px) 0 clamp(56px,8vw,96px)}
+.proj-client{font-size:clamp(34px,6.4vw,76px);font-weight:800;letter-spacing:-0.045em;
+  line-height:1.12;color:var(--text-strong);margin:20px 0 0}
+.proj-name{margin-top:12px;font-size:clamp(18px,2.4vw,28px);color:var(--text-muted)}
+.proj-ctx{font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em;
+  color:var(--text-faint);margin-top:8px;display:block}
+.proj-year{font-family:var(--font-mono);font-size:14px;letter-spacing:0.06em;
+  color:var(--accent);display:block;margin-top:16px}
+.proj-desc{margin-top:clamp(28px,4vw,44px);font-size:clamp(16px,1.75vw,20px);
+  line-height:1.75;color:var(--text-muted);max-width:60ch;
+  border-left:2px solid var(--accent);padding-left:clamp(18px,2.4vw,28px)}
+.proj-nav{display:flex;justify-content:space-between;align-items:center;
+  padding:clamp(32px,4vw,56px) 0;border-top:1px solid var(--line-faint);
+  margin-top:clamp(48px,6vw,80px)}
+.proj-nav-link{font-size:15px;color:var(--text-subtle)}
+.proj-nav-link:hover{color:var(--accent)}
+.back-link{display:inline-block;margin-top:clamp(32px,4vw,48px);
+  font-size:14px;color:var(--text-faint)}
+.back-link:hover{color:var(--accent)}
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "CreativeWork",
-      "@id": "https://www.sia.haus/work/lotte-jamsil-cluster#work",
-      "url": "https://www.sia.haus/work/lotte-jamsil-cluster",
-      "name": "롯데월드타워 잠실 — 미디어 파사드",
-      "headline": "미디어 파사드",
-      "description": "유동 인구가 집중되는 롯데백화점 잠실점의 외관을 첨단 디지털 기술로 재해석했습니다. 약 819㎡(가로 21m, 세로 39m) 면적의 초대형 화면은 RGB LED PIXEL DMX 기술을 통해 생동감 넘치는 고해상도 콘텐츠를 송출합니다. 특히 단순한 스크린 설치를 넘어 조형미를 고려한 입구 가랜드와 테마 조명을 함께 설계하여, 공간 전체를 하나의 거대한 예술 작품으로 승화시켰습니다.",
-      "inLanguage": "ko",
-      "creator": {
-        "@id": "https://www.sia.haus/#organization"
-      },
-      "isPartOf": {
-        "@id": "https://www.sia.haus/#website"
-      },
-      "about": "819㎡ · 21m × 39m"
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "SIA.HAUS",
-          "item": "https://www.sia.haus/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "롯데월드타워 잠실",
-          "item": "https://www.sia.haus/work/lotte-jamsil-cluster"
-        }
-      ]
-    }
-  ]
-}
-</script>
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
@@ -272,26 +231,35 @@ footer.site{border-top:1px solid var(--line-faint);padding:36px 0 56px;
   <div class="wrap hdr">
     <a class="logo" href="/">SIA<span>.</span>HAUS</a>
     <nav class="main"><a href="/#structure">제작 구조</a><a href="/#fields">분야</a><a href="/#work">실적</a><a href="/#faq">FAQ</a><a href="/#contact">문의</a></nav>
+    
   </div>
 </header>
 
 <main id="main">
-  <article class="project">
+  <section class="proj-hero">
     <div class="wrap">
-      <p class="eyebrow">SELECTED WORK</p>
-      <h1 class="p-client">롯데월드타워 잠실</h1>
-      <p class="p-name">미디어 파사드</p>
-      <dl class="p-facts"><div><dt>맥락</dt><dd>819㎡ · 21m × 39m</dd></div><div><dt>클라이언트</dt><dd>롯데월드타워 잠실</dd></div></dl>
-      <div class="p-body"><p>유동 인구가 집중되는 롯데백화점 잠실점의 외관을 첨단 디지털 기술로 재해석했습니다. 약 819㎡(가로 21m, 세로 39m) 면적의 초대형 화면은 RGB LED PIXEL DMX 기술을 통해 생동감 넘치는 고해상도 콘텐츠를 송출합니다. 특히 단순한 스크린 설치를 넘어 조형미를 고려한 입구 가랜드와 테마 조명을 함께 설계하여, 공간 전체를 하나의 거대한 예술 작품으로 승화시켰습니다.</p></div>
-      <a class="p-back" href="/#work">← 실적 목록으로</a>
+      <p class="eyebrow">PROJECT</p>
+      <h1 class="proj-client">베니스 비엔날레</h1>
+      <p class="proj-name">Time for Trees</p>
+      
+      <span class="proj-year">2025</span>
+      
+      <a class="back-link" href="/#work">← 실적</a>
     </div>
-  </article>
+  </section>
+
+  <div class="wrap">
+    <nav class="proj-nav">
+      <a class="proj-nav-link" href="/projects/waterdrops/">← 김창열 아틀리에</a>
+      <a class="proj-nav-link" href="/projects/busan/">그랜드 조선 →</a>
+    </nav>
+  </div>
 </main>
 
 <footer class="site">
   <div class="wrap foot">
     <span>© 2026 SIA.HAUS</span>
-    <span class="sep"><a href="mailto:sia@sia.haus?subject=SIA.HAUS 프로젝트 문의">sia@sia.haus</a></span>
+    <span class="sep"><a href="mailto:sia@sia.haus">sia@sia.haus</a></span>
   </div>
 </footer>
 </body>

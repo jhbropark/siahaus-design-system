@@ -62,33 +62,6 @@ def definition(d: dict, launched: bool) -> str:
     return d["hero"]["definition_launched" if launched else "definition_prelaunch"]
 
 
-def has_detail(w: dict) -> bool:
-    """상세 페이지를 만들지.
-
-    **본문(summary)이 있어야만 만듭니다.** 제목과 연도만 있는 페이지를 찍어내면
-    내용 없는 페이지가 13개 생깁니다. 구글은 그런 페이지를 순위에서 끌어내리고,
-    방문자에게도 클릭할 가치가 없습니다. 근거 있는 문장이 생기면 그때 페이지가
-    자동으로 나타납니다 — data/site.json 의 항목에 summary 와 source 를 넣으세요.
-    """
-    return bool(w.get("slug") and w.get("summary"))
-
-
-def detail_url(s: dict, w: dict) -> str:
-    return f'{s["url"]}work/{w["slug"]}'
-
-
-def work_url(s: dict, w: dict) -> str:
-    """목록 행의 href.
-
-    상세 페이지가 있으면 **루트 상대 경로**를 씁니다. 절대 URL 을 쓰면 프리뷰
-    배포에서 링크를 누를 때 아직 살아 있지도 않은 운영 도메인으로 튑니다.
-    JSON-LD 와 sitemap 은 절대 URL 이 필요하므로 그쪽은 detail_url() 을 씁니다.
-    """
-    if has_detail(w):
-        return f'/work/{w["slug"]}'
-    return (w.get("url") or "").strip()
-
-
 # ─────────────────────────── JSON-LD ───────────────────────────
 
 def build_jsonld(d: dict, launched: bool) -> str:
@@ -284,7 +257,7 @@ h2{font-size:clamp(28px,4.6vw,56px);font-weight:800;letter-spacing:-0.04em;
 /* work — 프로젝트 행
    Esme(Webflow 템플릿)의 행 구조를 가져왔습니다. 핵심은 세 가지입니다.
 
-   1. 중간 크기를 두지 않습니다. 클라이언트명은 디스플레이 크기(최대 34px),
+   1. 중간 크기를 두지 않습니다. 클라이언트명은 디스플레이 크기(최대 44px),
       나머지 정보는 전부 14~16px. 그 사이 단계가 없어야 한 줄이 한 작업으로 읽힙니다.
    2. 연도를 같은 베이스라인의 오른쪽 끝에 붙입니다. 가운데로 모으지 않고
       양 끝으로 밀어 그 사이 여백이 구분선 역할을 합니다.
@@ -298,7 +271,7 @@ h2{font-size:clamp(28px,4.6vw,56px);font-weight:800;letter-spacing:-0.04em;
 .work-row{display:grid;grid-template-columns:1fr auto;
   column-gap:clamp(16px,3vw,40px);align-items:baseline;
   padding:clamp(22px,3vw,34px) 2px;border-bottom:1px solid var(--line-faint)}
-/* h2(최대 56px)보다 작게 유지합니다. 행 하나가 섹션 제목보다 커지면 목록이
+/* h2(최대 40px)보다 작게 유지합니다. 행 하나가 섹션 제목보다 커지면 목록이
    제목을 눌러 위계가 뒤집힙니다 — 1280px 에서 44px 로 뒀다가 실제로 그랬습니다. */
 .work-client{grid-column:1;grid-row:1;
   font-size:clamp(20px,2.9vw,34px);font-weight:800;letter-spacing:-0.04em;
@@ -323,27 +296,6 @@ a.work-row:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
     grid-column:1;grid-row:auto;justify-self:start}
   .work-year{margin-top:8px}
 }
-
-/* 프로젝트 상세
-   목록 행과 같은 크기 체계를 씁니다 — 클라이언트명이 디스플레이 크기, 본문 16px,
-   그 사이가 비어 있습니다. 한 페이지에 한 프로젝트만 있으므로 h1 을 씁니다. */
-.project{padding:clamp(72px,10vw,132px) 0 clamp(56px,8vw,96px)}
-.p-client{font-size:clamp(34px,6.4vw,76px);font-weight:800;letter-spacing:-0.045em;
-  line-height:1.1;color:var(--text-strong);margin:16px 0 0}
-.p-name{margin-top:clamp(10px,1.4vw,16px);font-size:clamp(17px,2.1vw,24px);
-  color:var(--text-muted);letter-spacing:-0.02em}
-.p-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:clamp(20px,3vw,40px);margin-top:clamp(40px,6vw,72px);
-  padding-top:clamp(24px,3vw,32px);border-top:1px solid var(--line-faint)}
-.p-facts dt{font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--text-faint)}
-.p-facts dd{margin-top:8px;font-size:15.5px;color:var(--text-muted)}
-.p-body{margin-top:clamp(40px,6vw,72px);max-width:62ch}
-.p-body p{font-size:clamp(16px,1.75vw,19px);line-height:1.85;color:var(--text)}
-.p-back{display:inline-block;margin-top:clamp(40px,6vw,72px);
-  font-size:14px;color:var(--text-subtle);
-  border-bottom:1px solid var(--line);padding-bottom:3px}
-.p-back:hover{color:var(--accent);border-color:var(--accent)}
 
 /* faq */
 .faq-list{display:grid;background:var(--surface-section);border:1px solid var(--line-faint)}
@@ -418,9 +370,10 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
     )
 
     def work_row(w: dict) -> str:
-        # 상세 페이지가 있으면 그쪽으로, 없으면 항목에 적힌 외부 링크로, 둘 다
-        # 없으면 링크가 아닌 행으로 렌더됩니다 — 갈 곳 없는 링크를 만들지 않습니다.
-        url = work_url(s, w)
+        # url 은 선택입니다. 프로젝트 상세 페이지를 만들거나 외부 링크(Behance 등)를
+        # 걸기로 정하면 그때 data/site.json 의 항목에 넣으면 됩니다. 없으면 행은
+        # 링크가 아닌 그냥 행으로 렌더됩니다 — 갈 곳 없는 링크를 만들지 않습니다.
+        url = (w.get("url") or "").strip()
         ctx = f'<span class="work-ctx">{esc(w["context"])}</span>' if w["context"] else ""
         year = f'<span class="work-year">{esc(w["year"])}</span>' if w["year"] else ""
         go = f'<span class="work-go">{esc(t["work_go"])}</span>' if url else ""
@@ -573,6 +526,135 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 """
 
 
+# ─────────────────────── project detail pages ───────────────────────
+
+def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
+    """프로젝트 상세 페이지. 본문은 data/site.json 의 work.items 에서 옵니다.
+
+    지금은 클라이언트명 · 작업명 · 컨텍스트 · 연도만 있으나, 나중에 description · images ·
+    specs 등을 추가하면 이 함수가 렌더합니다. 화면에 없는 내용을 스키마로만
+    선언하지 않는다는 원칙을 지킵니다.
+    """
+    s = d["site"]
+    t = d["strings"]
+    slug = w["slug"]
+    url = f'{s["url"]}projects/{slug}/'
+    title = f'{w["client"]} — {w["name"]} | {s["name"]}'
+    desc = w.get("description", f'{w["client"]} · {w["name"]}')
+    if w["context"]:
+        desc += f' · {w["context"]}'
+
+    nav = "" .join(
+        f'<a href="/#{i}">{esc(t[k])}</a>'
+        for i, k in [("structure", "nav_structure"), ("fields", "nav_fields"),
+                     ("work", "nav_work"), ("faq", "nav_faq"), ("contact", "nav_contact")]
+    )
+
+    lang_link = "".join(
+        f'<a class="lang" href="/{o["path"]}" hreflang="{o["lang"]}">{esc(o["lang_label"])}</a>'
+        for o in locales if o["locale"] != s["locale"]
+    )
+
+    year_html = f'<span class="proj-year">{esc(w["year"])}</span>' if w["year"] else ""
+    ctx_html = f'<span class="proj-ctx">{esc(w["context"])}</span>' if w["context"] else ""
+    desc_html = f'<p class="proj-desc">{esc(w["description"])}</p>' if w.get("description") else ""
+
+    # 이전/다음 프로젝트 네비게이션
+    items = [x for x in d["work"]["items"] if x.get("slug")]
+    idx = next((i for i, x in enumerate(items) if x["slug"] == slug), 0)
+    prev_item = items[idx - 1] if idx > 0 else None
+    next_item = items[idx + 1] if idx < len(items) - 1 else None
+    prev_link = (
+        f'<a class="proj-nav-link" href="/projects/{prev_item["slug"]}/">'
+        f'← {esc(prev_item["client"])}</a>'
+    ) if prev_item else '<span></span>'
+    next_link = (
+        f'<a class="proj-nav-link" href="/projects/{next_item["slug"]}/">'
+        f'{esc(next_item["client"])} →</a>'
+    ) if next_item else '<span></span>'
+
+    return f"""<!DOCTYPE html>
+<html lang="{s["lang"]}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}" />
+<link rel="canonical" href="{esc(url)}" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="{esc(s["name"])}" />
+<meta property="og:url" content="{esc(url)}" />
+<meta property="og:title" content="{esc(title)}" />
+<meta property="og:description" content="{esc(desc)}" />
+<meta property="og:locale" content="{esc(s["locale"])}" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+<style>{CSS}
+.proj-hero{{padding:clamp(80px,13vw,160px) 0 clamp(56px,8vw,96px)}}
+.proj-client{{font-size:clamp(34px,6.4vw,76px);font-weight:800;letter-spacing:-0.045em;
+  line-height:1.12;color:var(--text-strong);margin:20px 0 0}}
+.proj-name{{margin-top:12px;font-size:clamp(18px,2.4vw,28px);color:var(--text-muted)}}
+.proj-ctx{{font-family:var(--font-mono);font-size:13px;letter-spacing:0.06em;
+  color:var(--text-faint);margin-top:8px;display:block}}
+.proj-year{{font-family:var(--font-mono);font-size:14px;letter-spacing:0.06em;
+  color:var(--accent);display:block;margin-top:16px}}
+.proj-desc{{margin-top:clamp(28px,4vw,44px);font-size:clamp(16px,1.75vw,20px);
+  line-height:1.75;color:var(--text-muted);max-width:60ch;
+  border-left:2px solid var(--accent);padding-left:clamp(18px,2.4vw,28px)}}
+.proj-nav{{display:flex;justify-content:space-between;align-items:center;
+  padding:clamp(32px,4vw,56px) 0;border-top:1px solid var(--line-faint);
+  margin-top:clamp(48px,6vw,80px)}}
+.proj-nav-link{{font-size:15px;color:var(--text-subtle)}}
+.proj-nav-link:hover{{color:var(--accent)}}
+.back-link{{display:inline-block;margin-top:clamp(32px,4vw,48px);
+  font-size:14px;color:var(--text-faint)}}
+.back-link:hover{{color:var(--accent)}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">{esc(t["skip"])}</a>
+
+<header class="site">
+  <div class="wrap hdr">
+    <a class="logo" href="/">SIA<span>.</span>HAUS</a>
+    <nav class="main">{nav}</nav>
+    {lang_link}
+  </div>
+</header>
+
+<main id="main">
+  <section class="proj-hero">
+    <div class="wrap">
+      <p class="eyebrow">PROJECT</p>
+      <h1 class="proj-client">{esc(w["client"])}</h1>
+      <p class="proj-name">{esc(w["name"])}</p>
+      {ctx_html}
+      {year_html}
+      {desc_html}
+      <a class="back-link" href="/#work">← {esc(t["nav_work"])}</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="proj-nav">
+      {prev_link}
+      {next_link}
+    </nav>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span>© {date.today().year} {esc(t["footer_note"])}</span>
+    <span class="sep"><a href="mailto:{s["email"]}">{esc(s["email"])}</a></span>
+  </div>
+</footer>
+</body>
+</html>
+"""
+
+
 # ─────────────────────────── llms.txt · sitemap ───────────────────────────
 
 def build_llms(d: dict, launched: bool) -> str:
@@ -588,12 +670,7 @@ def build_llms(d: dict, launched: bool) -> str:
     lines += [f'## {d["work"]["title"]}', "", d["work"]["lead"], ""]
     for w in d["work"]["items"]:
         bits = [b for b in (w["name"], w["context"], w["year"]) if b]
-        line = f'- {w["client"]} — ' + " · ".join(bits)
-        # 상세 페이지가 있으면 주소를 함께 적습니다. llms.txt 를 읽는 쪽이
-        # 요약만 보고 끝내지 않고 근거가 있는 페이지까지 가도록.
-        if has_detail(w):
-            line += f' — {detail_url(d["site"], w)}'
-        lines.append(line)
+        lines.append(f'- {w["client"]} — ' + " · ".join(bits))
     lines.append("")
 
     items = faq_items(d, launched)
@@ -613,7 +690,7 @@ def build_llms(d: dict, launched: bool) -> str:
     return "\n".join(lines)
 
 
-def build_sitemap(locales: list, today: str, projects: list[str] | None = None) -> str:
+def build_sitemap(locales: list, today: str, project_urls: list[str] | None = None) -> str:
     urls = []
     for o in locales:
         alts = "".join(
@@ -624,133 +701,15 @@ def build_sitemap(locales: list, today: str, projects: list[str] | None = None) 
             f'  <url>\n    <loc>{o["url"]}</loc>\n'
             f'    <lastmod>{today}</lastmod>{alts}\n  </url>'
         )
-    # 프로젝트 상세 페이지. hreflang 대체본이 없어 alternate 링크를 붙이지 않습니다.
-    for u in projects or []:
-        urls.append(f'  <url>\n    <loc>{u}</loc>\n    <lastmod>{today}</lastmod>\n  </url>')
+    for pu in (project_urls or []):
+        urls.append(
+            f'  <url>\n    <loc>{pu}</loc>\n'
+            f'    <lastmod>{today}</lastmod>\n  </url>'
+        )
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
             '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
             + "\n".join(urls) + "\n</urlset>\n")
-
-
-def build_project_jsonld(d: dict, w: dict) -> str:
-    """CreativeWork + BreadcrumbList.
-
-    화면에 있는 값만 옮겨 적습니다. 본문이 없는 항목은 애초에 페이지가 없으므로
-    여기 올 일이 없습니다.
-    """
-    s = d["site"]
-    url = detail_url(s, w)
-    work = {
-        "@type": "CreativeWork",
-        "@id": url + "#work",
-        "url": url,
-        "name": f'{w["client"]} — {w["name"]}',
-        "headline": w["name"],
-        "description": w["summary"],
-        "inLanguage": s["lang"],
-        "creator": {"@id": s["org_id"]},
-        "isPartOf": {"@id": s["url"] + "#website"},
-    }
-    if w.get("year"):
-        work["dateCreated"] = w["year"]
-    if w.get("context"):
-        work["about"] = w["context"]
-
-    crumbs = {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": s["name"], "item": s["url"]},
-            {"@type": "ListItem", "position": 2, "name": w["client"], "item": url},
-        ],
-    }
-    return json.dumps({"@context": "https://schema.org", "@graph": [work, crumbs]},
-                      ensure_ascii=False, indent=2)
-
-
-def build_project_html(d: dict, w: dict) -> str:
-    s, t = d["site"], d["strings"]
-    url = detail_url(s, w)
-    title = f'{w["client"]} {w["name"]} — {s["name"]}'
-    # 설명문은 본문 첫 문장에서 가져옵니다. 지어내지 않습니다.
-    desc = w["summary"].split(". ")[0].strip().rstrip(".") + "."
-    if len(desc) > 300:
-        desc = desc[:297].rstrip() + "…"
-
-    nav = "".join(
-        f'<a href="/#{i}">{esc(t[k])}</a>'
-        for i, k in [("structure", "nav_structure"), ("fields", "nav_fields"),
-                     ("work", "nav_work"), ("faq", "nav_faq"), ("contact", "nav_contact")]
-    )
-    mailto = f'mailto:{s["email"]}?subject={esc(t["mail_subject"])}'
-
-    facts = ""
-    if w.get("year"):
-        facts += f'<div><dt>{esc(t["p_year"])}</dt><dd>{esc(w["year"])}</dd></div>'
-    if w.get("context"):
-        facts += f'<div><dt>{esc(t["p_context"])}</dt><dd>{esc(w["context"])}</dd></div>'
-    facts += f'<div><dt>{esc(t["p_client"])}</dt><dd>{esc(w["client"])}</dd></div>'
-
-    paras = "".join(f"<p>{esc(x.strip())}</p>"
-                    for x in w["summary"].split("\n") if x.strip())
-    # source 는 화면에 내보내지 않습니다. 저장소 안의 파일 경로라 방문자에게는
-    # 볼 수 없는 주소이고, 우리가 쓴 우리 문장이라 출처를 밝힐 대상도 아닙니다.
-    # data/site.json 에는 남겨 둡니다 — 이 문장이 지어낸 것이 아님을 증명하는 근거입니다.
-
-    return f"""<!DOCTYPE html>
-<html lang="{s["lang"]}">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>{esc(title)}</title>
-<meta name="description" content="{esc(desc)}" />
-<link rel="canonical" href="{esc(url)}" />
-<meta property="og:type" content="article" />
-<meta property="og:site_name" content="{esc(s["name"])}" />
-<meta property="og:url" content="{esc(url)}" />
-<meta property="og:title" content="{esc(title)}" />
-<meta property="og:description" content="{esc(desc)}" />
-<meta property="og:locale" content="{esc(s["locale"])}" />
-<meta name="twitter:card" content="summary_large_image" />
-<link rel="preconnect" href="https://cdn.jsdelivr.net" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
-<style>{CSS}</style>
-<script type="application/ld+json">
-{build_project_jsonld(d, w)}
-</script>
-</head>
-<body>
-<a class="skip" href="#main">{esc(t["skip"])}</a>
-
-<header class="site">
-  <div class="wrap hdr">
-    <a class="logo" href="/">SIA<span>.</span>HAUS</a>
-    <nav class="main">{nav}</nav>
-  </div>
-</header>
-
-<main id="main">
-  <article class="project">
-    <div class="wrap">
-      <p class="eyebrow">{esc(d["work"]["eyebrow"])}</p>
-      <h1 class="p-client">{esc(w["client"])}</h1>
-      <p class="p-name">{esc(w["name"])}</p>
-      <dl class="p-facts">{facts}</dl>
-      <div class="p-body">{paras}</div>
-      <a class="p-back" href="/#work">{esc(t["p_back"])}</a>
-    </div>
-  </article>
-</main>
-
-<footer class="site">
-  <div class="wrap foot">
-    <span>© {date.today().year} {esc(t["footer_note"])}</span>
-    <span class="sep"><a href="{mailto}">{esc(s["email"])}</a></span>
-  </div>
-</footer>
-</body>
-</html>
-"""
 
 
 # ─────────────────────────── main ───────────────────────────
@@ -763,7 +722,6 @@ def main() -> int:
     locales = [d["site"] for d in docs]
 
     out: dict[str, str] = {}
-    project_urls: list[str] = []
     for d in docs:
         launched = licensing_launched(d)
         path = d["site"]["path"]
@@ -779,27 +737,24 @@ def main() -> int:
         out[path + "index.html"] = doc
         out[path + "llms.txt"] = build_llms(d, launched)
 
-        # 프로젝트 상세 페이지. 본문이 있는 항목만 만듭니다 — has_detail() 참고.
+        # 프로젝트 상세 페이지 생성
         for w in d["work"]["items"]:
-            if not has_detail(w):
+            if not w.get("slug"):
                 continue
-            page = build_project_html(d, w)
-            for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', page, re.S):
+            proj_doc = build_project_html(d, w, locales, launched)
+            # JSON-LD 검증 (도입하면)
+            for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', proj_doc, re.S):
                 json.loads(m.group(1))
-            for m in re.finditer(r'<script(?![^>]*type="application/ld\+json")[^>]*>', page):
+            for m in re.finditer(r'<script(?![^>]*type="application/ld\+json")[^>]*>', proj_doc):
                 raise SystemExit(f"실행 스크립트가 들어갔습니다: {m.group(0)}")
-            out[f'{path}work/{w["slug"]}/index.html'] = page
-            project_urls.append(detail_url(d["site"], w))
+            out[path + f'projects/{w["slug"]}/index.html'] = proj_doc
 
-        missing = [w["client"] for w in d["work"]["items"] if not has_detail(w)]
-        if missing:
-            warnings.append(
-                f"본문(summary)이 없어 상세 페이지를 만들지 않은 항목 {len(missing)}개: "
-                + ", ".join(missing)
-                + ". 내용 없는 페이지를 찍어내지 않으려는 의도입니다 — 근거 있는 문장이 "
-                "생기면 data/site.json 의 해당 항목에 summary 와 source 를 넣으세요."
-            )
-
+    # sitemap 에 프로젝트 URL 포함
+    project_urls = []
+    for d2 in docs:
+        for w2 in d2["work"]["items"]:
+            if w2.get("slug"):
+                project_urls.append(d2["site"]["url"] + "projects/" + w2["slug"] + "/")
     out["sitemap.xml"] = build_sitemap(locales, today, project_urls)
 
     if not check_only:
@@ -813,9 +768,7 @@ def main() -> int:
     for d, o in zip(docs, locales):
         launched = bool(d.get("licensing", {}).get("launched"))
         print(f'  [{o["locale"]}] {o["url"]} — 분야 {len(d["fields"]["items"])}'
-              f' · 실적 {len(d["work"]["items"])}'
-              f'(상세 {sum(1 for w in d["work"]["items"] if has_detail(w))})'
-              f' · FAQ {len(faq_items(d, launched))}')
+              f' · 실적 {len(d["work"]["items"])} · FAQ {len(faq_items(d, launched))}')
     for w in dict.fromkeys(warnings):
         print(f"\n  ⚠️  {w}")
     return 0
