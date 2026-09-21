@@ -558,6 +558,44 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 
 # ─────────────────────── project detail pages ───────────────────────
 
+def build_project_jsonld(d: dict, w: dict) -> str:
+    """프로젝트 상세 페이지의 CreativeWork + BreadcrumbList.
+
+    creator 가 Organization 의 @id 를 가리켜 기존 엔티티 그래프에 붙습니다.
+    **화면에 있는 값만 옮겨 적습니다** — description 은 본문이 실제로 렌더링될
+    때만 넣습니다. 화면에 없는 내용을 스키마로만 선언하면 구조화 데이터 위반이고,
+    생성형 엔진도 근거 없는 주장으로 취급해 인용하지 않습니다.
+    """
+    s = d["site"]
+    url = f'{s["url"]}projects/{w["slug"]}/'
+    work = {
+        "@type": "CreativeWork",
+        "@id": url + "#work",
+        "url": url,
+        "name": f'{w["client"]} \u2014 {w["name"]}',
+        "headline": w["name"],
+        "inLanguage": s["lang"],
+        "creator": {"@id": s["org_id"]},
+        "isPartOf": {"@id": s["url"] + "#website"},
+    }
+    if w.get("description"):
+        work["description"] = w["description"]
+    if w.get("year"):
+        work["dateCreated"] = w["year"]
+    if w.get("context"):
+        work["about"] = w["context"]
+
+    crumbs = {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": s["name"], "item": s["url"]},
+            {"@type": "ListItem", "position": 2, "name": w["client"], "item": url},
+        ],
+    }
+    return json.dumps({"@context": "https://schema.org", "@graph": [work, crumbs]},
+                      ensure_ascii=False, indent=2)
+
+
 def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     """프로젝트 상세 페이지 — media.work 톤."""
     s = d["site"]
@@ -565,7 +603,12 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     slug = w["slug"]
     url = f'{s["url"]}projects/{slug}/'
     title = f'{w["client"]} \u2014 {w["name"]} | {s["name"]}'
-    desc = w.get("description", f'{w["client"]} \u00b7 {w["name"]}')
+    if w.get("description"):
+        desc = w["description"].split(". ")[0].strip().rstrip(".") + "."
+        if len(desc) > 300:
+            desc = desc[:297].rstrip() + "\u2026"
+    else:
+        desc = f'{w["client"]} \u00b7 {w["name"]}'
     if w["context"]:
         desc += f' \u00b7 {w["context"]}'
 
@@ -614,6 +657,9 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
 <meta property="og:description" content="{esc(desc)}" />
 <meta property="og:locale" content="{esc(s["locale"])}" />
 <meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{build_project_jsonld(d, w)}
+</script>
 <style>{CSS}
 .proj-hero{{padding:clamp(100px,15vw,180px) 0 clamp(48px,7vw,80px)}}
 .proj-client{{font-size:clamp(32px,5.5vw,68px);font-weight:300;letter-spacing:-0.04em;
