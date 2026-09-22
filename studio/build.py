@@ -369,7 +369,7 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
                    f'</div>')
         inner = f'{media}{overlay}'
         if url:
-            return f'<a class="work-card" href="{esc(url)}">{inner}</a>'
+            return f'<a class="work-card" href="{esc(url)}" aria-label="{esc(w["client"] + " — " + w["name"] + " 프로젝트 상세 보기")}">{inner}</a>'
         return f'<div class="work-card">{inner}</div>'
 
     works = "".join(work_card(w) for w in d["work"]["items"])
@@ -409,6 +409,9 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <title>{esc(d["meta"]["title"])}</title>
 <meta name="description" content="{esc(d["meta"]["description"])}" />
 <link rel="canonical" href="{esc(s["url"])}" />{alternates}
@@ -418,7 +421,10 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 <meta property="og:title" content="{esc(d["meta"]["title"])}" />
 <meta property="og:description" content="{esc(d["meta"]["description"])}" />
 <meta property="og:locale" content="{esc(s["locale"])}" />
+<meta property="og:image" content="{esc(s["url"] + "og-default.svg")}" />
+<meta property="og:image:alt" content="{esc(d["meta"]["title"])}" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="{esc(s["url"] + "og-default.svg")}" />
 <style>{CSS}</style>
 <script type="application/ld+json">
 {build_jsonld(d, launched)}
@@ -567,7 +573,7 @@ def build_project_jsonld(d: dict, w: dict) -> str:
     생성형 엔진도 근거 없는 주장으로 취급해 인용하지 않습니다.
     """
     s = d["site"]
-    url = f'{s["url"]}projects/{w["slug"]}/'
+    url = f'{s["url"]}projects/{w["slug"]}'
     work = {
         "@type": "CreativeWork",
         "@id": url + "#work",
@@ -601,7 +607,7 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     s = d["site"]
     t = d["strings"]
     slug = w["slug"]
-    url = f'{s["url"]}projects/{slug}/'
+    url = f'{s["url"]}projects/{slug}'
     title = f'{w["client"]} \u2014 {w["name"]} | {s["name"]}'
     if w.get("description"):
         desc = w["description"].split(". ")[0].strip().rstrip(".") + "."
@@ -647,6 +653,9 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}" />
 <link rel="canonical" href="{esc(url)}" />
@@ -656,7 +665,10 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
 <meta property="og:title" content="{esc(title)}" />
 <meta property="og:description" content="{esc(desc)}" />
 <meta property="og:locale" content="{esc(s["locale"])}" />
+<meta property="og:image" content="{esc(s["url"] + "og-default.svg")}" />
+<meta property="og:image:alt" content="{esc(title)}" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="{esc(s["url"] + "og-default.svg")}" />
 <script type="application/ld+json">
 {build_project_jsonld(d, w)}
 </script>
@@ -824,7 +836,7 @@ def main() -> int:
     for d2 in docs:
         for w2 in d2["work"]["items"]:
             if w2.get("slug"):
-                project_urls.append(d2["site"]["url"] + "projects/" + w2["slug"] + "/")
+                project_urls.append(d2["site"]["url"] + "projects/" + w2["slug"] )
     out["sitemap.xml"] = build_sitemap(locales, today, project_urls)
 
     if not check_only:
