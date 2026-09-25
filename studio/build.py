@@ -462,8 +462,8 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 <meta property="og:image:alt" content="{esc(d["meta"]["title"])}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="{esc(s["url"] + "og-default.svg")}" />
-<link rel="stylesheet" href="/theme-v2.css" />
 <style>{CSS}</style>
+<link rel="stylesheet" href="/theme-v2.css" />
 <script type="application/ld+json">
 {build_jsonld(d, launched)}
 </script>
@@ -733,7 +733,6 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
 <meta property="og:image:alt" content="{esc(title)}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="{esc(s["url"] + "og-default.svg")}" />
-<link rel="stylesheet" href="/theme-v2.css" />
 <script type="application/ld+json">
 {build_project_jsonld(d, w)}
 </script>
@@ -758,6 +757,7 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
   font-size:13px;font-weight:400;color:var(--text-faint)}}
 .back-link:hover{{color:var(--text-strong)}}
 </style>
+<link rel="stylesheet" href="/theme-v2.css" />
 </head>
 <body>
 <a class="skip" href="#main">{esc(t["skip"])}</a>
