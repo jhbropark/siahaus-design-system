@@ -365,7 +365,7 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         video_url = (w.get("video_url") or "").strip()
         image_url = (w.get("image_url") or "").strip()
         label = f'{w["client"]} — {w["name"]}'
-        if video_url and "player.vimeo.com" in video_url:
+        if video_url and ("player.vimeo.com" in video_url or "youtube.com/embed" in video_url):
             media = (f'<div class="work-card-media work-card-video">'
                      f'<iframe src="{esc(video_url)}" title="{esc(label)} 영상" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>'
                      f'</div>')
