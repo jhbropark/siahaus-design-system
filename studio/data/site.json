@@ -159,7 +159,9 @@
         "context": "",
         "year": "2024",
         "slug": "hyundai-seoul",
-        "url": "/projects/hyundai-seoul"
+        "url": "/projects/hyundai-seoul",
+        "image_url": "/assets/projects/hyundai-seoul.png",
+        "video_url": "https://www.youtube.com/embed/uAT6FHRSi9o?autoplay=1&mute=1&loop=1&playlist=uAT6FHRSi9o&controls=0&rel=0"
       },
       {
         "client": "롯데월드타워 잠실",
@@ -202,7 +204,8 @@
         "slug": "netflix-love-alarm",
         "description": "넷플릭스 오리지널 드라마와 웹툰으로 사랑받은 '좋아하면 울리는(좋알람)'의 세계관을 롯데월드타워 광장 한가운데에 오프라인으로 재현했습니다. 단순히 조형물을 설치하는 것을 넘어, IP의 핵심 아이콘인 '좋알람' 앱을 상징하는 LED 미디어 타워를 제작하여 팬들에게는 감동을, 일반 방문객에게는 신선한 시각적 재미를 선사하며 캠페인의 성공적인 런칭을 이끌었습니다.",
         "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.61",
-        "url": "/projects/netflix-love-alarm"
+        "url": "/projects/netflix-love-alarm",
+        "image_url": "/assets/projects/netflix-love-alarm.png"
       },
       {
         "client": "삼성",
