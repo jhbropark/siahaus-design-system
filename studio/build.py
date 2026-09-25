@@ -379,9 +379,10 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
                      f'</div>')
         else:
             media = '<div class="work-card-placeholder"></div>'
+        meta = " · ".join(x for x in [w.get("category", "PROJECT"), w.get("year", "")] if x)
         overlay = (f'<div class="work-card-overlay">'
                    f'<span class="work-card-title">{esc(label)}</span>'
-                   f'<span class="work-card-type">Project</span>'
+                   f'<span class="work-card-type">{esc(meta)}</span>'
                    f'</div>')
         inner = f'{media}{overlay}'
         if url:
@@ -417,6 +418,26 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         label = f'<span class="hero-label">{esc(col.get("label", ""))}</span>' if col.get("label") else ""
         hero_cols += f'<div class="hero-col"><p>{esc(col["text"])}</p>{label}</div>'
 
+    featured_slug = d["hero"].get("featured_slug")
+    featured_work = next((w for w in d["work"]["items"] if w.get("slug") == featured_slug), None)
+    if featured_work is None and d["work"]["items"]:
+        featured_work = d["work"]["items"][0]
+    hero_media = ""
+    hero_meta = ""
+    if featured_work:
+        fi = (featured_work.get("image_url") or "").strip()
+        if fi:
+            hero_media = (
+                f'<img class="hero-media" src="{esc(fi)}" '
+                f'alt="{esc(featured_work["client"] + " — " + featured_work["name"])} 대표 이미지" />'
+            )
+        meta_bits = [featured_work.get("context", ""), featured_work.get("year", "")]
+        meta_text = " · ".join(x for x in meta_bits if x)
+        hero_meta = (
+            f'<div class="hero-meta"><strong>{esc(featured_work["client"])} — '
+            f'{esc(featured_work["name"])}</strong><span>{esc(meta_text)}</span></div>'
+        )
+
     # Footer: media.work 7-column dense layout
     social_links = "".join(f'<dd><a href="{esc(u)}" target="_blank" rel="noopener">{esc(u.split("/")[-2] if u.endswith("/") else u.split("/")[-1])}</a></dd>' for u in s.get("same_as", []))
 
@@ -441,6 +462,7 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 <meta property="og:image:alt" content="{esc(d["meta"]["title"])}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="{esc(s["url"] + "og-default.svg")}" />
+<link rel="stylesheet" href="/theme-v2.css" />
 <style>{CSS}</style>
 <script type="application/ld+json">
 {build_jsonld(d, launched)}
@@ -459,9 +481,18 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 
 <main id="main">
   <section class="hero">
+    {hero_media}
+    <div class="hero-shade" aria-hidden="true"></div>
     <div class="wrap">
-      <div class="hero-inner">
-        {hero_cols}
+      <div class="hero-v2">
+        <p class="hero-kicker">{esc(d["hero"].get("kicker", d["hero"]["eyebrow"]))}</p>
+        <h1 class="hero-title">{esc(d["hero"].get("display_title", d["hero"]["headline"]))}</h1>
+        <p class="hero-subtitle">{esc(d["hero"]["headline"])}</p>
+        <div class="hero-actions">
+          <a class="hero-action" href="#work">{esc(d["hero"].get("cta_primary", t["cta_work"]))} ↘</a>
+          <a class="hero-action secondary" href="#contact">{esc(d["hero"].get("cta_secondary", t["cta_contact"]))} ↗</a>
+        </div>
+        {hero_meta}
       </div>
     </div>
   </section>
@@ -651,6 +682,23 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     ctx_html = f'<span class="proj-ctx">{esc(w["context"])}</span>' if w["context"] else ""
     desc_html = f'<p class="proj-desc">{esc(w["description"])}</p>' if w.get("description") else ""
 
+    video_url = (w.get("video_url") or "").strip()
+    image_url = (w.get("image_url") or "").strip()
+    media_label = f'{w["client"]} — {w["name"]}'
+    if video_url and ("player.vimeo.com" in video_url or "youtube.com/embed" in video_url):
+        proj_media = (
+            f'<iframe src="{esc(video_url)}" title="{esc(media_label)} 영상" '
+            f'loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>'
+        )
+    elif video_url:
+        proj_media = (
+            f'<video src="{esc(video_url)}" muted loop autoplay playsinline preload="metadata"></video>'
+        )
+    elif image_url:
+        proj_media = f'<img src="{esc(image_url)}" alt="{esc(media_label)} 대표 이미지" />'
+    else:
+        proj_media = f'<div class="proj-media-empty">{esc(w["name"])}</div>'
+
     items = [x for x in d["work"]["items"] if x.get("slug")]
     idx = next((i for i, x in enumerate(items) if x["slug"] == slug), 0)
     prev_item = items[idx - 1] if idx > 0 else None
@@ -685,6 +733,7 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
 <meta property="og:image:alt" content="{esc(title)}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="{esc(s["url"] + "og-default.svg")}" />
+<link rel="stylesheet" href="/theme-v2.css" />
 <script type="application/ld+json">
 {build_project_jsonld(d, w)}
 </script>
@@ -733,6 +782,10 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
       <a class="back-link" href="/#work">\u2190 {esc(t["nav_work"])}</a>
     </div>
   </section>
+
+  <div class="proj-media-wrap">
+    <div class="proj-media-stage">{proj_media}</div>
+  </div>
 
   <div class="wrap">
     <nav class="proj-nav">
