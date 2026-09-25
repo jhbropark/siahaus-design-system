@@ -1,0 +1,305 @@
+{
+  "_note": "www.sia.haus 단일 진실 원천. build.py 가 이 파일에서 index.html · llms.txt · sitemap.xml 을 생성합니다. 화면에 보이는 문자열은 전부 여기 있습니다. 값의 출처는 infra/geo/llms.txt · infra/geo/page-copy-draft.md · project/readme.md 이며, 출처 없는 값은 넣지 않습니다.",
+  "site": {
+    "name": "SIA.HAUS",
+    "domain": "www.sia.haus",
+    "url": "https://www.sia.haus/",
+    "org_id": "https://www.sia.haus/#organization",
+    "sub_org_id": "https://varis.kr/#organization",
+    "email": "sia@sia.haus",
+    "founding_location": "서울",
+    "address": {
+      "street": "마포구 매봉산로 75 동아디지털미디어센터(DDMC) 18층",
+      "locality": "서울특별시",
+      "postal_code": "03926",
+      "country": "KR"
+    },
+    "same_as": [
+      "https://www.behance.net/sia_haus"
+    ],
+    "locale": "ko",
+    "lang": "ko",
+    "path": "",
+    "lang_label": "KO",
+    "alt_label": "EN",
+    "area_served": "대한민국"
+  },
+  "licensing": {
+    "_decision": "2026-09-16 확인 — 구독 라이선싱은 아직 출시 전이라 false. 출시하면 true 로 바꾸면 정의문과 라이선싱 FAQ 가 함께 복구됩니다. null(모름)로 두면 build.py 가 false 와 같게 동작하되 빌드마다 경고를 냅니다 — 없는 서비스를 정의문에 넣으면 첫 문의부터 어긋나므로, 모를 때 더 크게 주장하지 않습니다.",
+    "launched": false
+  },
+  "meta": {
+    "title": "SIA.HAUS — 미디어 파사드 · 몰입형 전시 미디어아트 스튜디오",
+    "description": "기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 미디어아트 스튜디오. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인."
+  },
+  "hero": {
+    "eyebrow": "SEOUL · SINCE 2018",
+    "headline": "기술은 도구이고, 경험은 감각입니다.",
+    "definition_launched": "SIA.HAUS는 기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 미디어아트 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 그렇게 제작한 미디어아트를 작가 IP로 축적해 공간 사업자에게 구독 방식으로 라이선싱합니다.",
+    "definition_prelaunch": "SIA.HAUS는 기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 미디어아트 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 그렇게 제작한 미디어아트를 작가 IP로 축적하고 있습니다."
+  },
+  "pipeline": {
+    "eyebrow": "STRUCTURE",
+    "title": "네 단계를 한 팀이 맡습니다",
+    "lead": "SIA.HAUS의 파이프라인은 기획, 프리프로덕션, 프로덕션, 운영 네 단계이며 외주 분할 없이 한 팀이 전 구간을 담당합니다. 콘텐츠 제작과 현장 설치, 이후 운영까지 책임 주체가 나뉘지 않아 일정과 품질 관리가 한 곳에서 이루어집니다.",
+    "steps": [
+      {
+        "n": "01",
+        "name": "기획",
+        "en": "Planning"
+      },
+      {
+        "n": "02",
+        "name": "프리프로덕션",
+        "en": "Pre-Production"
+      },
+      {
+        "n": "03",
+        "name": "프로덕션",
+        "en": "Production"
+      },
+      {
+        "n": "04",
+        "name": "운영",
+        "en": "Operation"
+      }
+    ]
+  },
+  "fields": {
+    "eyebrow": "WHAT WE DO",
+    "title": "다루는 분야",
+    "items": [
+      {
+        "name": "미디어 파사드",
+        "en": "Media Facade",
+        "desc": "건축 외피를 캔버스로 사용하는 대형 영상 연출"
+      },
+      {
+        "name": "프로젝션 매핑",
+        "en": "Projection Mapping",
+        "desc": "비정형 표면에 맞춘 영상 투사"
+      },
+      {
+        "name": "몰입형 전시",
+        "en": "Immersive Exhibition",
+        "desc": "공간 전체를 사용하는 체험형 전시"
+      },
+      {
+        "name": "미디어 A/V · 사운드 디자인",
+        "en": "Media A/V · Sound Design",
+        "desc": "영상과 음향의 통합 설계"
+      },
+      {
+        "name": "3D · VFX · 기술 시각화",
+        "en": "3D · VFX · Technical Visualization",
+        "desc": "제작 전 과정을 뒷받침하는 기술 기반"
+      }
+    ]
+  },
+  "work": {
+    "eyebrow": "SELECTED WORK",
+    "title": "실적",
+    "lead": "2018년부터 축적된 작업입니다.",
+    "note": "연도는 확인된 것만 표기합니다.",
+    "items": [
+      {
+        "client": "KIA",
+        "name": "Journey of Reflection",
+        "context": "Milan Design Week",
+        "year": "2026",
+        "slug": "kia-milan",
+        "description": "2026 밀라노 디자인 위크에서 공개된 기아의 EV 비전 전시 프로젝트. 브랜드 철학인 '오퍼짓 유나이티드(Opposites United)'를 기반으로 미래 모빌리티에 대한 비전을 공간 경험으로 구현하였다. 빛, 소재, 건축적 구조를 활용한 몰입형 전시를 통해 Vision Meta Turismo를 비롯한 차세대 EV 콘셉트를 선보이며, 기아가 추구하는 혁신과 지속가능한 미래 가치를 전달하였습니다.",
+        "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.8",
+        "url": "/projects/kia-milan",
+        "image_url": "/assets/projects/page_008.png"
+      },
+      {
+        "client": "김창열 아틀리에",
+        "name": "Kim Tschang-Yeul Atelier",
+        "context": "",
+        "year": "2026",
+        "slug": "waterdrops",
+        "url": "/projects/waterdrops",
+        "image_url": "/assets/projects/kim-tschang-yeul.webp",
+        "video_url": "https://player.vimeo.com/video/1190121726?background=1&autoplay=1&loop=1&muted=1"
+      },
+      {
+        "client": "베니스 비엔날레",
+        "name": "Time for Trees",
+        "context": "",
+        "year": "2025",
+        "slug": "venice-biennale",
+        "description": "2년마다 열리는 세계 최대 규모의 전시, 베니스 비엔날레에서 'Time for Trees' 프로젝트의 성공적인 구현을 위해 기술적 기반을 다졌습니다. 디지털 인터랙션 콜라보레이터들과 협력하여 작품이 의도한 메시지를 최첨단 기술로 시각화할 수 있도록 지원했습니다.",
+        "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.16",
+        "url": "/projects/venice-biennale",
+        "image_url": "/assets/projects/page_016.png"
+      },
+      {
+        "client": "그랜드 조선",
+        "name": "미디어 파사드",
+        "context": "",
+        "year": "2025",
+        "slug": "busan",
+        "url": "/projects/busan",
+        "image_url": "/assets/projects/grand-josun.jpg",
+        "video_url": "https://player.vimeo.com/video/1186891802?background=1&autoplay=1&loop=1&muted=1"
+      },
+      {
+        "client": "ARIA",
+        "name": "SWL 키네틱 디스플레이",
+        "context": "",
+        "year": "2025",
+        "slug": "aria-swl",
+        "url": "/projects/aria-swl",
+        "image_url": "/assets/projects/aria-swl.jpg"
+      },
+      {
+        "client": "The Hyundai Seoul",
+        "name": "Entropy of Nature",
+        "context": "",
+        "year": "2024",
+        "slug": "hyundai-seoul",
+        "url": "/projects/hyundai-seoul"
+      },
+      {
+        "client": "롯데월드타워 잠실",
+        "name": "미디어 파사드",
+        "context": "819㎡ · 21m × 39m",
+        "year": "",
+        "slug": "lotte-world-tower",
+        "description": "유동 인구가 집중되는 롯데백화점 잠실점의 외관을 첨단 디지털 기술로 재해석했습니다. 약 819㎡(가로 21m, 세로 39m) 면적의 초대형 화면은 RGB LED PIXEL DMX 기술을 통해 생동감 넘치는 고해상도 콘텐츠를 송출합니다. 특히 단순한 스크린 설치를 넘어 조형미를 고려한 입구 가랜드와 테마 조명을 함께 설계하여, 공간 전체를 하나의 거대한 예술 작품으로 승화시켰습니다.",
+        "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.71",
+        "url": "/projects/lotte-world-tower",
+        "image_url": "/assets/projects/page_071.png"
+      },
+      {
+        "client": "LG NLC",
+        "name": "History Walk",
+        "context": "",
+        "year": "",
+        "slug": "lg-nlc",
+        "description": "LG그룹의 미래 인재 육성을 위한 교육 및 리더십 허브 구축 프로젝트. 서울 남산에 조성된 NLC는 그룹 신임 임원 및 핵심 인재 교육을 위한 복합 교육 공간으로, 학습·교류·전시 기능을 통합한 새로운 교육 플랫폼이다. 그룹의 역사와 비전을 공유하는 전시 공간과 글로벌 비즈니스 환경에 대응하는 리더십 프로그램을 통해 LG의 미래 성장 동력을 지원을 의미하는 콘텐츠를 제작하였습니다.",
+        "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.10",
+        "url": "/projects/lg-nlc",
+        "image_url": "/assets/projects/page_010.png"
+      },
+      {
+        "client": "FILA Holdings",
+        "name": "Heritage Lounge",
+        "context": "",
+        "year": "",
+        "slug": "fila-heritage",
+        "description": "휠라홀딩스 1층에는 브랜드의 헤리티지가 가득 담긴 '헤리티지 라운지'가 있습니다. 이 공간은 100년이 넘는 휠라의 역사가 한눈에 보이는 곳 입니다. 브랜드의 헤리티지를 강조하기 위해 단순한 역사 전시가 아니라 현대적인 기술에 아날로그적인 감성을 더했습니다. 플립 아트 보드를 활용하여 아날로그 적인 감성을 더했습니다. 역사 깊은 휠라가 진취적이고 적극적인 기업임을 연출한 공간 입니다.",
+        "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.20",
+        "url": "/projects/fila-heritage",
+        "image_url": "/assets/projects/page_020.png"
+      },
+      {
+        "client": "Netflix",
+        "name": "Love Alarm 존",
+        "context": "",
+        "year": "",
+        "slug": "netflix-love-alarm",
+        "description": "넷플릭스 오리지널 드라마와 웹툰으로 사랑받은 '좋아하면 울리는(좋알람)'의 세계관을 롯데월드타워 광장 한가운데에 오프라인으로 재현했습니다. 단순히 조형물을 설치하는 것을 넘어, IP의 핵심 아이콘인 '좋알람' 앱을 상징하는 LED 미디어 타워를 제작하여 팬들에게는 감동을, 일반 방문객에게는 신선한 시각적 재미를 선사하며 캠페인의 성공적인 런칭을 이끌었습니다.",
+        "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.61",
+        "url": "/projects/netflix-love-alarm"
+      },
+      {
+        "client": "삼성",
+        "name": "LUX Soundroom",
+        "context": "",
+        "year": "",
+        "slug": "samsung-lux",
+        "description": "공간의 특성을 반영한 전략적 사운드 설계를 통해 마케팅 효과를 극대화했습니다. 스테레오 사운드 원칙에 기반한 그룹별 기기 배치를 통해 소리의 왜곡을 최소화하였으며, 특히 'Galaxy Home' 멀티 스테레오 피쳐 리스닝이 가능하도록 구현하여 상업적 활용도를 높였습니다. 고난도 사운드 마스터링 과정에서 확보한 안정성을 바탕으로 대규모 글로벌 컨벤션 환경에서도 완벽한 퍼포먼스를 증명했습니다.",
+        "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.69",
+        "url": "/projects/samsung-lux"
+      },
+      {
+        "client": "서울라이트",
+        "name": "광화문",
+        "context": "",
+        "year": "",
+        "slug": "seoullight",
+        "url": "/projects/seoullight"
+      },
+      {
+        "client": "SM · RIIZE",
+        "name": "Lucky MV",
+        "context": "",
+        "year": "",
+        "slug": "sm-riize",
+        "description": "SM엔터테인먼트 보이그룹 RIIZE의 'Lucky' 뮤직비디오 비주얼 콘텐츠 작업. 아이돌 IP의 세계관을 영상 언어로 확장하여, 무대·뮤직비디오 장면에 어울리는 몰입형 비주얼을 구현했습니다. 음악과 영상, 공간감이 하나로 맞물리도록 설계하여 K-팝 IP의 시각적 완성도를 끌어올렸습니다.",
+        "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.22",
+        "url": "/projects/sm-riize",
+        "image_url": "/assets/projects/page_022.png"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "자주 묻는 질문",
+    "items": [
+      {
+        "id": "about",
+        "q": "SIA.HAUS는 어떤 회사인가요?",
+        "a": "SIA.HAUS는 서울 상암에 기반을 둔 미디어아트 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 기획부터 운영까지 전 과정을 외주 분할 없이 자체 수행합니다. 2018년부터 국내외 대형 공간 프로젝트를 제작해 왔습니다."
+      },
+      {
+        "id": "process",
+        "q": "제작은 어떤 과정으로 진행되나요?",
+        "a": "기획, 프리프로덕션, 프로덕션, 운영 네 단계로 진행됩니다. SIA.HAUS는 이 네 구간을 한 팀이 담당하는 수직통합 구조입니다. 콘텐츠 제작과 현장 설치, 이후 운영까지 책임 주체가 나뉘지 않아 일정과 품질 관리가 한 곳에서 이루어집니다."
+      },
+      {
+        "id": "licensing",
+        "requires_licensing": true,
+        "q": "미디어아트 IP 구독 라이선싱은 무엇인가요?",
+        "a": "SIA.HAUS가 자체 제작한 미디어아트를 작가 IP로 축적하고, 공간 사업자가 이를 구독 형태로 이용하도록 라이선싱하는 방식입니다. 매번 새 작품을 커미션하지 않고도 검증된 콘텐츠를 자사 공간에 운영할 수 있습니다."
+      },
+      {
+        "id": "scale",
+        "q": "어떤 규모의 프로젝트를 진행하나요?",
+        "a": "건축 외피 전체를 사용하는 대형 미디어 파사드부터 실내 전시 공간까지 다룹니다. 롯데월드타워 잠실 미디어 파사드는 819㎡, 21m × 39m 규모였습니다. 밀라노 디자인위크, 베니스 비엔날레 등 국제 행사 프로젝트도 수행했습니다.",
+        "a_spoken": "건축 외피 전체를 사용하는 대형 미디어 파사드부터 실내 전시 공간까지 다룹니다. 롯데월드타워 잠실 미디어 파사드는 819제곱미터, 21m × 39m 규모였습니다. 밀라노 디자인위크, 베니스 비엔날레 등 국제 행사 프로젝트도 수행했습니다."
+      },
+      {
+        "id": "varis",
+        "q": "VARIS와 SIA.HAUS는 어떤 관계인가요?",
+        "a": "VARIS는 SIA.HAUS가 운영하는 미디어아트 교육 브랜드입니다. SIA.HAUS의 실무 제작 파이프라인과 서울 상암 DDMC 제작 공간을 교육에 활용하며, 입문 VOD부터 6개월 전문가 과정, 1:1 제작 멘토링까지 운영합니다.",
+        "a_spoken": "VARIS는 SIA.HAUS가 운영하는 미디어아트 교육 브랜드입니다. SIA.HAUS의 실무 제작 파이프라인과 서울 상암 DDMC 제작 공간을 교육에 활용하며, 입문 VOD부터 6개월 전문가 과정, 1대1 제작 멘토링까지 운영합니다."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "title": "프로젝트를 논의하고 싶으시면",
+    "lead": "공간과 일정, 예산 범위를 알려주시면 가능한 방향부터 회신드립니다."
+  },
+  "links": [
+    {
+      "label": "Behance 포트폴리오",
+      "desc": "프로젝트별 상세 이미지와 제작 기록",
+      "url": "https://www.behance.net/sia_haus"
+    },
+    {
+      "label": "VARIS",
+      "desc": "SIA.HAUS가 운영하는 미디어아트 교육 브랜드",
+      "url": "https://varis.kr/"
+    }
+  ],
+  "strings": {
+    "nav_structure": "제작 구조",
+    "nav_fields": "분야",
+    "nav_work": "실적",
+    "nav_faq": "FAQ",
+    "nav_contact": "문의",
+    "cta_contact": "프로젝트 문의",
+    "cta_work": "실적 보기",
+    "work_go": "프로젝트 보기",
+    "email": "이메일",
+    "address": "주소",
+    "links": "링크",
+    "mail_subject": "SIA.HAUS 프로젝트 문의",
+    "skip": "본문으로 건너뛰기",
+    "footer_note": "SIA.HAUS"
+  }
+}

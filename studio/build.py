@@ -249,8 +249,12 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
 /* work — media.work: 3-column masonry grid with hover overlay cards */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .work-card{position:relative;overflow:hidden;background:var(--surface)}
-.work-card-media{width:100%;display:block;aspect-ratio:auto}
-/* placeholder when no video asset */
+.work-card-media{position:relative;width:100%;display:block;aspect-ratio:4/5;overflow:hidden}
+.work-card-media img,.work-card-media video{width:100%;height:100%;display:block;object-fit:cover}
+.work-card-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+.work-card:nth-child(3n+2) .work-card-media{aspect-ratio:16/9}
+.work-card:nth-child(3n+3) .work-card-media{aspect-ratio:1/1}
+/* placeholder when no verified media asset */
 .work-card-placeholder{width:100%;aspect-ratio:4/5;background:
   linear-gradient(135deg,#e8e8e8 0%,#d0d0d0 50%,#e8e8e8 100%)}
 .work-card:nth-child(3n+2) .work-card-placeholder{aspect-ratio:16/9}
@@ -338,8 +342,8 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         default = next(o for o in locales if o["locale"] == "ko")
         alternates += f'\n<link rel="alternate" hreflang="x-default" href="{esc(default["url"])}" />'
 
-    # Featured client for logo (first work item)
-    featured = d["work"]["items"][0]["client"] if d["work"]["items"] else ""
+    # The main logo is neutral; project clients belong in the work cards.
+    featured = ""
 
     steps = "".join(
         f'<div class="step"><div class="step-n">{esc(x["n"])}</div>'
@@ -355,21 +359,33 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         for f in d["fields"]["items"]
     )
 
-    # media.work: masonry grid cards instead of row list
+    # media.work: masonry grid cards with verified image/video assets
     def work_card(w: dict) -> str:
         url = (w.get("url") or "").strip()
         video_url = (w.get("video_url") or "").strip()
-        if video_url:
-            media = f'<video class="work-card-media" src="{esc(video_url)}" muted loop playsinline></video>'
+        image_url = (w.get("image_url") or "").strip()
+        label = f'{w["client"]} — {w["name"]}'
+        if video_url and "player.vimeo.com" in video_url:
+            media = (f'<div class="work-card-media work-card-video">'
+                     f'<iframe src="{esc(video_url)}" title="{esc(label)} 영상" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>'
+                     f'</div>')
+        elif video_url:
+            media = (f'<div class="work-card-media">'
+                     f'<video src="{esc(video_url)}" muted loop autoplay playsinline preload="metadata"></video>'
+                     f'</div>')
+        elif image_url:
+            media = (f'<div class="work-card-media">'
+                     f'<img src="{esc(image_url)}" alt="{esc(label)} 대표 이미지" loading="lazy" />'
+                     f'</div>')
         else:
             media = '<div class="work-card-placeholder"></div>'
         overlay = (f'<div class="work-card-overlay">'
-                   f'<span class="work-card-title">{esc(w["client"])} — {esc(w["name"])}</span>'
+                   f'<span class="work-card-title">{esc(label)}</span>'
                    f'<span class="work-card-type">Project</span>'
                    f'</div>')
         inner = f'{media}{overlay}'
         if url:
-            return f'<a class="work-card" href="{esc(url)}" aria-label="{esc(w["client"] + " — " + w["name"] + " 프로젝트 상세 보기")}">{inner}</a>'
+            return f'<a class="work-card" href="{esc(url)}" aria-label="{esc(label + " 프로젝트 상세 보기")}">{inner}</a>'
         return f'<div class="work-card">{inner}</div>'
 
     works = "".join(work_card(w) for w in d["work"]["items"])
@@ -435,7 +451,7 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 
 <header class="site">
   <div class="wrap hdr">
-    <a class="logo" href="/">SIA.HAUS <span class="featured">&gt; {esc(featured)}</span></a>
+    <a class="logo" href="/">SIA.HAUS</a>
     <nav class="main">{nav}</nav>
     {lang_link}
   </div>
