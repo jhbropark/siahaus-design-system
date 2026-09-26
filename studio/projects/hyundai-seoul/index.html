@@ -247,6 +247,11 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
 .back-link{display:inline-block;margin-top:clamp(28px,4vw,40px);
   font-size:13px;font-weight:400;color:var(--text-faint)}
 .back-link:hover{color:var(--text-strong)}
+.proj-media-wrap{{margin:clamp(32px,6vw,88px) 0 0}}
+.proj-media-stage{{display:grid;gap:12px}}
+.proj-media-stage img{{width:100%;height:auto;max-height:76vh;display:block;object-fit:contain;background:#f3f3f3}}
+.proj-media-stage iframe,.proj-media-stage video{{width:100%;aspect-ratio:16/9;display:block;border:0;background:#111}}
+@media(max-width:640px){{.proj-media-stage{{gap:8px}}}}
 </style>
 <link rel="stylesheet" href="/theme-v2.css" />
 </head>
@@ -275,7 +280,7 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
   </section>
 
   <div class="proj-media-wrap">
-    <div class="proj-media-stage"><iframe src="https://www.youtube.com/embed/uAT6FHRSi9o?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=uAT6FHRSi9o&amp;controls=0&amp;rel=0" title="The Hyundai Seoul — Entropy of Nature 영상" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="proj-media-stage"><img src="/assets/projects/hyundai-seoul.png" alt="The Hyundai Seoul — Entropy of Nature 대표 이미지" loading="eager" /><iframe src="https://www.youtube.com/embed/uAT6FHRSi9o?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=uAT6FHRSi9o&amp;controls=0&amp;rel=0" title="The Hyundai Seoul — Entropy of Nature 영상 1" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe><iframe src="https://www.youtube.com/embed/UGamgyQi-cM?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=UGamgyQi-cM&amp;controls=0&amp;rel=0" title="The Hyundai Seoul — Entropy of Nature 영상 2" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe><iframe src="https://www.youtube.com/embed/TxNLgM_qDVM?start=41&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=TxNLgM_qDVM&amp;controls=0&amp;rel=0" title="The Hyundai Seoul — Entropy of Nature 영상 3" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe><iframe src="https://www.youtube.com/embed/mcGGZZNfNU0?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=mcGGZZNfNU0&amp;controls=0&amp;rel=0" title="The Hyundai Seoul — Entropy of Nature 영상 4" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
   </div>
 
   <div class="wrap">
