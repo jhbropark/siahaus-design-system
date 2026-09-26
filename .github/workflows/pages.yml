@@ -26,6 +26,7 @@ jobs:
       - name: Make project-site paths portable
         run: |
           find studio/projects -name '*.html' -type f -exec sed -i -e 's#="/#="../../#g' -e 's#url(/#url(../../#g' {} +
+          sed -i -e 's#="/#="#g' -e 's#url(/#url(#g' studio/index.html
           touch studio/.nojekyll
       - name: Setup Pages
         uses: actions/configure-pages@v5
