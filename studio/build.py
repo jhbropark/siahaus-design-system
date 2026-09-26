@@ -365,20 +365,14 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         video_url = (w.get("video_url") or "").strip()
         image_url = (w.get("image_url") or "").strip()
         label = f'{w["client"]} — {w["name"]}'
-        if video_url and ("player.vimeo.com" in video_url or "youtube.com/embed" in video_url):
-            media = (f'<div class="work-card-media work-card-video">'
-                     f'<iframe src="{esc(video_url)}" title="{esc(label)} 영상" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>'
-                     f'</div>')
-        elif video_url:
+        # Homepage cards use verified still images only.
+        # This prevents iframe/video loading failures and text-bearing fallbacks.
+        if image_url:
             media = (f'<div class="work-card-media">'
-                     f'<video src="{esc(video_url)}" muted loop autoplay playsinline preload="metadata"></video>'
-                     f'</div>')
-        elif image_url:
-            media = (f'<div class="work-card-media">'
-                     f'<img src="{esc(image_url)}" alt="{esc(label)} 대표 이미지" loading="lazy" />'
+                     f'<img src="{esc(image_url)}" alt="" aria-hidden="true" loading="lazy" />'
                      f'</div>')
         else:
-            media = '<div class="work-card-placeholder"></div>'
+            media = ''
         meta = " · ".join(x for x in [w.get("category", "PROJECT"), w.get("year", "")] if x)
         overlay = (f'<div class="work-card-overlay">'
                    f'<span class="work-card-title">{esc(label)}</span>'
