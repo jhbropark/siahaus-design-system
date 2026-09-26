@@ -83,13 +83,15 @@ nav.main a:hover{color:#000}
 .work-card:nth-child(2){grid-column:span 5}
 .work-card:nth-child(3){grid-column:span 5}
 .work-card:nth-child(4){grid-column:span 7}
-.work-card-media,.work-card-placeholder{aspect-ratio:4/3!important;background:#ececea!important;
+.work-card-media,.work-card-placeholder{aspect-ratio:4/3!important;background:transparent!important;
   overflow:hidden}
+.work-card-placeholder{display:none!important}
 .work-card:nth-child(1) .work-card-media,.work-card:nth-child(1) .work-card-placeholder,
 .work-card:nth-child(4) .work-card-media,.work-card:nth-child(4) .work-card-placeholder{aspect-ratio:16/10!important}
 .work-card:nth-child(2) .work-card-media,.work-card:nth-child(2) .work-card-placeholder,
 .work-card:nth-child(3) .work-card-media,.work-card:nth-child(3) .work-card-placeholder{aspect-ratio:4/5!important}
-.work-card-media img,.work-card-media video,.work-card-video iframe{transition:transform .9s var(--v2-ease),filter .55s ease}
+.work-card-media img{transition:transform .9s var(--v2-ease),filter .55s ease;
+  font-size:0;color:transparent}
 .work-card:hover .work-card-media img,.work-card:hover .work-card-media video{transform:scale(1.025)}
 .work-card-overlay{position:static!important;inset:auto!important;opacity:1!important;background:transparent!important;
   padding:15px 0 34px!important;color:#000!important;display:grid!important;
