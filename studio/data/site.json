@@ -236,22 +236,26 @@
       {
         "client": "삼성",
         "name": "LUX Soundroom",
-        "context": "",
-        "year": "",
+        "context": "Moscone West Convention Center, San Francisco",
+        "year": "2018",
         "slug": "samsung-lux",
         "description": "공간의 특성을 반영한 전략적 사운드 설계를 통해 마케팅 효과를 극대화했습니다. 스테레오 사운드 원칙에 기반한 그룹별 기기 배치를 통해 소리의 왜곡을 최소화하였으며, 특히 'Galaxy Home' 멀티 스테레오 피쳐 리스닝이 가능하도록 구현하여 상업적 활용도를 높였습니다. 고난도 사운드 마스터링 과정에서 확보한 안정성을 바탕으로 대규모 글로벌 컨벤션 환경에서도 완벽한 퍼포먼스를 증명했습니다.",
         "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.69",
         "url": "/projects/samsung-lux",
-        "category": "BRAND"
+        "category": "BRAND",
+        "image_url": "/assets/projects/samsung-notion.png",
+        "video_url": "https://www.youtube.com/embed/8BQEu7_OHVg?autoplay=1&mute=1&loop=1&playlist=8BQEu7_OHVg&controls=0&rel=0"
       },
       {
         "client": "서울라이트",
         "name": "광화문",
-        "context": "",
-        "year": "",
+        "context": "서울시 광화문광장",
+        "year": "2023",
         "slug": "seoullight",
         "url": "/projects/seoullight",
-        "category": "PUBLIC"
+        "category": "PUBLIC",
+        "image_url": "/assets/projects/seoullight-notion.png",
+        "video_url": "https://www.youtube.com/embed/xCu0MJrX-Mg?autoplay=1&mute=1&loop=1&playlist=xCu0MJrX-Mg&controls=0&rel=0"
       },
       {
         "client": "SM · RIIZE",
