@@ -683,19 +683,29 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     desc_html = f'<p class="proj-desc">{esc(w["description"])}</p>' if w.get("description") else ""
 
     video_url = (w.get("video_url") or "").strip()
+    video_urls = [str(x).strip() for x in (w.get("video_urls") or []) if str(x).strip()]
     image_url = (w.get("image_url") or "").strip()
+    gallery_images = [str(x).strip() for x in (w.get("gallery_images") or []) if str(x).strip()]
     media_label = f'{w["client"]} — {w["name"]}'
-    if video_url and ("player.vimeo.com" in video_url or "youtube.com/embed" in video_url):
-        proj_media = (
-            f'<iframe src="{esc(video_url)}" title="{esc(media_label)} 영상" '
-            f'loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>'
-        )
-    elif video_url:
-        proj_media = (
-            f'<video src="{esc(video_url)}" muted loop autoplay playsinline preload="metadata"></video>'
-        )
-    elif image_url:
-        proj_media = f'<img src="{esc(image_url)}" alt="{esc(media_label)} 대표 이미지" />'
+    media_parts = []
+    if image_url:
+        media_parts.append(f'<img src="{esc(image_url)}" alt="{esc(media_label)} 대표 이미지" loading="eager" />')
+    for gallery_image in gallery_images:
+        if gallery_image != image_url:
+            media_parts.append(f'<img src="{esc(gallery_image)}" alt="{esc(media_label)} 추가 이미지" loading="lazy" />')
+    embed_urls = video_urls or ([video_url] if video_url else [])
+    for embed_url in embed_urls:
+        if "player.vimeo.com" in embed_url or "youtube.com/embed" in embed_url:
+            media_parts.append(
+                f'<iframe src="{esc(embed_url)}" title="{esc(media_label)} 영상" '
+                f'loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>'
+            )
+        else:
+            media_parts.append(
+                f'<video src="{esc(embed_url)}" muted loop autoplay playsinline preload="metadata"></video>'
+            )
+    if media_parts:
+        proj_media = "".join(media_parts)
     else:
         proj_media = f'<div class="proj-media-empty">{esc(w["name"])}</div>'
 
@@ -748,6 +758,12 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
   color:var(--text-faint);display:block;margin-top:14px;font-weight:400}}
 .proj-desc{{margin-top:clamp(28px,4vw,44px);font-size:clamp(15px,1.6vw,19px);
   line-height:1.75;font-weight:300;color:var(--text-muted);max-width:60ch}}
+.proj-media-wrap{{margin:clamp(32px,6vw,88px) 0 0}}
+.proj-media-stage{{display:grid;gap:12px}}
+.proj-media-stage img{{width:100%;height:auto;max-height:76vh;display:block;object-fit:contain;background:#f3f3f3}}
+.proj-media-stage iframe,.proj-media-stage video{{width:100%;aspect-ratio:16/9;display:block;border:0;background:#111}}
+@media(max-width:640px){{.proj-media-stage{{gap:8px}}}}
+
 .proj-nav{{display:flex;justify-content:space-between;align-items:center;
   padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--line);
   margin-top:clamp(48px,6vw,80px)}}
