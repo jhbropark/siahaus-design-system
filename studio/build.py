@@ -479,7 +479,6 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
     <div class="hero-shade" aria-hidden="true"></div>
     <div class="wrap">
       <div class="hero-v2">
-        <p class="hero-kicker">{esc(d["hero"].get("kicker", d["hero"]["eyebrow"]))}</p>
         <h1 class="hero-title">{esc(d["hero"].get("display_title", d["hero"]["headline"]))}</h1>
         <p class="hero-subtitle">{esc(d["hero"]["headline"])}</p>
         <div class="hero-actions">
