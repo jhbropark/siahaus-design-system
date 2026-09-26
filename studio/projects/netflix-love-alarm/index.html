@@ -247,6 +247,11 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
 .back-link{display:inline-block;margin-top:clamp(28px,4vw,40px);
   font-size:13px;font-weight:400;color:var(--text-faint)}
 .back-link:hover{color:var(--text-strong)}
+.proj-media-wrap{{margin:clamp(32px,6vw,88px) 0 0}}
+.proj-media-stage{{display:grid;gap:12px}}
+.proj-media-stage img{{width:100%;height:auto;max-height:76vh;display:block;object-fit:contain;background:#f3f3f3}}
+.proj-media-stage iframe,.proj-media-stage video{{width:100%;aspect-ratio:16/9;display:block;border:0;background:#111}}
+@media(max-width:640px){{.proj-media-stage{{gap:8px}}}}
 </style>
 <link rel="stylesheet" href="/theme-v2.css" />
 </head>
@@ -275,7 +280,7 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
   </section>
 
   <div class="proj-media-wrap">
-    <div class="proj-media-stage"><img src="/assets/projects/netflix-love-alarm.png" alt="Netflix — Love Alarm 존 대표 이미지" /></div>
+    <div class="proj-media-stage"><img src="/assets/projects/netflix-love-alarm-representative.png" alt="Netflix — Love Alarm 존 대표 이미지" loading="eager" /><img src="/assets/projects/netflix-love-alarm-1.png" alt="Netflix — Love Alarm 존 추가 이미지 1" loading="lazy" /><img src="/assets/projects/netflix-love-alarm-2.png" alt="Netflix — Love Alarm 존 추가 이미지 2" loading="lazy" /></div>
   </div>
 
   <div class="wrap">
