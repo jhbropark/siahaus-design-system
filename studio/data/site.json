@@ -117,7 +117,14 @@
         "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.8",
         "url": "/projects/kia-milan",
         "image_url": "/assets/projects/page_008.png",
-        "category": "BRAND"
+        "category": "BRAND",
+        "gallery_images": [
+          "https://worldwide.kia.com/asset/image/26-journey-of-reflection/section-view-26-intro-1.webp",
+          "https://worldwide.kia.com/asset/image/26-journey-of-reflection/section-view-26-intro-2.webp",
+          "https://worldwide.kia.com/asset/image/26-journey-of-reflection/section-view-26-hero-pc.webp",
+          "https://worldwide.kia.com/asset/image/26-journey-of-reflection/section-view-26-intro-3.webp",
+          "https://worldwide.kia.com/asset/image/26-journey-of-reflection/section-view-26-intro-4.webp"
+        ]
       },
       {
         "client": "김창열 아틀리에",
@@ -128,7 +135,17 @@
         "url": "/projects/waterdrops",
         "image_url": "/assets/projects/kim-tschang-yeul.webp",
         "video_url": "https://player.vimeo.com/video/1190121726?background=1&autoplay=1&loop=1&muted=1",
-        "category": "ART"
+        "category": "ART",
+        "gallery_images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/4af9d1248940463.69fd5485c0696.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/683358248940463.69fd5485bf92d.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6fb283248940463.69fd5485c0e35.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/fde090248940463.6a014cf8b8aeb.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/318472248940463.69fd548653356.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/ebd6e5248940463.6a014cf94b989.gif",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/d84366248940463.69fddd364b580.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/dbaca6248940463.69fddd364bcab.png"
+        ]
       },
       {
         "client": "베니스 비엔날레",
@@ -140,7 +157,21 @@
         "source": "project/uploads/sia.haus (hmp) brief -ing.pdf p.16",
         "url": "/projects/venice-biennale",
         "image_url": "/assets/projects/page_016.png",
-        "category": "ART"
+        "category": "ART",
+        "gallery_images": [
+          "https://www.studioheech.com/files/gimgs/79_H005.jpg",
+          "https://www.studioheech.com/files/gimgs/79_H003.jpg",
+          "https://www.studioheech.com/files/gimgs/79_03_v3.jpg",
+          "https://www.studioheech.com/files/gimgs/79_0001.jpg",
+          "https://www.studioheech.com/files/gimgs/79_0003.jpg",
+          "https://www.studioheech.com/files/gimgs/79_0002.jpg",
+          "https://www.studioheech.com/files/gimgs/79_05_01.jpg",
+          "https://www.studioheech.com/files/gimgs/79_09_01.jpg"
+        ],
+        "video_urls": [
+          "https://player.vimeo.com/video/1083994856?autoplay=1&muted=1&loop=1",
+          "https://player.vimeo.com/video/1091452298?autoplay=1&muted=1&loop=1"
+        ]
       },
       {
         "client": "그랜드 조선",
@@ -151,7 +182,17 @@
         "url": "/projects/busan",
         "image_url": "/assets/projects/grand-josun.jpg",
         "video_url": "https://player.vimeo.com/video/1186891802?background=1&autoplay=1&loop=1&muted=1",
-        "category": "SPACE"
+        "category": "SPACE",
+        "gallery_images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/054e80248318473.69f84c24e478d.jpg",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d23da4248318473.69ef4a54b50a2.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/7ecbcf248318473.69ef4a54b4806.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/f23456248318473.69f41119c1780.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/36de7a248318473.69f41119c13bd.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/d4a133248318473.69f4111a4244b.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/582e44248318473.69f4111a42a7e.png",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400/39c554248318473.69f4111a935e5.gif"
+        ]
       },
       {
         "client": "ARIA",
@@ -161,7 +202,18 @@
         "slug": "aria-swl",
         "url": "/projects/aria-swl",
         "image_url": "/assets/projects/aria-swl.jpg",
-        "category": "SPACE"
+        "category": "SPACE",
+        "gallery_images": [
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/35876e248045121.69eb5882865f0.jpg",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9b3970248045121.69eb58312ece8.gif",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6957b0248045121.69eb3bf28db7a.jpg",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400/03f3fd248045121.69eb4c748000d.gif",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/211188248045121.69eb58312e748.jpg",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/disp/06fc8e248045121.69eb4c79544a6.gif",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400/7ce18f248045121.69eb4c7954a20.gif",
+          "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/7589db248045121.69eb5833edc48.png"
+        ],
+        "video_url": "https://player.vimeo.com/video/1186182295?background=1&autoplay=1&loop=1&muted=1"
       },
       {
         "client": "The Hyundai Seoul",
@@ -255,7 +307,17 @@
         "url": "/projects/seoullight",
         "category": "PUBLIC",
         "image_url": "/assets/projects/seoullight-notion.png",
-        "video_url": "https://www.youtube.com/embed/xCu0MJrX-Mg?autoplay=1&mute=1&loop=1&playlist=xCu0MJrX-Mg&controls=0&rel=0"
+        "video_url": "https://www.youtube.com/embed/xCu0MJrX-Mg?autoplay=1&mute=1&loop=1&playlist=xCu0MJrX-Mg&controls=0&rel=0",
+        "gallery_images": [
+          "https://static.wixstatic.com/media/d82cd5_39d5652da99e43bdb16337e872b9cd41~mv2.png",
+          "https://static.wixstatic.com/media/d82cd5_51f24b7fd61c48a78f7515c56fcd271b~mv2.png",
+          "https://static.wixstatic.com/media/4d207c_7cde9b0e809140759e9e44bdb5c246c1~mv2.png",
+          "https://static.wixstatic.com/media/4d207c_eb6cab3c00334470bf29f8f504f0d8d3~mv2.png",
+          "https://static.wixstatic.com/media/4d207c_41c514683a6c4a62ae8557ac06f35078~mv2.png",
+          "https://static.wixstatic.com/media/4d207c_d5e3cec3b79f439782eee93a70fd142e~mv2.png",
+          "https://static.wixstatic.com/media/4d207c_fb1d488b1ae040b6a8d15366ce30214a~mv2.png",
+          "https://static.wixstatic.com/media/4d207c_7b1b216a8bc94c71b86b1322b5ecf1af~mv2.png"
+        ]
       },
       {
         "client": "SM · RIIZE",
