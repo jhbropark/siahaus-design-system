@@ -316,3 +316,8 @@ footer.site{background:#111;padding:34px 0}
   .archive-row span:last-child{display:block;margin-top:5px}
   #contact{padding:72px 0}
 }
+
+
+/* Wrapping pass: keep Korean words intact and prevent orphaned final lines. */
+body{word-break:keep-all;overflow-wrap:break-word}
+h1,h2,h3,p,li,.work-card-title,.case-card p{word-break:keep-all;text-wrap:pretty}
