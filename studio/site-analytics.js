@@ -174,7 +174,7 @@
         }
         data.set('relay_status', relayStatus);
         data.set('relay_client_status', relayClientStatus);
-        track('generate_lead', { submission_status: 'success', lead_source: 'website', lead_id: leadId, service_tag: data.get('service_tag'), relay_status: relayStatus, landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)' });
+        track('generate_lead', { submission_status: 'success', lead_source: 'website', lead_id: leadId, service_tag: data.get('service_tag'), relay_status: relayStatus, relay_client_status: relayClientStatus, landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)' });
         if (analyticsReady && window.gtag) window.gtag('event', 'conversion', { send_to: ADS_CONVERSION, value: 1.0, currency: 'KRW' });
         if (note) { note.textContent = '브리프가 접수되었습니다. 확인 후 회신드리겠습니다.'; note.setAttribute('data-state', 'success'); }
         if (followup) followup.hidden = false;

@@ -761,7 +761,7 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         <label class="brief-consent"><input type="checkbox" name="privacy_consent" value="accepted" required /> <span>{esc(d.get("privacy", {}).get("consent_label", "개인정보 처리 안내를 확인했으며, 문의 응대를 위한 정보 처리에 동의합니다."))} <a href="/privacy">전문 보기</a></span></label>
         <input type="hidden" name="privacy_policy_version" value="2026-10-29" />
         <div class="brief-actions"><button type="submit" class="brief-submit">{esc(brief_data.get("submit", "브리프 보내기"))} ↗</button><p class="brief-note" role="status">{esc(brief_data.get("note", ""))}</p></div>
-        <div class="brief-followup" hidden role="status"><strong>다음 단계</strong><span>브리프를 확인한 뒤 영업일 기준 1–2일 안에 가능한 제작 방향과 다음 미팅 단계를 회신드립니다.</span></div>
+        <div class="brief-followup" hidden role="status"><strong>다음 단계</strong><span>브리프를 확인한 뒤 가능한 제작 방향과 다음 미팅 단계를 회신드립니다.</span></div>
       </form>'''
 
     faqs = "".join(
