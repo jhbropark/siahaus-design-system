@@ -68,6 +68,8 @@
     if (!saved.referrer) saved.referrer = document.referrer || '';
     saved.last_seen_at = now;
     var params = new URLSearchParams(window.location.search);
+    var serviceTag = serviceTagForPage();
+    if (serviceTag) saved.service_tag = serviceTag;
     UTM_KEYS.forEach(function (key) { var value = params.get(key); if (value) saved[key] = value; });
     try { sessionStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(saved)); } catch (_) {}
     return saved;
@@ -81,6 +83,18 @@
   function projectSlug(href) {
     var match = String(href || '').match(/\/projects\/([^/?#]+)/);
     return match ? match[1] : '';
+  }
+
+  function serviceTagForPage() {
+    var params = new URLSearchParams(window.location.search);
+    var tagged = params.get('service_tag') || params.get('service');
+    if (tagged) return tagged.toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '');
+    var match = window.location.pathname.match(/^\/services\/([^/?#]+)/i);
+    return match ? match[1].toLowerCase() : 'general_inquiry';
+  }
+
+  function newLeadId() {
+    return 'sia-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
   }
 
   function setHidden(form, name, value) {
@@ -104,7 +118,9 @@
     var form = document.querySelector('.brief-form');
     if (!form) return;
     var note = form.querySelector('.brief-note');
+    var followup = form.querySelector('.brief-followup');
     var submit = form.querySelector('.brief-submit');
+    setHidden(form, 'service_tag', attribution.service_tag || serviceTagForPage());
     setHidden(form, 'landing_page', attribution.landing_page);
     setHidden(form, 'page_url', window.location.href);
     setHidden(form, 'referrer', attribution.referrer);
@@ -124,21 +140,47 @@
       if (!form.reportValidity()) return;
       if (submit) { submit.disabled = true; submit.textContent = '접수 중…'; }
       var data = new FormData(form);
-      data.set('submitted_at', new Date().toISOString());
+      var leadId = newLeadId();
+      var relayAttemptedAt = new Date().toISOString();
+      data.set('lead_id', leadId);
+      data.set('service_tag', attribution.service_tag || serviceTagForPage());
+      data.set('relay_version', 'v2');
+      data.set('relay_attempted_at', relayAttemptedAt);
+      data.set('relay_client_status', 'pending');
+      data.set('relay_status', 'pending');
+      data.set('submitted_at', relayAttemptedAt);
       data.set('page_url', window.location.href);
-      track('brief_submit', { submission_status: 'attempt' });
+      track('brief_submit', { submission_status: 'attempt', service_tag: data.get('service_tag'), lead_id: leadId });
       try {
         var response = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
         if (!response.ok) throw new Error('form_submit_failed');
         var relayPayload = new URLSearchParams();
         data.forEach(function (value, key) { if (typeof value === 'string') relayPayload.append(key, value); });
-        try { navigator.sendBeacon(LEAD_RELAY_ENDPOINT, relayPayload); } catch (_) {}
-        track('generate_lead', { submission_status: 'success', lead_source: 'website', landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)' });
+        var relayStatus = 'failed';
+        var relayClientStatus = 'failed';
+        try {
+          var beaconQueued = navigator.sendBeacon && navigator.sendBeacon(LEAD_RELAY_ENDPOINT, relayPayload);
+          if (beaconQueued) {
+            relayStatus = 'beacon_queued';
+            relayClientStatus = 'beacon_queued';
+          } else {
+            await fetch(LEAD_RELAY_ENDPOINT, { method: 'POST', body: relayPayload, mode: 'no-cors', keepalive: true });
+            relayStatus = 'fetch_fallback_queued';
+            relayClientStatus = 'fetch_fallback_queued';
+          }
+        } catch (_) {
+          relayStatus = 'failed';
+          relayClientStatus = 'failed';
+        }
+        data.set('relay_status', relayStatus);
+        data.set('relay_client_status', relayClientStatus);
+        track('generate_lead', { submission_status: 'success', lead_source: 'website', lead_id: leadId, service_tag: data.get('service_tag'), relay_status: relayStatus, landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)' });
         if (analyticsReady && window.gtag) window.gtag('event', 'conversion', { send_to: ADS_CONVERSION, value: 1.0, currency: 'KRW' });
         if (note) { note.textContent = '브리프가 접수되었습니다. 확인 후 회신드리겠습니다.'; note.setAttribute('data-state', 'success'); }
+        if (followup) followup.hidden = false;
         form.querySelectorAll('input, select, textarea, button').forEach(function (field) { field.disabled = true; });
       } catch (error) {
-        track('brief_submit', { submission_status: 'error' });
+        track('brief_submit', { submission_status: 'error', service_tag: attribution.service_tag || serviceTagForPage() });
         if (submit) { submit.disabled = false; submit.textContent = '다시 보내기 ↗'; }
         if (note) note.textContent = '접수에 실패했습니다. 잠시 후 다시 시도하거나 sia@sia.haus로 문의해 주세요.';
       }

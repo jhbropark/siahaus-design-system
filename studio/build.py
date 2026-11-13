@@ -529,6 +529,9 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
 .brief-submit{border:0;background:var(--black);color:var(--white);padding:13px 18px;font:inherit;font-size:12px;cursor:pointer}
 .brief-submit:hover{background:#333}
 .brief-note{font-size:12px;color:var(--text-faint);max-width:62ch}
+.brief-followup{display:flex;flex-direction:column;gap:5px;margin-top:18px;padding:16px 18px;background:#efefec;border-left:2px solid var(--black);font-size:12px;line-height:1.6;color:var(--text-subtle)}
+.brief-followup strong{color:var(--text-strong);font-weight:500}
+.brief-followup[hidden]{display:none}
 /* project case study */
 .project-case-study{padding:clamp(64px,9vw,128px) 0 0}
 .project-case-study .wrap{max-width:1000px}
@@ -720,6 +723,9 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 
     brief_data = d.get("brief", {})
     brief_options = "".join(f'<option value="{esc(x)}">{esc(x)}</option>' for x in brief_data.get("purposes", []))
+    budget_options = "".join(f'<option value="{esc(x)}">{esc(x)}</option>' for x in ["5천만원 미만", "5천만원–1억원", "1억–3억원", "3억원 이상"])
+    timeline_options = "".join(f'<option value="{esc(x)}">{esc(x)}</option>' for x in ["3개월 이내", "3–6개월", "6개월 이후"])
+    decision_options = "".join(f'<option value="{esc(x)}">{esc(x)}</option>' for x in ["아이디어 검토", "내부 논의 중", "예산·일정 확정", "제작사 선정 단계"])
     brief_action = "https://formspree.io/f/xaeqleva"
     brief_form = f'''<form class="brief-form" action="{brief_action}" method="POST" accept-charset="UTF-8">
         <input type="hidden" name="_subject" value="[SIA.HAUS] 프로젝트 브리프" />
@@ -735,16 +741,27 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         <input type="hidden" name="utm_campaign" />
         <input type="hidden" name="utm_content" />
         <input type="hidden" name="utm_term" />
+        <input type="hidden" name="service_tag" />
+        <input type="hidden" name="lead_id" />
+        <input type="hidden" name="relay_version" value="v2" />
+        <input type="hidden" name="relay_attempted_at" />
+        <input type="hidden" name="relay_client_status" />
+        <input type="hidden" name="relay_status" />
         <div class="brief-grid">
           <label>회사·기관명 <input type="text" name="company" autocomplete="organization" required /></label>
           <label>담당자명 <input type="text" name="contact_name" autocomplete="name" required /></label>
           <label>이메일 <input type="email" name="email" autocomplete="email" required /></label>
           <label>프로젝트 목적 <select name="purpose" required><option value="">선택해 주세요</option>{brief_options}</select></label>
+          <label>예상 예산 <select name="budget_range"><option value="">선택해 주세요</option>{budget_options}</select></label>
+          <label>희망 일정 <select name="timeline"><option value="">선택해 주세요</option>{timeline_options}</select></label>
+          <label>의사결정 단계 <select name="decision_stage"><option value="">선택해 주세요</option>{decision_options}</select></label>
+          <label>공간 위치 <input type="text" name="space_location" placeholder="예: 서울 강남구, 해외" /></label>
         </div>
         <label class="brief-full">프로젝트 설명 <textarea name="description" rows="6" placeholder="만들고 싶은 경험, 필요한 산출물, 참고 링크를 자유롭게 적어주세요." required></textarea></label>
         <label class="brief-consent"><input type="checkbox" name="privacy_consent" value="accepted" required /> <span>{esc(d.get("privacy", {}).get("consent_label", "개인정보 처리 안내를 확인했으며, 문의 응대를 위한 정보 처리에 동의합니다."))} <a href="/privacy">전문 보기</a></span></label>
         <input type="hidden" name="privacy_policy_version" value="2026-10-29" />
         <div class="brief-actions"><button type="submit" class="brief-submit">{esc(brief_data.get("submit", "브리프 보내기"))} ↗</button><p class="brief-note" role="status">{esc(brief_data.get("note", ""))}</p></div>
+        <div class="brief-followup" hidden role="status"><strong>다음 단계</strong><span>브리프를 확인한 뒤 영업일 기준 1–2일 안에 가능한 제작 방향과 다음 미팅 단계를 회신드립니다.</span></div>
       </form>'''
 
     faqs = "".join(
@@ -1121,7 +1138,7 @@ def build_service_html(d: dict, service: dict) -> str:
 <div class="service-grid"><section class="service-panel"><h2>핵심 키워드</h2><ul>{keywords_html}</ul></section><section class="service-panel"><h2>제작 구조</h2><ul>{process_html}</ul></section><section class="service-panel"><h2>시작점</h2><ul><li><strong>프로젝트 브리프</strong><span>공간 · 일정 · 예산</span></li><li><strong>레퍼런스 검토</strong><span>목적 · 관객 · 매체</span></li><li><strong>제작 방향 제안</strong><span>범위 · 결과물</span></li></ul></section></div>
 <section class="service-related"><p class="section-label">RELATED PROJECTS</p><h2>관련 프로젝트</h2><div class="service-related-grid">{"".join(related_cards)}</div></section>
 <section class="service-faq"><p class="section-label">FAQ</p><h2>자주 묻는 질문</h2>{faq_html}</section>
-<section class="service-cta"><h2>프로젝트의 출발점을 보내주세요</h2><a href="/#brief">프로젝트 브리프 작성 ↗</a></section>
+<section class="service-cta"><h2>프로젝트의 출발점을 보내주세요</h2><a href="/?service_tag={esc(service["slug"])}#brief">프로젝트 브리프 작성 ↗</a></section>
 </div></main><footer><div class="wrap">© {date.today().year} {esc(s["name"])} · <a href="/privacy">개인정보 처리 안내</a></div></footer>
 </body></html>'''
 
