@@ -191,12 +191,16 @@ def build_jsonld(d: dict, launched: bool) -> str:
         "alternateName": ["시아하우스", "sia.haus"],
         "url": s["url"],
         "description": definition(d, launched),
+        "logo": absolute_asset_url(s, s.get("logo", "/favicon.svg")),
+        "image": absolute_asset_url(s, s.get("image", "/og-default.svg")),
+        "foundingDate": s.get("founding_date", "2018"),
         "email": s["email"],
         "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "project inquiries",
             "email": s["email"],
             "areaServed": s["area_served"],
+            "availableLanguage": [s["lang"]],
         },
         "foundingLocation": {"@type": "Place", "name": s["founding_location"]},
         "address": {
@@ -207,7 +211,11 @@ def build_jsonld(d: dict, launched: bool) -> str:
             "addressCountry": {"@type": "Country", "name": s["address"]["country"]},
         },
         "areaServed": {"@type": "Country", "name": s["area_served"]},
-        "knowsAbout": [f["name"] for f in d["fields"]["items"]],
+        "knowsAbout": list(dict.fromkeys(
+            [d.get("entity_definition", "")] +
+            [f["name"] for f in d["fields"]["items"]] +
+            ["AI GRAPHICS", "Generative AI", "3D", "VFX", "Motion Graphics", "Spatial Media", "Projection Mapping", "Immersive Exhibition", "Media Facade", "Sound Design"]
+        )),
         "sameAs": s["same_as"],
         # varis.kr 이 parentOrganization 으로 이쪽을 가리키고, 여기서 되받아
         # 관계가 양방향이 됩니다. @id 만 적지 않고 이름·URL 을 함께 싣는 이유는
@@ -239,9 +247,51 @@ def build_jsonld(d: dict, launched: bool) -> str:
         "isPartOf": {"@id": s["url"] + "#website"},
         "about": {"@id": s["org_id"]},
         "mainEntity": {"@id": s["org_id"]},
+        "primaryImageOfPage": {"@id": s["url"] + "#primary-image"},
     }
 
-    graph = [org, website, webpage]
+    graph = [org, website, webpage, {
+        "@type": "ImageObject",
+        "@id": s["url"] + "#primary-image",
+        "url": absolute_asset_url(s, s.get("image", "/og-default.svg")),
+        "contentUrl": absolute_asset_url(s, s.get("image", "/og-default.svg")),
+        "caption": d["meta"]["title"],
+    }]
+
+    service_items = []
+    for service in d.get("services", []):
+        service_url = s["url"] + "services/" + service["slug"]
+        service_items.append({
+            "@type": "Service",
+            "@id": service_url + "#service",
+            "name": service["title"],
+            "url": service_url,
+            "description": service["description"],
+            "serviceType": service["eyebrow"],
+            "provider": {"@id": s["org_id"]},
+            "areaServed": {"@type": "Country", "name": s["area_served"]},
+            "keywords": service.get("keywords", []),
+        })
+    graph.extend(service_items)
+
+    for reference in d.get("references", {}).get("items", []):
+        video_url = (reference.get("video_url") or "").strip()
+        if not video_url:
+            continue
+        video_slug = re.sub(r"[^a-z0-9]+", "-", reference.get("title", "reference").lower()).strip("-") or f"reference-{len(graph)}"
+        video_node = {
+            "@type": "VideoObject",
+            "@id": s["url"] + "#video-" + video_slug,
+            "name": reference.get("title", "SIA.HAUS reference video"),
+            "description": reference.get("summary", ""),
+            "contentUrl": absolute_asset_url(s, video_url),
+            "publisher": {"@id": s["org_id"]},
+            "inLanguage": s["lang"],
+        }
+        poster = (reference.get("poster") or "").strip()
+        if poster:
+            video_node["thumbnailUrl"] = absolute_asset_url(s, poster)
+        graph.append(video_node)
 
     case_list = []
     for c in d.get("case_studies", {}).get("items", []):
@@ -404,6 +454,16 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
   .field-en{margin-top:4px}
 }
 
+/* services */
+.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.service-card{display:flex;flex-direction:column;gap:14px;min-height:260px;padding:clamp(20px,3vw,34px);background:var(--bg);color:inherit;transition:background .2s ease}
+.service-card:hover{background:#e9e9e6}
+.service-card-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--text-faint)}
+.service-card h3{margin:12px 0 0;font-size:clamp(20px,2.3vw,30px);line-height:1.12;font-weight:400;letter-spacing:-.035em}
+.service-card p{margin:0;color:var(--text-subtle);font-size:14px;line-height:1.7;word-break:keep-all}
+.service-card-link{margin-top:auto;font-size:12px;color:var(--text-muted)}
+@media(max-width:900px){.service-grid{grid-template-columns:1fr}}
+
 /* work — media.work: 3-column masonry grid with hover overlay cards */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .work-card{position:relative;overflow:hidden;background:var(--surface)}
@@ -536,8 +596,8 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         f'<a href="#{i}">{esc(t[k])}</a>'
         for i, k in [("work", "nav_work"), ("case-studies", "nav_case"),
                      ("references", "nav_reference"), ("fields", "nav_fields"),
-                     ("faq", "nav_faq"), ("brief", "nav_brief"),
-                     ("contact", "nav_contact")]
+                     ("services", "nav_services"), ("faq", "nav_faq"),
+                     ("brief", "nav_brief"), ("contact", "nav_contact")]
     )
     nav += f'<a class="mailto" href="mailto:{esc(s["email"])}">{esc(s["email"])}</a>'
 
@@ -603,6 +663,12 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
     works = "".join(work_card(w) for w in selected_items)
     work_lead = f'<p class="lead">{esc(d["work"]["lead"])}</p>' if d["work"].get("lead") else ""
     fields_lead = f'<p class="lead">{esc(d["fields"]["lead"])}</p>' if d["fields"].get("lead") else ""
+    service_cards = "".join(
+        f'<a class="service-card" href="/services/{esc(service["slug"])}">'
+        f'<span class="service-card-kicker">{esc(service["eyebrow"])}</span>'
+        f'<h3>{esc(service["title"])}</h3><p>{esc(service["short"])}</p><span class="service-card-link">서비스 상세 보기 ↗</span></a>'
+        for service in d.get("services", [])
+    )
     archive_data = d.get("archive", {})
     archive_rows = "".join(
         f'<a class="archive-row" href="{esc(w.get("url") or ("/projects/" + w.get("slug", "")))}">'
@@ -743,6 +809,7 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <title>{esc(d["meta"]["title"])}</title>
 <meta name="description" content="{esc(d["meta"]["description"])}" />
+<meta name="robots" content="index,follow" />
 <link rel="canonical" href="{esc(s["url"])}" />{alternates}
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="{esc(s["name"])}" />
@@ -858,6 +925,17 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
     </div>
   </section>
 
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">SERVICES</p>
+        <h2>AI GRAPHICS를 실제 경험으로 구현합니다</h2>
+        <p class="lead">생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 목적과 매체에 맞춰 연결합니다.</p>
+      </div>
+      <div class="service-grid">{service_cards}</div>
+    </div>
+  </section>
+
   <section id="brief">
     <div class="wrap">
       <div class="sec-head">
@@ -943,6 +1021,111 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
 
 
 
+# ─────────────────────── service landing pages ───────────────────────
+
+def build_service_jsonld(d: dict, service: dict) -> str:
+    s = d["site"]
+    url = s["url"] + "services/" + service["slug"]
+    graph = [
+        {
+            "@type": "Service",
+            "@id": url + "#service",
+            "name": service["title"],
+            "url": url,
+            "description": service["description"],
+            "serviceType": service["eyebrow"],
+            "provider": {"@id": s["org_id"]},
+            "areaServed": {"@type": "Country", "name": s["area_served"]},
+            "keywords": service.get("keywords", []),
+        },
+        {
+            "@type": "WebPage",
+            "@id": url + "#webpage",
+            "url": url,
+            "name": service["title"],
+            "description": service["description"],
+            "inLanguage": s["lang"],
+            "about": {"@id": url + "#service"},
+            "isPartOf": {"@id": s["url"] + "#website"},
+        },
+        {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": s["name"], "item": s["url"]},
+                {"@type": "ListItem", "position": 2, "name": service["title"], "item": url},
+            ],
+        },
+        {
+            "@type": "FAQPage",
+            "@id": url + "#faq",
+            "mainEntity": [
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in service.get("faq", [])
+            ],
+        },
+    ]
+    return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=2)
+
+
+def build_service_html(d: dict, service: dict) -> str:
+    s = d["site"]
+    t = d["strings"]
+    url = s["url"] + "services/" + service["slug"]
+    title = f'{service["title"]} | SIA.HAUS'
+    related = {w.get("slug"): w for w in d["work"]["items"] if w.get("slug")}
+    related_cards = []
+    for slug in service.get("related_slugs", []):
+        w = related.get(slug)
+        if not w:
+            continue
+        label = w.get("display_title") or (f'{w.get("client", "")} — {w.get("name", "")}' if w.get("name") else w.get("client", ""))
+        image = (w.get("image_url") or "").strip()
+        media = f'<img src="{esc(asset_url(image))}"{image_dimensions(image)} alt="{esc(label)} 대표 이미지" loading="lazy" decoding="async" />' if image else ""
+        related_cards.append(f'<a class="service-related-card" href="/projects/{esc(slug)}"><div class="service-related-media">{media}</div><div><span>{esc(w.get("category", "PROJECT"))} · {esc(w.get("year", ""))}</span><strong>{esc(label)}</strong></div></a>')
+    faq_html = "".join(f'<div class="service-faq-item"><h3>{esc(q)}</h3><p>{esc(a)}</p></div>' for q, a in service.get("faq", []))
+    keywords_html = "".join(f'<li>{esc(k)}</li>' for k in service.get("keywords", []))
+    process_html = "".join(f'<li><strong>{esc(step["name"])}</strong><span>{esc(step["en"])}</span></li>' for step in d["pipeline"]["steps"])
+    return f'''<!DOCTYPE html>
+<html lang="{s["lang"]}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(service["description"])}" />
+<meta name="robots" content="index,follow" />
+<link rel="canonical" href="{esc(url)}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="{esc(s["name"])}" />
+<meta property="og:url" content="{esc(url)}" />
+<meta property="og:title" content="{esc(title)}" />
+<meta property="og:description" content="{esc(service["description"])}" />
+<meta property="og:image" content="{esc(absolute_asset_url(s, s.get("image", "/og-default.svg")))}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{esc(title)}" />
+<meta name="twitter:description" content="{esc(service["description"])}" />
+<meta name="twitter:image" content="{esc(absolute_asset_url(s, s.get("image", "/og-default.svg")))}" />
+<script type="application/ld+json">{build_service_jsonld(d, service)}</script>
+<style>
+:root{{--service-bg:#f7f7f5;--service-line:rgba(0,0,0,.12);--service-muted:#666;--service-black:#050505}}
+*{{box-sizing:border-box}}body{{margin:0;background:var(--service-bg);color:#111;font-family:Inter,Arial,sans-serif}}a{{color:inherit;text-decoration:none}}.wrap{{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}}header{{height:64px;border-bottom:1px solid var(--service-line);background:rgba(255,255,255,.92);display:flex;align-items:center}}header .wrap{{width:100%;display:flex;justify-content:space-between;align-items:center}}.logo{{font-weight:600;font-size:14px}}nav{{display:flex;gap:22px;font-size:13px;color:#666}}main{{padding:clamp(72px,10vw,150px) 0 0}}.service-kicker{{font:500 11px/1.4 ui-monospace,monospace;letter-spacing:.18em;color:#666}}h1{{max-width:900px;margin:18px 0 24px;font-size:clamp(44px,7vw,96px);line-height:.95;letter-spacing:-.06em;font-weight:300}}.service-lead{{max-width:780px;font-size:clamp(18px,2vw,27px);line-height:1.55;color:#333}}.service-definition{{max-width:720px;margin-top:26px;font-size:16px;line-height:1.8;color:#555}}.service-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--service-line);margin-top:80px}}.service-panel{{background:var(--service-bg);padding:26px;min-height:210px}}.service-panel h2{{font-size:21px;font-weight:400;margin:0 0 20px}}.service-panel ul{{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}}.service-panel li{{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--service-line);padding-top:11px}}.service-panel li span{{font:11px ui-monospace,monospace;color:#777}}.service-related{{padding:clamp(80px,10vw,150px) 0 0}}.section-label{{font:500 11px/1.4 ui-monospace,monospace;letter-spacing:.18em;color:#666}}.service-related h2,.service-faq h2{{font-size:clamp(32px,5vw,62px);font-weight:300;letter-spacing:-.05em;margin:14px 0 34px}}.service-related-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}.service-related-card{{background:#fff;border:1px solid var(--service-line);display:flex;flex-direction:column;min-height:100%}}.service-related-media{{aspect-ratio:16/10;background:#e8e8e6;overflow:hidden}}.service-related-media img{{width:100%;height:100%;object-fit:cover;display:block}}.service-related-card>div:last-child{{padding:18px;display:flex;flex-direction:column;gap:9px}}.service-related-card span{{font:10px ui-monospace,monospace;color:#777}}.service-related-card strong{{font-size:20px;font-weight:400;line-height:1.15}}.service-faq{{padding:clamp(80px,10vw,150px) 0 0}}.service-faq-item{{border-top:1px solid var(--service-line);padding:22px 0;display:grid;grid-template-columns:1fr 1fr;gap:28px}}.service-faq-item h3{{margin:0;font-size:20px;font-weight:400}}.service-faq-item p{{margin:0;color:#555;line-height:1.75}}.service-cta{{margin:clamp(80px,10vw,150px) 0 0;padding:38px;background:#050505;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center}}.service-cta h2{{margin:0;font-size:clamp(26px,4vw,50px);font-weight:300;letter-spacing:-.05em}}.service-cta a{{border:1px solid rgba(255,255,255,.55);padding:13px 18px;font-size:12px;white-space:nowrap}}footer{{margin-top:120px;padding:32px 0;border-top:1px solid var(--service-line);font-size:12px;color:#666}}@media(max-width:820px){{nav{{gap:14px;overflow-x:auto;white-space:nowrap}}.service-grid,.service-related-grid{{grid-template-columns:1fr}}.service-faq-item{{grid-template-columns:1fr;gap:10px}}.service-cta{{display:block}}.service-cta a{{display:inline-block;margin-top:24px}}}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="/">SIA.HAUS</a><nav><a href="/">홈</a><a href="/#work">실적</a><a href="/#services">서비스</a><a href="/#brief">문의</a></nav></div></header>
+<main><div class="wrap">
+<p class="service-kicker">{esc(service["eyebrow"])}</p>
+<h1>{esc(service["title"])}</h1>
+<p class="service-lead">{esc(service["short"])}</p>
+<p class="service-definition">{esc(service["description"])}</p>
+<div class="service-grid"><section class="service-panel"><h2>핵심 키워드</h2><ul>{keywords_html}</ul></section><section class="service-panel"><h2>제작 구조</h2><ul>{process_html}</ul></section><section class="service-panel"><h2>시작점</h2><ul><li><strong>프로젝트 브리프</strong><span>공간 · 일정 · 예산</span></li><li><strong>레퍼런스 검토</strong><span>목적 · 관객 · 매체</span></li><li><strong>제작 방향 제안</strong><span>범위 · 결과물</span></li></ul></section></div>
+<section class="service-related"><p class="section-label">RELATED PROJECTS</p><h2>관련 프로젝트</h2><div class="service-related-grid">{"".join(related_cards)}</div></section>
+<section class="service-faq"><p class="section-label">FAQ</p><h2>자주 묻는 질문</h2>{faq_html}</section>
+<section class="service-cta"><h2>프로젝트의 출발점을 보내주세요</h2><a href="/#brief">프로젝트 브리프 작성 ↗</a></section>
+</div></main><footer><div class="wrap">© {date.today().year} {esc(s["name"])} · <a href="/privacy">개인정보 처리 안내</a></div></footer>
+</body></html>'''
+
+
 # ─────────────────────── project detail pages ───────────────────────
 
 def build_project_jsonld(d: dict, w: dict) -> str:
@@ -967,10 +1150,21 @@ def build_project_jsonld(d: dict, w: dict) -> str:
     }
     case_study = next((c for c in d.get("case_studies", {}).get("items", []) if c.get("slug") == w.get("slug")), None)
     work["description"] = project_description(d, w, case_study)
+    image_src = (w.get("image_url") or ((w.get("gallery_images") or [""])[0] if w.get("gallery_images") else ""))
+    if image_src:
+        image_url = absolute_asset_url(s, image_src)
+        work["image"] = [image_url]
+    work["keywords"] = list(dict.fromkeys(filter(None, ["AI GRAPHICS", w.get("category", ""), w.get("client", ""), w.get("name", ""), w.get("context", "")])) )
+    work["about"] = w.get("context") or w.get("category") or "AI GRAPHICS"
+    work["producer"] = {"@id": s["org_id"]}
+    if w.get("context"):
+        work["locationCreated"] = {"@type": "Place", "name": w["context"]}
+    work["additionalProperty"] = [
+        {"@type": "PropertyValue", "name": "Client", "value": w.get("client", "")},
+        {"@type": "PropertyValue", "name": "Category", "value": w.get("category", "PROJECT")},
+    ]
     if w.get("year"):
         work["dateCreated"] = w["year"]
-    if w.get("context"):
-        work["about"] = w["context"]
 
     crumbs = {
         "@type": "BreadcrumbList",
@@ -1012,7 +1206,7 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     nav = "".join(
         f'<a href="/#{i}">{esc(t[k])}</a>'
         for i, k in [("work", "nav_work"), ("case-studies", "nav_case"),
-                     ("fields", "nav_fields"), ("faq", "nav_faq"),
+                     ("fields", "nav_fields"), ("services", "nav_services"), ("faq", "nav_faq"),
                      ("brief", "nav_brief"), ("contact", "nav_contact")]
     )
     nav += f'<a class="mailto" href="mailto:{esc(s["email"])}">{esc(s["email"])}</a>'
@@ -1027,6 +1221,11 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     category_html = f'<span class="proj-category">{esc(w.get("category", "PROJECT"))}</span>'
     desc_text = esc(hero_description).replace("\n", "<br>") if has_body else ""
     desc_html = f'<p class="proj-desc">{desc_text}</p>' if desc_text else ""
+    fact_rows = []
+    for label, value in [("클라이언트", w.get("client")), ("분류", w.get("category", "PROJECT")), ("연도", w.get("year")), ("공간·맥락", w.get("context"))]:
+        if value:
+            fact_rows.append(f'<div><dt>{esc(label)}</dt><dd>{esc(value)}</dd></div>')
+    project_facts_html = f'<dl class="project-facts">{"".join(fact_rows)}</dl>' if fact_rows else ""
     eyebrow_labels = {
         "featured-case": t.get("project_type_featured", "FEATURED CASE STUDY"),
         "rich-gallery": t.get("project_type_gallery", "RICH GALLERY"),
@@ -1194,6 +1393,7 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}" />
+<meta name="robots" content="index,follow" />
 <link rel="canonical" href="{esc(url)}" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="{esc(s["name"])}" />
@@ -1228,6 +1428,10 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
 .project-type-archive .proj-summary{{grid-column:1;margin-top:30px}}
 .proj-desc{{margin:0!important;max-width:48ch!important;
   font-size:clamp(15px,1.45vw,19px)!important;line-height:1.75!important;word-break:keep-all}}
+.project-facts{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);margin:28px 0 0;max-width:560px}}
+.project-facts>div{{background:var(--bg);padding:12px 14px;min-width:0}}
+.project-facts dt{{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--text-faint)}}
+.project-facts dd{{margin:6px 0 0;font-size:13px;line-height:1.45;word-break:keep-all}}
 .project-actions{{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:30px}}
 .back-link{{margin-top:0!important}}
 .project-contact-cta{{display:inline-block;padding:10px 14px;background:#050505;color:#fff;font-size:12px;letter-spacing:.02em}}
@@ -1288,7 +1492,7 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
           {source_cta}
         </div>
       </div>
-      <div class="proj-summary">{desc_html}</div>
+      <div class="proj-summary">{desc_html}{project_facts_html}</div>
     </div>
   </section>
 
@@ -1372,6 +1576,11 @@ def build_llms(d: dict, launched: bool) -> str:
     lines += [f'- **{f["name"]}** ({f["en"]}) — {f["desc"]}' for f in d["fields"]["items"]]
     lines.append("")
 
+    if d.get("services"):
+        lines += ["## 서비스", ""]
+        for service in d["services"]:
+            lines += [f'### {service["title"]}', "", service["description"], f'- URL: {s["url"]}services/{service["slug"]}', ""]
+
     lines += [f'## {d["work"]["title"]}', "", d["work"]["lead"], ""]
     for w in d["work"]["items"]:
         bits = [b for b in (w["name"], w["context"], w["year"]) if b]
@@ -1452,6 +1661,13 @@ def main() -> int:
         out[path + "llms.txt"] = build_llms(d, launched)
         out[path + "privacy/index.html"] = build_privacy_html(d, locales)
 
+        # 서비스별 SEO 랜딩 페이지 생성
+        for service in d.get("services", []):
+            service_doc = build_service_html(d, service)
+            for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', service_doc, re.S):
+                json.loads(m.group(1))
+            out[path + f'services/{service["slug"]}/index.html'] = service_doc
+
         # 프로젝트 상세 페이지 생성
         for w in d["work"]["items"]:
             if not w.get("slug"):
@@ -1464,14 +1680,18 @@ def main() -> int:
                 raise SystemExit(f"실행 스크립트가 들어갔습니다: {m.group(0)}")
             out[path + f'projects/{w["slug"]}/index.html'] = proj_doc
 
-    # sitemap 에 프로젝트 URL 포함
+    # sitemap 에 서비스·프로젝트 URL 포함
+    service_urls = []
     project_urls = []
     for d2 in docs:
+        for service2 in d2.get("services", []):
+            service_urls.append(d2["site"]["url"] + "services/" + service2["slug"])
+
         case_by_slug2 = {c.get("slug"): c for c in d2.get("case_studies", {}).get("items", [])}
         for w2 in d2["work"]["items"]:
             if w2.get("slug"):
                 project_urls.append(d2["site"]["url"] + "projects/" + w2["slug"] )
-    out["sitemap.xml"] = build_sitemap(locales, today, project_urls)
+    out["sitemap.xml"] = build_sitemap(locales, today, project_urls + service_urls)
 
     if not check_only:
         for name, text in out.items():
@@ -1484,7 +1704,8 @@ def main() -> int:
     for d, o in zip(docs, locales):
         launched = bool(d.get("licensing", {}).get("launched"))
         print(f'  [{o["locale"]}] {o["url"]} — 분야 {len(d["fields"]["items"])}'
-              f' · 실적 {len(d["work"]["items"])} · FAQ {len(faq_items(d, launched))}')
+              f' · 실적 {len(d["work"]["items"])} · 서비스 {len(d.get("services", []))}'
+              f' · FAQ {len(faq_items(d, launched))}')
     for w in dict.fromkeys(warnings):
         print(f"\n  ⚠️  {w}")
     return 0

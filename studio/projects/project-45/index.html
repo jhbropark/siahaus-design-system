@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <title>코엑스 SLW — 키네틱 디스플레이 | SIA.HAUS</title>
 <meta name="description" content="SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 SLW — 키네틱 디스플레이의 이미지와 제작 기록을 소개합니다." />
+<meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://www.sia.haus/projects/project-45" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="SIA.HAUS" />
@@ -15,10 +16,10 @@
 <meta property="og:title" content="코엑스 SLW — 키네틱 디스플레이 | SIA.HAUS" />
 <meta property="og:description" content="SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 SLW — 키네틱 디스플레이의 이미지와 제작 기록을 소개합니다." />
 <meta property="og:locale" content="ko" />
-<meta property="og:image" content="https://www.sia.haus/assets/projects/project-45/01.webp?v=3dd76b998614" />
+<meta property="og:image" content="https://www.sia.haus/assets/projects/project-45/01.webp?v=2026-11-13" />
 <meta property="og:image:alt" content="코엑스 SLW — 키네틱 디스플레이 | SIA.HAUS" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.sia.haus/assets/projects/project-45/01.webp?v=3dd76b998614" />
+<meta name="twitter:image" content="https://www.sia.haus/assets/projects/project-45/01.webp?v=2026-11-13" />
 <meta name="twitter:title" content="코엑스 SLW — 키네틱 디스플레이 | SIA.HAUS" />
 <meta name="twitter:description" content="SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 SLW — 키네틱 디스플레이의 이미지와 제작 기록을 소개합니다." />
 <meta name="twitter:image:alt" content="코엑스 SLW — 키네틱 디스플레이 | SIA.HAUS" />
@@ -39,7 +40,32 @@
       "isPartOf": {
         "@id": "https://www.sia.haus/#website"
       },
-      "description": "SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 SLW — 키네틱 디스플레이의 이미지와 제작 기록을 소개합니다."
+      "description": "SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 SLW — 키네틱 디스플레이의 이미지와 제작 기록을 소개합니다.",
+      "image": [
+        "https://www.sia.haus/assets/projects/project-45/01.webp?v=2026-11-13"
+      ],
+      "keywords": [
+        "AI GRAPHICS",
+        "PROJECT",
+        "코엑스 SLW",
+        "키네틱 디스플레이"
+      ],
+      "about": "PROJECT",
+      "producer": {
+        "@id": "https://www.sia.haus/#organization"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Client",
+          "value": "코엑스 SLW"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Category",
+          "value": "PROJECT"
+        }
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -168,6 +194,16 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
   .field-name,.field-en,.field-desc{grid-column:1;grid-row:auto;justify-self:start}
   .field-en{margin-top:4px}
 }
+
+/* services */
+.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.service-card{display:flex;flex-direction:column;gap:14px;min-height:260px;padding:clamp(20px,3vw,34px);background:var(--bg);color:inherit;transition:background .2s ease}
+.service-card:hover{background:#e9e9e6}
+.service-card-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--text-faint)}
+.service-card h3{margin:12px 0 0;font-size:clamp(20px,2.3vw,30px);line-height:1.12;font-weight:400;letter-spacing:-.035em}
+.service-card p{margin:0;color:var(--text-subtle);font-size:14px;line-height:1.7;word-break:keep-all}
+.service-card-link{margin-top:auto;font-size:12px;color:var(--text-muted)}
+@media(max-width:900px){.service-grid{grid-template-columns:1fr}}
 
 /* work — media.work: 3-column masonry grid with hover overlay cards */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -303,6 +339,10 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
 .project-type-archive .proj-summary{grid-column:1;margin-top:30px}
 .proj-desc{margin:0!important;max-width:48ch!important;
   font-size:clamp(15px,1.45vw,19px)!important;line-height:1.75!important;word-break:keep-all}
+.project-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);margin:28px 0 0;max-width:560px}
+.project-facts>div{background:var(--bg);padding:12px 14px;min-width:0}
+.project-facts dt{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--text-faint)}
+.project-facts dd{margin:6px 0 0;font-size:13px;line-height:1.45;word-break:keep-all}
 .project-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:30px}
 .back-link{margin-top:0!important}
 .project-contact-cta{display:inline-block;padding:10px 14px;background:#050505;color:#fff;font-size:12px;letter-spacing:.02em}
@@ -336,9 +376,9 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
   .project-actions{margin-top:26px}
   .proj-media-wrap{margin-top:0}
 }</style>
-<link rel="stylesheet" href="/theme-v2.css?v=3dd76b998614" />
+<link rel="stylesheet" href="/theme-v2.css?v=2026-11-13" />
 <script defer src="/_vercel/insights/script.js"></script>
-<script defer src="/site-analytics.js?v=3dd76b998614"></script>
+<script defer src="/site-analytics.js?v=2026-11-13"></script>
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
@@ -346,7 +386,7 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
 <header class="site">
   <div class="wrap hdr">
     <a class="logo" href="/">SIA.HAUS <span class="featured">&gt; 코엑스 SLW — 키네틱 디스플레이</span></a>
-    <nav class="main"><a href="/#work">실적</a><a href="/#case-studies">케이스스터디</a><a href="/#fields">분야</a><a href="/#faq">FAQ</a><a href="/#brief">프로젝트 브리프</a><a href="/#contact">문의</a><a class="mailto" href="mailto:sia@sia.haus">sia@sia.haus</a></nav>
+    <nav class="main"><a href="/#work">실적</a><a href="/#case-studies">케이스스터디</a><a href="/#fields">분야</a><a href="/#services">서비스</a><a href="/#faq">FAQ</a><a href="/#brief">프로젝트 브리프</a><a href="/#contact">문의</a><a class="mailto" href="mailto:sia@sia.haus">sia@sia.haus</a></nav>
     
   </div>
 </header>
@@ -364,12 +404,12 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
           
         </div>
       </div>
-      <div class="proj-summary"><p class="proj-desc">SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 SLW — 키네틱 디스플레이의 이미지와 제작 기록을 소개합니다.</p></div>
+      <div class="proj-summary"><p class="proj-desc">SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 SLW — 키네틱 디스플레이의 이미지와 제작 기록을 소개합니다.</p><dl class="project-facts"><div><dt>클라이언트</dt><dd>코엑스 SLW</dd></div><div><dt>분류</dt><dd>PROJECT</dd></div></dl></div>
     </div>
   </section>
 
   <div class="proj-media-wrap">
-    <div class="proj-media-stage"><img src="/assets/projects/project-45/01.webp?v=3dd76b998614" width="1800" height="1398" alt="코엑스 SLW — 키네틱 디스플레이 · 대표 이미지 1" loading="eager" decoding="async" sizes="100vw" /></div>
+    <div class="proj-media-stage"><img src="/assets/projects/project-45/01.webp?v=2026-11-13" width="1800" height="1398" alt="코엑스 SLW — 키네틱 디스플레이 · 대표 이미지 1" loading="eager" decoding="async" sizes="100vw" /></div>
   </div>
 
   

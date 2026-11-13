@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <title>서울의 맥박: 도시에 생명력을 더하는 장면 | SIA.HAUS</title>
 <meta name="description" content="2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다." />
+<meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://www.sia.haus/projects/behance-05" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="SIA.HAUS" />
@@ -15,10 +16,10 @@
 <meta property="og:title" content="서울의 맥박: 도시에 생명력을 더하는 장면 | SIA.HAUS" />
 <meta property="og:description" content="2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다." />
 <meta property="og:locale" content="ko" />
-<meta property="og:image" content="https://www.sia.haus/assets/projects/behance-05/cover.webp?v=3dd76b998614" />
+<meta property="og:image" content="https://www.sia.haus/assets/projects/behance-05/cover.webp?v=2026-11-13" />
 <meta property="og:image:alt" content="서울의 맥박: 도시에 생명력을 더하는 장면 | SIA.HAUS" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.sia.haus/assets/projects/behance-05/cover.webp?v=3dd76b998614" />
+<meta name="twitter:image" content="https://www.sia.haus/assets/projects/behance-05/cover.webp?v=2026-11-13" />
 <meta name="twitter:title" content="서울의 맥박: 도시에 생명력을 더하는 장면 | SIA.HAUS" />
 <meta name="twitter:description" content="2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다." />
 <meta name="twitter:image:alt" content="서울의 맥박: 도시에 생명력을 더하는 장면 | SIA.HAUS" />
@@ -39,7 +40,31 @@
       "isPartOf": {
         "@id": "https://www.sia.haus/#website"
       },
-      "description": "2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다. 말의 역동적인 에너지는 정체된 도시 풍경에 활기를 더하며, 전통 위에 새로운 희망이 피어나는 서울의 조화를 시각화한 작품입니다."
+      "description": "2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다. 말의 역동적인 에너지는 정체된 도시 풍경에 활기를 더하며, 전통 위에 새로운 희망이 피어나는 서울의 조화를 시각화한 작품입니다.",
+      "image": [
+        "https://www.sia.haus/assets/projects/behance-05/cover.webp?v=2026-11-13"
+      ],
+      "keywords": [
+        "AI GRAPHICS",
+        "BEHANCE",
+        "시공간의 만개(滿開): 서울의 맥박"
+      ],
+      "about": "BEHANCE",
+      "producer": {
+        "@id": "https://www.sia.haus/#organization"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Client",
+          "value": "시공간의 만개(滿開): 서울의 맥박"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Category",
+          "value": "BEHANCE"
+        }
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -168,6 +193,16 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
   .field-name,.field-en,.field-desc{grid-column:1;grid-row:auto;justify-self:start}
   .field-en{margin-top:4px}
 }
+
+/* services */
+.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.service-card{display:flex;flex-direction:column;gap:14px;min-height:260px;padding:clamp(20px,3vw,34px);background:var(--bg);color:inherit;transition:background .2s ease}
+.service-card:hover{background:#e9e9e6}
+.service-card-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--text-faint)}
+.service-card h3{margin:12px 0 0;font-size:clamp(20px,2.3vw,30px);line-height:1.12;font-weight:400;letter-spacing:-.035em}
+.service-card p{margin:0;color:var(--text-subtle);font-size:14px;line-height:1.7;word-break:keep-all}
+.service-card-link{margin-top:auto;font-size:12px;color:var(--text-muted)}
+@media(max-width:900px){.service-grid{grid-template-columns:1fr}}
 
 /* work — media.work: 3-column masonry grid with hover overlay cards */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -303,6 +338,10 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
 .project-type-archive .proj-summary{grid-column:1;margin-top:30px}
 .proj-desc{margin:0!important;max-width:48ch!important;
   font-size:clamp(15px,1.45vw,19px)!important;line-height:1.75!important;word-break:keep-all}
+.project-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);margin:28px 0 0;max-width:560px}
+.project-facts>div{background:var(--bg);padding:12px 14px;min-width:0}
+.project-facts dt{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--text-faint)}
+.project-facts dd{margin:6px 0 0;font-size:13px;line-height:1.45;word-break:keep-all}
 .project-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:30px}
 .back-link{margin-top:0!important}
 .project-contact-cta{display:inline-block;padding:10px 14px;background:#050505;color:#fff;font-size:12px;letter-spacing:.02em}
@@ -336,9 +375,9 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
   .project-actions{margin-top:26px}
   .proj-media-wrap{margin-top:0}
 }</style>
-<link rel="stylesheet" href="/theme-v2.css?v=3dd76b998614" />
+<link rel="stylesheet" href="/theme-v2.css?v=2026-11-13" />
 <script defer src="/_vercel/insights/script.js"></script>
-<script defer src="/site-analytics.js?v=3dd76b998614"></script>
+<script defer src="/site-analytics.js?v=2026-11-13"></script>
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
@@ -346,7 +385,7 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
 <header class="site">
   <div class="wrap hdr">
     <a class="logo" href="/">SIA.HAUS <span class="featured">&gt; 서울의 맥박: 도시에 생명력을 더하는 장면</span></a>
-    <nav class="main"><a href="/#work">실적</a><a href="/#case-studies">케이스스터디</a><a href="/#fields">분야</a><a href="/#faq">FAQ</a><a href="/#brief">프로젝트 브리프</a><a href="/#contact">문의</a><a class="mailto" href="mailto:sia@sia.haus">sia@sia.haus</a></nav>
+    <nav class="main"><a href="/#work">실적</a><a href="/#case-studies">케이스스터디</a><a href="/#fields">분야</a><a href="/#services">서비스</a><a href="/#faq">FAQ</a><a href="/#brief">프로젝트 브리프</a><a href="/#contact">문의</a><a class="mailto" href="mailto:sia@sia.haus">sia@sia.haus</a></nav>
     
   </div>
 </header>
@@ -364,12 +403,12 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
           
         </div>
       </div>
-      <div class="proj-summary"><p class="proj-desc">2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다. 말의 역동적인 에너지는 정체된 도시 풍경에 활기를 더하며, 전통 위에 새로운 희망이 피어나는 서울의 조화를 시각화한 작품입니다.</p></div>
+      <div class="proj-summary"><p class="proj-desc">2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다. 말의 역동적인 에너지는 정체된 도시 풍경에 활기를 더하며, 전통 위에 새로운 희망이 피어나는 서울의 조화를 시각화한 작품입니다.</p><dl class="project-facts"><div><dt>클라이언트</dt><dd>시공간의 만개(滿開): 서울의 맥박</dd></div><div><dt>분류</dt><dd>BEHANCE</dd></div></dl></div>
     </div>
   </section>
 
   <div class="proj-media-wrap">
-    <section class="media-chapter"><p class="media-chapter-label">작품 소개</p><div class="media-chapter-list"><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/967202247968473.69e72f94bae64.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 작품 소개 이미지 1" loading="eager" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/1531aa247968473.69e75c3d686ef.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 작품 소개 이미지 2" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/3f0e55247968473.69e75c3d68ba5.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 작품 소개 이미지 3" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/319e89247968473.6a06c7e959447.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 작품 소개 이미지 4" loading="lazy" decoding="async" sizes="100vw" /></div></div></section><details class="project-media-more"><summary>전체 이미지 보기 <span>23개 미디어</span></summary><div class="project-media-more-list"><section class="media-chapter"><p class="media-chapter-label">공간 · 과정</p><div class="media-chapter-list"><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/baccd7247968473.69e72f9334e75.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 5" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/556109247968473.69e891379f576.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 6" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/7f366c247968473.69e72f9335322.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 7" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/60443a247968473.69e8913917af0.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 8" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6fdd56247968473.69e891391807b.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 9" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/1796ec247968473.69e89139b485a.jpg?v=3dd76b998614" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정"><source src="/assets/projects/behance-05/media/1796ec247968473.69e89139b485a.mp4?v=3dd76b998614" /></video></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/8f9f51247968473.69e89139b4cf0.jpg?v=3dd76b998614" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정"><source src="/assets/projects/behance-05/media/8f9f51247968473.69e89139b4cf0.mp4?v=3dd76b998614" /></video></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/aa60a1247968473.69e748269b50f.jpg?v=3dd76b998614" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정"><source src="/assets/projects/behance-05/media/aa60a1247968473.69e748269b50f.mp4?v=3dd76b998614" /></video></div></div></section><section class="media-chapter"><p class="media-chapter-label">결과 장면</p><div class="media-chapter-list"><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/d67aa5247968473.69e748269bb46.jpg?v=3dd76b998614" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/d67aa5247968473.69e748269bb46.mp4?v=3dd76b998614" /></video></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/f310bb247968473.69e7482785b1b.jpg?v=3dd76b998614" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/f310bb247968473.69e7482785b1b.mp4?v=3dd76b998614" /></video></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/7ca020247968473.69e7482785ed7.jpg?v=3dd76b998614" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/7ca020247968473.69e7482785ed7.mp4?v=3dd76b998614" /></video></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/95e659247968473.69e760bee3d46.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 16" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/63ca6b247968473.69e7413c4ab48.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 17" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/f4cc3d247968473.69e89297188cf.jpg?v=3dd76b998614" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/f4cc3d247968473.69e89297188cf.mp4?v=3dd76b998614" /></video></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/ba61d6247968473.69e7413c4b39c.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 19" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/514c0c247968473.69e75c3cdb3bb.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 20" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/6dca2b247968473.69e7413c4a6c7.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 21" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/a6eb11247968473.69e7413c4afde.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 22" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/2a7950247968473.69e73ec074f20.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 23" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3d8373247968473.69e8953961bb8.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 24" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/719a58247968473.69e89539c4548.jpg?v=3dd76b998614" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/719a58247968473.69e89539c4548.mp4?v=3dd76b998614" /></video></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/204635247968473.69fd673f5032c.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 26" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-text-block">2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다. 말의 역동적인 에너지는 정체된 도시 풍경에 활기를 더하며, 전통 위에 새로운 희망이 피어나는 서울의 조화를 시각화한 작품입니다.</div></div></section></div></details>
+    <section class="media-chapter"><p class="media-chapter-label">작품 소개</p><div class="media-chapter-list"><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/967202247968473.69e72f94bae64.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 작품 소개 이미지 1" loading="eager" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/1531aa247968473.69e75c3d686ef.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 작품 소개 이미지 2" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/3f0e55247968473.69e75c3d68ba5.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 작품 소개 이미지 3" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/319e89247968473.6a06c7e959447.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 작품 소개 이미지 4" loading="lazy" decoding="async" sizes="100vw" /></div></div></section><details class="project-media-more"><summary>전체 이미지 보기 <span>23개 미디어</span></summary><div class="project-media-more-list"><section class="media-chapter"><p class="media-chapter-label">공간 · 과정</p><div class="media-chapter-list"><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/baccd7247968473.69e72f9334e75.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 5" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/556109247968473.69e891379f576.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 6" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/7f366c247968473.69e72f9335322.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 7" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/60443a247968473.69e8913917af0.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 8" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/6fdd56247968473.69e891391807b.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정 이미지 9" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/1796ec247968473.69e89139b485a.jpg?v=2026-11-13" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정"><source src="/assets/projects/behance-05/media/1796ec247968473.69e89139b485a.mp4?v=2026-11-13" /></video></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/8f9f51247968473.69e89139b4cf0.jpg?v=2026-11-13" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정"><source src="/assets/projects/behance-05/media/8f9f51247968473.69e89139b4cf0.mp4?v=2026-11-13" /></video></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/aa60a1247968473.69e748269b50f.jpg?v=2026-11-13" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 공간 · 과정"><source src="/assets/projects/behance-05/media/aa60a1247968473.69e748269b50f.mp4?v=2026-11-13" /></video></div></div></section><section class="media-chapter"><p class="media-chapter-label">결과 장면</p><div class="media-chapter-list"><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/d67aa5247968473.69e748269bb46.jpg?v=2026-11-13" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/d67aa5247968473.69e748269bb46.mp4?v=2026-11-13" /></video></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/f310bb247968473.69e7482785b1b.jpg?v=2026-11-13" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/f310bb247968473.69e7482785b1b.mp4?v=2026-11-13" /></video></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/7ca020247968473.69e7482785ed7.jpg?v=2026-11-13" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/7ca020247968473.69e7482785ed7.mp4?v=2026-11-13" /></video></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/95e659247968473.69e760bee3d46.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 16" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/63ca6b247968473.69e7413c4ab48.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 17" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/f4cc3d247968473.69e89297188cf.jpg?v=2026-11-13" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/f4cc3d247968473.69e89297188cf.mp4?v=2026-11-13" /></video></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/ba61d6247968473.69e7413c4b39c.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 19" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/514c0c247968473.69e75c3cdb3bb.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 20" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/6dca2b247968473.69e7413c4a6c7.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 21" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/a6eb11247968473.69e7413c4afde.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 22" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/2a7950247968473.69e73ec074f20.jpg" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 23" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/3d8373247968473.69e8953961bb8.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 24" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage is-video"><video poster="/assets/projects/behance-05/media/719a58247968473.69e89539c4548.jpg?v=2026-11-13" muted loop playsinline preload="none" data-autoplay="true" aria-label="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면"><source src="/assets/projects/behance-05/media/719a58247968473.69e89539c4548.mp4?v=2026-11-13" /></video></div><div class="proj-media-stage"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632_webp/204635247968473.69fd673f5032c.png" alt="서울의 맥박: 도시에 생명력을 더하는 장면 · 결과 장면 이미지 26" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-text-block">2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다. 말의 역동적인 에너지는 정체된 도시 풍경에 활기를 더하며, 전통 위에 새로운 희망이 피어나는 서울의 조화를 시각화한 작품입니다.</div></div></section></div></details>
   </div>
 
   <section class="project-case-study"><div class="wrap"><p class="eyebrow">CASE STUDY</p><h2>서울의 맥박: 도시에 생명력을 더하는 장면</h2><p class="case-detail-summary">붉은 말의 해를 상징하는 꽃과 말 가족을 통해 삭막한 도심에 생명력과 온기를 불어넣고, 전통 위에 새로운 희망이 피어나는 서울을 시각화했습니다.</p><div class="case-detail-grid"><div class="case-detail-item"><span class="case-detail-label">목표</span><p>도시의 일상에 생명력과 온기를 더하는 공공 AI GRAPHICS 장면을 만듭니다.</p></div><div class="case-detail-item"><span class="case-detail-label">접근</span><p>꽃과 말 가족의 역동성을 활용해 전통과 새로운 희망이 공존하는 도시 이미지를 구성했습니다.</p></div><div class="case-detail-item"><span class="case-detail-label">결과</span><p>서울의 공공 AI GRAPHICS 프로젝트로 공개되었습니다.</p></div></div><a class="project-contact-cta" href="/#brief">프로젝트 브리프 작성 ↗</a></div></section>

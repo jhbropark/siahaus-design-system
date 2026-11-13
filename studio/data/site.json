@@ -15,22 +15,27 @@
       "country": "KR"
     },
     "same_as": [
-      "https://www.behance.net/sia_haus"
+      "https://www.behance.net/sia_haus",
+      "https://www.instagram.com/sia.haus_official/"
     ],
     "locale": "ko",
     "lang": "ko",
     "path": "",
     "lang_label": "KO",
     "alt_label": "EN",
-    "area_served": "대한민국"
+    "area_served": "대한민국",
+    "logo": "/favicon.svg",
+    "image": "/assets/projects/behance-01/cover.webp",
+    "founding_date": "2018",
+    "entity_definition": "AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합해 브랜드와 도시 공간의 시각 경험을 만드는 SIA.HAUS의 제작 방식입니다."
   },
   "licensing": {
     "_decision": "2026-09-16 확인 — 구독 라이선싱은 아직 출시 전이라 false. 출시하면 true 로 바꾸면 정의문과 라이선싱 FAQ 가 함께 복구됩니다. null(모름)로 두면 build.py 가 false 와 같게 동작하되 빌드마다 경고를 냅니다 — 없는 서비스를 정의문에 넣으면 첫 문의부터 어긋나므로, 모를 때 더 크게 주장하지 않습니다.",
     "launched": false
   },
   "meta": {
-    "title": "SIA.HAUS — 미디어 파사드 · 몰입형 전시 AI GRAPHICS 스튜디오",
-    "description": "기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 AI GRAPHICS 스튜디오. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인."
+    "title": "SIA.HAUS | AI GRAPHICS · 미디어 파사드 · 몰입형 전시",
+    "description": "AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합해 브랜드와 도시 공간의 시각 경험을 만드는 SIA.HAUS의 제작 방식입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 기획부터 운영까지 연결합니다."
   },
   "selected_work_slugs": [
     "behance-01",
@@ -59,8 +64,8 @@
     "headline": "기술은 도구이고, 경험은 감각입니다.",
     "role": "서울 기반 수직통합형 AI GRAPHICS 스튜디오",
     "service_line": "미디어 파사드 · 프로젝션 매핑 · 몰입형 전시",
-    "definition_launched": "SIA.HAUS는 기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 AI GRAPHICS 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 그렇게 제작한 AI GRAPHICS를 작가 IP로 축적해 공간 사업자에게 구독 방식으로 라이선싱합니다.",
-    "definition_prelaunch": "SIA.HAUS는 기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 AI GRAPHICS 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 그렇게 제작한 AI GRAPHICS를 작가 IP로 축적하고 있습니다.",
+    "definition_launched": "AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합해 브랜드와 도시 공간의 시각 경험을 만드는 SIA.HAUS의 제작 방식입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 기획부터 운영까지 연결하며, 그렇게 제작한 AI GRAPHICS를 작가 IP로 축적해 공간 사업자에게 제공합니다.",
+    "definition_prelaunch": "AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합해 브랜드와 도시 공간의 시각 경험을 만드는 SIA.HAUS의 제작 방식입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 기획부터 운영까지 연결하며, 그렇게 제작한 AI GRAPHICS를 작가 IP로 축적합니다.",
     "display_title": "SPACE INTO ART.",
     "kicker": "SIA.HAUS / SEOUL",
     "featured_slug": "kia-milan",
@@ -416,7 +421,7 @@
         ]
       },
       {
-        "client": "This is the first IP gallery project by SIAHAUS \"ARFA\"",
+        "client": "This is the first IP gallery project by SIA.HAUS \"ARFA\"",
         "name": "",
         "context": "",
         "year": "",
@@ -732,7 +737,7 @@
         ]
       },
       {
-        "client": "2025 GRAND JOSAN Anamorphic media facade",
+        "client": "2025 GRAND JOSUN Anamorphic media facade",
         "name": "",
         "context": "",
         "year": "2025",
@@ -1848,6 +1853,7 @@
     "footer_note": "SIA.HAUS",
     "nav_case": "케이스스터디",
     "nav_reference": "레퍼런스",
+    "nav_services": "서비스",
     "nav_brief": "프로젝트 브리프",
     "gallery_more": "전체 이미지 보기",
     "project_type_featured": "FEATURED CASE STUDY",
@@ -1915,7 +1921,7 @@
           },
           {
             "label": "결과",
-            "text": "SIAHAUS의 첫 IP gallery project “ARFA”로 공개되었습니다."
+            "text": "SIA.HAUS의 첫 IP gallery project “ARFA”로 공개되었습니다."
           }
         ]
       },
@@ -2062,5 +2068,206 @@
       }
     ],
     "consent_label": "개인정보 처리 안내를 확인했으며, 문의 응대를 위한 정보 처리에 동의합니다."
-  }
+  },
+  "services": [
+    {
+      "slug": "ai-graphics",
+      "eyebrow": "AI GRAPHICS",
+      "title": "생성형 AI와 공간 경험을 연결합니다",
+      "short": "생성형 AI, 3D, VFX, 모션그래픽을 공간의 장면으로 확장합니다.",
+      "description": "AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합해 브랜드와 도시 공간의 시각 경험을 만드는 SIA.HAUS의 제작 방식입니다. 아이디어와 레퍼런스를 실제 화면, 공간, 운영 콘텐츠로 연결합니다.",
+      "keywords": [
+        "AI GRAPHICS",
+        "생성형 AI",
+        "3D",
+        "VFX",
+        "모션그래픽",
+        "공간 콘텐츠"
+      ],
+      "related_slugs": [
+        "behance-01",
+        "behance-02",
+        "behance-03"
+      ],
+      "faq": [
+        [
+          "AI GRAPHICS는 무엇인가요?",
+          "AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합해 브랜드와 도시 공간의 시각 경험을 만드는 SIA.HAUS의 제작 방식입니다."
+        ],
+        [
+          "어떤 결과물을 만들 수 있나요?",
+          "공간의 스크린, 프로젝션, 전시 콘텐츠, 브랜드 경험을 위한 영상과 그래픽 시스템으로 구현합니다."
+        ],
+        [
+          "프로젝트는 어떻게 시작하나요?",
+          "공간, 일정, 예산, 참고 레퍼런스를 브리프로 보내주시면 가능한 제작 방향부터 정리합니다."
+        ]
+      ]
+    },
+    {
+      "slug": "media-facade",
+      "eyebrow": "MEDIA FACADE",
+      "title": "건축과 외벽을 장면으로 전환합니다",
+      "short": "곡면 LED와 건축 외피에 맞춘 미디어 파사드 콘텐츠를 설계합니다.",
+      "description": "건축 외피, 곡면 LED, 비정형 표면을 영상과 빛의 캔버스로 설계합니다. 공간의 구조와 관객의 시점을 분석해 콘텐츠 기획, 제작, 설치, 운영까지 연결합니다.",
+      "keywords": [
+        "미디어 파사드",
+        "건축 외피",
+        "곡면 LED",
+        "아나몰픽",
+        "공공 공간"
+      ],
+      "related_slugs": [
+        "behance-04",
+        "project-30",
+        "project-54"
+      ],
+      "faq": [
+        [
+          "미디어 파사드는 어떤 공간에 적합한가요?",
+          "건축 외벽, 대형 LED, 곡면 디스플레이처럼 관람 거리와 시점이 중요한 공간에 적합합니다."
+        ],
+        [
+          "콘텐츠만 제작할 수 있나요?",
+          "기획과 콘텐츠 제작뿐 아니라 현장 설치와 운영을 고려한 제작 구조로 협의할 수 있습니다."
+        ],
+        [
+          "기존 화면 규격도 검토하나요?",
+          "화면 비율, 해상도, 시야각, 밝기와 운영 조건을 확인한 뒤 제작 범위를 제안합니다."
+        ]
+      ]
+    },
+    {
+      "slug": "immersive-exhibition",
+      "eyebrow": "IMMERSIVE EXHIBITION",
+      "title": "관객의 동선과 체험을 설계합니다",
+      "short": "몰입형 전시와 인터랙티브 콘텐츠로 관객이 머무는 경험을 만듭니다.",
+      "description": "몰입형 전시와 인터랙티브 콘텐츠를 공간의 목적에 맞춰 설계합니다. 관객의 이동, 체류, 시선, 반응을 기준으로 이미지와 사운드, 공간 장면을 구성합니다.",
+      "keywords": [
+        "몰입형 전시",
+        "인터랙티브 콘텐츠",
+        "전시 기획",
+        "공간 경험",
+        "관객 동선"
+      ],
+      "related_slugs": [
+        "behance-02",
+        "project-18",
+        "project-22"
+      ],
+      "faq": [
+        [
+          "몰입형 전시는 무엇부터 정하나요?",
+          "공간의 목적과 관객 경험을 먼저 정한 뒤 동선, 콘텐츠, 기술 구성을 순서대로 설계합니다."
+        ],
+        [
+          "전시 공간이 아직 확정되지 않아도 되나요?",
+          "가능합니다. 공간의 규모와 제약 조건을 확인하며 초기 아이디어부터 함께 구체화할 수 있습니다."
+        ],
+        [
+          "사운드도 함께 제작하나요?",
+          "필요한 경우 미디어 콘텐츠와 사운드 디자인을 하나의 경험으로 연결합니다."
+        ]
+      ]
+    },
+    {
+      "slug": "projection-mapping",
+      "eyebrow": "PROJECTION MAPPING",
+      "title": "표면의 구조를 빛의 화면으로 바꿉니다",
+      "short": "건축과 오브젝트의 형태를 분석해 프로젝션 매핑 장면을 제작합니다.",
+      "description": "건축물과 오브젝트의 형태, 관람 위치, 투사 환경을 분석해 프로젝션 매핑 콘텐츠를 설계합니다. 프리프로덕션부터 현장 테스트와 운영까지 한 흐름으로 관리합니다.",
+      "keywords": [
+        "프로젝션 매핑",
+        "건축 매핑",
+        "공간 콘텐츠",
+        "현장 운영",
+        "프리프로덕션"
+      ],
+      "related_slugs": [
+        "project-10",
+        "project-21",
+        "project-23"
+      ],
+      "faq": [
+        [
+          "프로젝션 매핑은 어떤 자료가 필요한가요?",
+          "공간 도면, 표면 사진, 투사 거리, 일정과 운영 목적이 있으면 초기 검토가 가능합니다."
+        ],
+        [
+          "현장 테스트도 진행하나요?",
+          "투사 환경과 관람 조건이 결과에 영향을 주므로 현장 테스트와 수정 범위를 함께 계획합니다."
+        ],
+        [
+          "행사성 프로젝트도 가능한가요?",
+          "공공 공간, 브랜드 행사, 전시와 같은 일정형 프로젝트에 맞춰 제작과 운영을 협의합니다."
+        ]
+      ]
+    },
+    {
+      "slug": "3d-vfx",
+      "eyebrow": "3D · VFX",
+      "title": "아이디어를 실제 장면으로 구현합니다",
+      "short": "3D, VFX, 모션, 실시간 시스템을 연결해 제작 가능한 결과물로 만듭니다.",
+      "description": "3D 모델링, VFX, 모션그래픽, 사운드와 실시간 시스템을 연결해 아이디어를 실제 결과물로 구현합니다. 화면용 콘텐츠부터 공간 설치용 출력물까지 목적에 맞춰 제작합니다.",
+      "keywords": [
+        "3D",
+        "VFX",
+        "모션그래픽",
+        "실시간 시스템",
+        "콘텐츠 제작"
+      ],
+      "related_slugs": [
+        "behance-01",
+        "behance-03",
+        "project-32"
+      ],
+      "faq": [
+        [
+          "3D와 VFX만 단독으로 의뢰할 수 있나요?",
+          "가능합니다. 최종 사용 공간과 출력 조건을 기준으로 필요한 제작 범위를 정의합니다."
+        ],
+        [
+          "기획 단계의 아이디어도 구현할 수 있나요?",
+          "레퍼런스와 핵심 메시지를 바탕으로 시각 방향과 제작 가능성을 먼저 검토합니다."
+        ],
+        [
+          "여러 출력 규격을 지원하나요?",
+          "스크린, LED, 프로젝션 등 최종 매체의 비율과 해상도에 맞춰 산출물을 준비합니다."
+        ]
+      ]
+    },
+    {
+      "slug": "brand-experience",
+      "eyebrow": "BRAND EXPERIENCE",
+      "title": "브랜드의 메시지를 공간의 경험으로 확장합니다",
+      "short": "브랜드, 제품, 캠페인의 메시지를 전시·팝업·공간 콘텐츠로 만듭니다.",
+      "description": "브랜드의 메시지와 제품을 공간, 전시, 팝업의 시각 경험으로 확장합니다. 캠페인의 목적과 관객의 행동을 연결해 콘텐츠와 공간 장면을 설계합니다.",
+      "keywords": [
+        "브랜드 경험",
+        "팝업",
+        "전시 콘텐츠",
+        "공간 브랜딩",
+        "캠페인"
+      ],
+      "related_slugs": [
+        "project-42",
+        "behance-02",
+        "project-07"
+      ],
+      "faq": [
+        [
+          "브랜드 경험 프로젝트는 무엇부터 시작하나요?",
+          "브랜드 목표, 핵심 메시지, 공간 조건, 관객 행동을 정리한 뒤 경험의 구조를 제안합니다."
+        ],
+        [
+          "팝업과 전시 콘텐츠를 함께 제작하나요?",
+          "공간의 시각 콘텐츠와 관객 접점을 하나의 제작 흐름으로 설계할 수 있습니다."
+        ],
+        [
+          "브랜드 가이드가 있어야 하나요?",
+          "기존 가이드가 있으면 반영하고, 필요한 경우 시각 방향과 장면의 기준부터 함께 정리합니다."
+        ]
+      ]
+    }
+  ]
 }

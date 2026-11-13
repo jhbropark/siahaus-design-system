@@ -1,6 +1,6 @@
 # SIA.HAUS
 
-> SIA.HAUS는 기획부터 운영까지 전 과정을 자체 수행하는 서울 기반 수직통합형 AI GRAPHICS 스튜디오입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 다루며, 그렇게 제작한 AI GRAPHICS를 작가 IP로 축적하고 있습니다.
+> AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합해 브랜드와 도시 공간의 시각 경험을 만드는 SIA.HAUS의 제작 방식입니다. 미디어 파사드, 프로젝션 매핑, 몰입형 전시, 미디어 A/V와 사운드 디자인을 기획부터 운영까지 연결하며, 그렇게 제작한 AI GRAPHICS를 작가 IP로 축적합니다.
 
 ## 네 단계를 한 팀이 맡습니다
 
@@ -14,14 +14,46 @@ SIA.HAUS의 파이프라인은 기획, 프리프로덕션, 프로덕션, 운영 
 - **도시와 공공 공간에 장면 만들기** (Public Experience) — 도시·공공 공간의 장소성과 반복 방문을 만드는 미디어 콘텐츠를 제작합니다.
 - **아이디어를 실제 결과물로 구현** (3D · VFX · A/V) — 3D·VFX·모션·사운드·실시간 시스템으로 제작과 운영까지 연결합니다.
 
+## 서비스
+
+### 생성형 AI와 공간 경험을 연결합니다
+
+AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합해 브랜드와 도시 공간의 시각 경험을 만드는 SIA.HAUS의 제작 방식입니다. 아이디어와 레퍼런스를 실제 화면, 공간, 운영 콘텐츠로 연결합니다.
+- URL: https://www.sia.haus/services/ai-graphics
+
+### 건축과 외벽을 장면으로 전환합니다
+
+건축 외피, 곡면 LED, 비정형 표면을 영상과 빛의 캔버스로 설계합니다. 공간의 구조와 관객의 시점을 분석해 콘텐츠 기획, 제작, 설치, 운영까지 연결합니다.
+- URL: https://www.sia.haus/services/media-facade
+
+### 관객의 동선과 체험을 설계합니다
+
+몰입형 전시와 인터랙티브 콘텐츠를 공간의 목적에 맞춰 설계합니다. 관객의 이동, 체류, 시선, 반응을 기준으로 이미지와 사운드, 공간 장면을 구성합니다.
+- URL: https://www.sia.haus/services/immersive-exhibition
+
+### 표면의 구조를 빛의 화면으로 바꿉니다
+
+건축물과 오브젝트의 형태, 관람 위치, 투사 환경을 분석해 프로젝션 매핑 콘텐츠를 설계합니다. 프리프로덕션부터 현장 테스트와 운영까지 한 흐름으로 관리합니다.
+- URL: https://www.sia.haus/services/projection-mapping
+
+### 아이디어를 실제 장면으로 구현합니다
+
+3D 모델링, VFX, 모션그래픽, 사운드와 실시간 시스템을 연결해 아이디어를 실제 결과물로 구현합니다. 화면용 콘텐츠부터 공간 설치용 출력물까지 목적에 맞춰 제작합니다.
+- URL: https://www.sia.haus/services/3d-vfx
+
+### 브랜드의 메시지를 공간의 경험으로 확장합니다
+
+브랜드의 메시지와 제품을 공간, 전시, 팝업의 시각 경험으로 확장합니다. 캠페인의 목적과 관객의 행동을 연결해 콘텐츠와 공간 장면을 설계합니다.
+- URL: https://www.sia.haus/services/brand-experience
+
 ## 실적
 
 
 
 - 2026 Kim Tschang-Yeul Atelier — 2026
-- This is the first IP gallery project by SIAHAUS "ARFA" — 
+- This is the first IP gallery project by SIA.HAUS "ARFA" — 
 - 2025 SWL Kinetic Display Media Art ' ARIA' — 2025
-- 2025 GRAND JOSAN Anamorphic media facade — 2025
+- 2025 GRAND JOSUN Anamorphic media facade — 2025
 - 시공간의 만개(滿開): 서울의 맥박 — 
 - 가평 더 — 힐링스테이파크 9Block
 - 광명동굴 레인보우 — 팩토리
@@ -88,7 +120,7 @@ SIA.HAUS의 파이프라인은 기획, 프리프로덕션, 프로덕션, 운영 
 SIA.HAUS가 직접 개발한 IP를 갤러리 형식의 공간 경험으로 확장한 첫 번째 IP gallery project입니다.
 - **목표** — 단일 콘텐츠를 넘어, SIA.HAUS의 자체 IP를 지속 가능한 전시 경험으로 확장합니다.
 - **접근** — 작품 단위가 아닌 IP와 공간 경험 단위로 시각 언어를 구성했습니다.
-- **결과** — SIAHAUS의 첫 IP gallery project “ARFA”로 공개되었습니다.
+- **결과** — SIA.HAUS의 첫 IP gallery project “ARFA”로 공개되었습니다.
 
 ### ARIA: AI 도시, 미래 서울
 

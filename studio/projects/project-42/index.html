@@ -12,6 +12,7 @@
 기간: 2019년 8월 18일–9월 1일
 운영 시간: 16:00–22:00 (낮시간 자유 관람)
 내용: 반경 10m 안에 좋아하는 사람이 들어오면 알람이 울리는 ‘좋알람’ 앱을 실제로 체험하는 부스와 이벤트를 진행했습니다. · 롯데월드타워 월드파크 잔디광장 · 2019.08.18–09.01 · 16:00–22:00" />
+<meta name="robots" content="index,follow" />
 <link rel="canonical" href="https://www.sia.haus/projects/project-42" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="SIA.HAUS" />
@@ -23,10 +24,10 @@
 운영 시간: 16:00–22:00 (낮시간 자유 관람)
 내용: 반경 10m 안에 좋아하는 사람이 들어오면 알람이 울리는 ‘좋알람’ 앱을 실제로 체험하는 부스와 이벤트를 진행했습니다. · 롯데월드타워 월드파크 잔디광장 · 2019.08.18–09.01 · 16:00–22:00" />
 <meta property="og:locale" content="ko" />
-<meta property="og:image" content="https://www.sia.haus/assets/projects/project-42/01.webp?v=3dd76b998614" />
+<meta property="og:image" content="https://www.sia.haus/assets/projects/project-42/01.webp?v=2026-11-13" />
 <meta property="og:image:alt" content="좋알람 — Netflix Pop-up | SIA.HAUS" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://www.sia.haus/assets/projects/project-42/01.webp?v=3dd76b998614" />
+<meta name="twitter:image" content="https://www.sia.haus/assets/projects/project-42/01.webp?v=2026-11-13" />
 <meta name="twitter:title" content="좋알람 — Netflix Pop-up | SIA.HAUS" />
 <meta name="twitter:description" content="《좋아하면 울리는》 시즌1 공개 기념 Netflix 팝업스토어입니다.
 장소: 서울 송파구 롯데월드타워 월드파크 잔디광장
@@ -52,8 +53,37 @@
         "@id": "https://www.sia.haus/#website"
       },
       "description": "《좋아하면 울리는》 시즌1 공개 기념 Netflix 팝업스토어입니다.\n장소: 서울 송파구 롯데월드타워 월드파크 잔디광장\n기간: 2019년 8월 18일–9월 1일\n운영 시간: 16:00–22:00 (낮시간 자유 관람)\n내용: 반경 10m 안에 좋아하는 사람이 들어오면 알람이 울리는 ‘좋알람’ 앱을 실제로 체험하는 부스와 이벤트를 진행했습니다.",
-      "dateCreated": "2019",
-      "about": "롯데월드타워 월드파크 잔디광장 · 2019.08.18–09.01 · 16:00–22:00"
+      "image": [
+        "https://www.sia.haus/assets/projects/project-42/01.webp?v=2026-11-13"
+      ],
+      "keywords": [
+        "AI GRAPHICS",
+        "BRAND",
+        "좋알람",
+        "Netflix Pop-up",
+        "롯데월드타워 월드파크 잔디광장 · 2019.08.18–09.01 · 16:00–22:00"
+      ],
+      "about": "롯데월드타워 월드파크 잔디광장 · 2019.08.18–09.01 · 16:00–22:00",
+      "producer": {
+        "@id": "https://www.sia.haus/#organization"
+      },
+      "locationCreated": {
+        "@type": "Place",
+        "name": "롯데월드타워 월드파크 잔디광장 · 2019.08.18–09.01 · 16:00–22:00"
+      },
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Client",
+          "value": "좋알람"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Category",
+          "value": "BRAND"
+        }
+      ],
+      "dateCreated": "2019"
     },
     {
       "@type": "BreadcrumbList",
@@ -182,6 +212,16 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
   .field-name,.field-en,.field-desc{grid-column:1;grid-row:auto;justify-self:start}
   .field-en{margin-top:4px}
 }
+
+/* services */
+.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.service-card{display:flex;flex-direction:column;gap:14px;min-height:260px;padding:clamp(20px,3vw,34px);background:var(--bg);color:inherit;transition:background .2s ease}
+.service-card:hover{background:#e9e9e6}
+.service-card-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;color:var(--text-faint)}
+.service-card h3{margin:12px 0 0;font-size:clamp(20px,2.3vw,30px);line-height:1.12;font-weight:400;letter-spacing:-.035em}
+.service-card p{margin:0;color:var(--text-subtle);font-size:14px;line-height:1.7;word-break:keep-all}
+.service-card-link{margin-top:auto;font-size:12px;color:var(--text-muted)}
+@media(max-width:900px){.service-grid{grid-template-columns:1fr}}
 
 /* work — media.work: 3-column masonry grid with hover overlay cards */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
@@ -317,6 +357,10 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
 .project-type-archive .proj-summary{grid-column:1;margin-top:30px}
 .proj-desc{margin:0!important;max-width:48ch!important;
   font-size:clamp(15px,1.45vw,19px)!important;line-height:1.75!important;word-break:keep-all}
+.project-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);margin:28px 0 0;max-width:560px}
+.project-facts>div{background:var(--bg);padding:12px 14px;min-width:0}
+.project-facts dt{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--text-faint)}
+.project-facts dd{margin:6px 0 0;font-size:13px;line-height:1.45;word-break:keep-all}
 .project-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:30px}
 .back-link{margin-top:0!important}
 .project-contact-cta{display:inline-block;padding:10px 14px;background:#050505;color:#fff;font-size:12px;letter-spacing:.02em}
@@ -350,9 +394,9 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
   .project-actions{margin-top:26px}
   .proj-media-wrap{margin-top:0}
 }</style>
-<link rel="stylesheet" href="/theme-v2.css?v=3dd76b998614" />
+<link rel="stylesheet" href="/theme-v2.css?v=2026-11-13" />
 <script defer src="/_vercel/insights/script.js"></script>
-<script defer src="/site-analytics.js?v=3dd76b998614"></script>
+<script defer src="/site-analytics.js?v=2026-11-13"></script>
 </head>
 <body>
 <a class="skip" href="#main">본문으로 건너뛰기</a>
@@ -360,7 +404,7 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
 <header class="site">
   <div class="wrap hdr">
     <a class="logo" href="/">SIA.HAUS <span class="featured">&gt; 좋알람 — Netflix Pop-up</span></a>
-    <nav class="main"><a href="/#work">실적</a><a href="/#case-studies">케이스스터디</a><a href="/#fields">분야</a><a href="/#faq">FAQ</a><a href="/#brief">프로젝트 브리프</a><a href="/#contact">문의</a><a class="mailto" href="mailto:sia@sia.haus">sia@sia.haus</a></nav>
+    <nav class="main"><a href="/#work">실적</a><a href="/#case-studies">케이스스터디</a><a href="/#fields">분야</a><a href="/#services">서비스</a><a href="/#faq">FAQ</a><a href="/#brief">프로젝트 브리프</a><a href="/#contact">문의</a><a class="mailto" href="mailto:sia@sia.haus">sia@sia.haus</a></nav>
     
   </div>
 </header>
@@ -378,12 +422,12 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
           <a class="project-source-link" href="https://www.facebook.com/NetflixKR/videos/%EC%A2%8B%EC%95%84%ED%95%98%EB%A9%B4-%EC%9A%B8%EB%A6%AC%EB%8A%94-%EB%8A%A6-%EC%97%AC%EB%A6%84-%EC%84%A4%EB%A0%98-%EA%B0%80%EB%93%9D%ED%95%9C-%EC%9D%B4-%EA%B3%B3%EC%97%90%EC%84%9C-%EB%82%B4-%EC%A2%8B%EC%95%8C%EB%9E%8C%EC%9D%84-%EC%9A%B8%EB%A0%A4%EC%A4%98/878062519232978/?locale=ko_KR" target="_blank" rel="noopener noreferrer">원문 프로젝트 ↗</a>
         </div>
       </div>
-      <div class="proj-summary"><p class="proj-desc">《좋아하면 울리는》 시즌1 공개 기념 Netflix 팝업스토어입니다.<br>장소: 서울 송파구 롯데월드타워 월드파크 잔디광장<br>기간: 2019년 8월 18일–9월 1일<br>운영 시간: 16:00–22:00 (낮시간 자유 관람)<br>내용: 반경 10m 안에 좋아하는 사람이 들어오면 알람이 울리는 ‘좋알람’ 앱을 실제로 체험하는 부스와 이벤트를 진행했습니다.</p></div>
+      <div class="proj-summary"><p class="proj-desc">《좋아하면 울리는》 시즌1 공개 기념 Netflix 팝업스토어입니다.<br>장소: 서울 송파구 롯데월드타워 월드파크 잔디광장<br>기간: 2019년 8월 18일–9월 1일<br>운영 시간: 16:00–22:00 (낮시간 자유 관람)<br>내용: 반경 10m 안에 좋아하는 사람이 들어오면 알람이 울리는 ‘좋알람’ 앱을 실제로 체험하는 부스와 이벤트를 진행했습니다.</p><dl class="project-facts"><div><dt>클라이언트</dt><dd>좋알람</dd></div><div><dt>분류</dt><dd>BRAND</dd></div><div><dt>연도</dt><dd>2019</dd></div><div><dt>공간·맥락</dt><dd>롯데월드타워 월드파크 잔디광장 · 2019.08.18–09.01 · 16:00–22:00</dd></div></dl></div>
     </div>
   </section>
 
   <div class="proj-media-wrap">
-    <div class="proj-media-stage"><img src="/assets/projects/project-42/01.webp?v=3dd76b998614" width="1800" height="1013" alt="좋알람 — Netflix Pop-up · 대표 이미지 1" loading="eager" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="/assets/projects/project-42/02.jpg?v=3dd76b998614" width="1800" height="1140" alt="좋알람 — Netflix Pop-up · 프로젝트 이미지 2" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="/assets/projects/project-42/03.jpg?v=3dd76b998614" width="1437" height="1420" alt="좋알람 — Netflix Pop-up · 프로젝트 이미지 3" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage is-video"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FNetflixKR%2Fvideos%2F878062519232978%2F&amp;show_text=0&amp;width=1280" title="좋알람 — Netflix Pop-up · 프로젝트 영상" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    <div class="proj-media-stage"><img src="/assets/projects/project-42/01.webp?v=2026-11-13" width="1800" height="1013" alt="좋알람 — Netflix Pop-up · 대표 이미지 1" loading="eager" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="/assets/projects/project-42/02.jpg?v=2026-11-13" width="1800" height="1140" alt="좋알람 — Netflix Pop-up · 프로젝트 이미지 2" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage"><img src="/assets/projects/project-42/03.jpg?v=2026-11-13" width="1437" height="1420" alt="좋알람 — Netflix Pop-up · 프로젝트 이미지 3" loading="lazy" decoding="async" sizes="100vw" /></div><div class="proj-media-stage is-video"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FNetflixKR%2Fvideos%2F878062519232978%2F&amp;show_text=0&amp;width=1280" title="좋알람 — Netflix Pop-up · 프로젝트 영상" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
   </div>
 
   <section class="project-case-study"><div class="wrap"><p class="eyebrow">CASE STUDY</p><h2>Netflix 좋아하면 울리는: 경험하는 팝업</h2><p class="case-detail-summary">《좋아하면 울리는》 시즌1 공개를 기념해, 반경 10m 안에 좋아하는 사람이 들어오면 알람이 울리는 앱을 실제 공간에서 체험하도록 구성했습니다.</p><div class="case-detail-grid"><div class="case-detail-item"><span class="case-detail-label">목표</span><p>드라마의 핵심 장치를 관객이 직접 경험하는 브랜드 팝업으로 전환합니다.</p></div><div class="case-detail-item"><span class="case-detail-label">접근</span><p>앱의 알람 기능을 실제 체험 부스와 이벤트로 옮겨, 콘텐츠 세계관을 오프라인 공간에 구현했습니다.</p></div><div class="case-detail-item"><span class="case-detail-label">결과</span><p>서울 송파구 롯데월드타워 월드파크 잔디광장에서 2019년 8월 18일부터 9월 1일까지 운영되었습니다.</p></div></div><a class="project-contact-cta" href="/#brief">프로젝트 브리프 작성 ↗</a></div></section>
