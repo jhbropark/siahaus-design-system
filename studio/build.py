@@ -1149,6 +1149,12 @@ def build_project_jsonld(d: dict, w: dict) -> str:
         "isPartOf": {"@id": s["url"] + "#website"},
     }
     case_study = next((c for c in d.get("case_studies", {}).get("items", []) if c.get("slug") == w.get("slug")), None)
+    case_sections = case_study.get("sections", []) if case_study else []
+    section_map = {
+        str(x.get("label", "")).strip(): str(x.get("text", "")).strip()
+        for x in case_sections
+        if isinstance(x, dict) and str(x.get("label", "")).strip() and str(x.get("text", "")).strip()
+    }
     work["description"] = project_description(d, w, case_study)
     image_src = (w.get("image_url") or ((w.get("gallery_images") or [""])[0] if w.get("gallery_images") else ""))
     if image_src:
@@ -1165,6 +1171,19 @@ def build_project_jsonld(d: dict, w: dict) -> str:
     ]
     if w.get("year"):
         work["dateCreated"] = w["year"]
+    if section_map.get("일정") and not section_map["일정"].startswith("공개 자료에"):
+        work["temporalCoverage"] = section_map["일정"]
+    if section_map.get("장소") and not section_map["장소"].startswith("공개 자료에"):
+        work["locationCreated"] = {"@type": "Place", "name": section_map["장소"]}
+    if w.get("context"):
+        work["about"] = w["context"]
+    properties = list(work.get("additionalProperty", []))
+    for label in ("역할", "범위", "근거 범위"):
+        if section_map.get(label):
+            properties.append({"@type": "PropertyValue", "name": label, "value": section_map[label]})
+    work["additionalProperty"] = properties
+    if w.get("source"):
+        work["citation"] = w["source"]
 
     crumbs = {
         "@type": "BreadcrumbList",
