@@ -22,7 +22,7 @@ import os
 import re
 import struct
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 
@@ -278,6 +278,15 @@ def build_jsonld(d: dict, launched: bool) -> str:
         video_url = (reference.get("video_url") or "").strip()
         if not video_url:
             continue
+        upload_date = (reference.get("upload_date") or "").strip()
+        try:
+            published_at = datetime.fromisoformat(upload_date.replace("Z", "+00:00"))
+            if "T" not in upload_date or published_at.utcoffset() is None:
+                raise ValueError("date and timezone are required")
+        except ValueError as exc:
+            raise ValueError(
+                f"Reference video {video_url} requires a verified ISO 8601 upload_date with timezone"
+            ) from exc
         video_slug = re.sub(r"[^a-z0-9]+", "-", reference.get("title", "reference").lower()).strip("-") or f"reference-{len(graph)}"
         video_node = {
             "@type": "VideoObject",
@@ -285,6 +294,7 @@ def build_jsonld(d: dict, launched: bool) -> str:
             "name": reference.get("title", "SIA.HAUS reference video"),
             "description": reference.get("summary", ""),
             "contentUrl": absolute_asset_url(s, video_url),
+            "uploadDate": upload_date,
             "publisher": {"@id": s["org_id"]},
             "inLanguage": s["lang"],
         }
