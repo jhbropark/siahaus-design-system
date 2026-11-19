@@ -212,9 +212,11 @@ def build_jsonld(d: dict, launched: bool) -> str:
         },
         "areaServed": {"@type": "Country", "name": s["area_served"]},
         "knowsAbout": list(dict.fromkeys(
-            [d.get("entity_definition", "")] +
-            [f["name"] for f in d["fields"]["items"]] +
-            ["AI GRAPHICS", "Generative AI", "3D", "VFX", "Motion Graphics", "Spatial Media", "Projection Mapping", "Immersive Exhibition", "Media Facade", "Sound Design"]
+            value for value in (
+                [d.get("entity_definition", "")] +
+                [f["name"] for f in d["fields"]["items"]] +
+                ["AI GRAPHICS", "Generative AI", "3D", "VFX", "Motion Graphics", "Spatial Media", "Projection Mapping", "Immersive Exhibition", "Media Facade", "Sound Design"]
+            ) if value
         )),
         "sameAs": s["same_as"],
         # varis.kr 이 parentOrganization 으로 이쪽을 가리키고, 여기서 되받아
