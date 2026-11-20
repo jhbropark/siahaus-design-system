@@ -210,6 +210,12 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
 .brief-followup{display:flex;flex-direction:column;gap:5px;margin-top:18px;padding:16px 18px;background:#efefec;border-left:2px solid var(--black);font-size:12px;line-height:1.6;color:var(--text-subtle)}
 .brief-followup strong{color:var(--text-strong);font-weight:500}
 .brief-followup[hidden]{display:none}
+.brief-secondary{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.brief-secondary summary{cursor:pointer;font-size:12px;color:var(--text-subtle);list-style:none}
+.brief-secondary summary::-webkit-details-marker{display:none}
+.brief-secondary summary::after{content:" +";float:right;color:var(--text-faint)}
+.brief-secondary[open] summary::after{content:" −"}
+.brief-secondary .brief-grid{margin-top:16px}
 /* project case study */
 .project-case-study{padding:clamp(64px,9vw,128px) 0 0}
 .project-case-study .wrap{max-width:1000px}
@@ -219,6 +225,7 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
 .case-detail-item{background:var(--bg);padding:26px 24px;min-height:150px}
 .case-detail-item p{margin-top:12px;font-size:15px;line-height:1.7;color:var(--text-subtle)}
 .project-case-study .project-contact-cta{margin-top:30px}
+.project-contact-note{margin:12px 0 0;font-size:12px;color:var(--text-faint)}
 @media(max-width:820px){.case-grid{grid-template-columns:1fr}.case-detail-grid{grid-template-columns:1fr}.brief-grid{grid-template-columns:1fr}}
 
 /* faq */
@@ -312,7 +319,6 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
         "name": "대한민국"
       },
       "knowsAbout": [
-        "",
         "브랜드 경험을 공간으로 확장",
         "건축과 외벽을 미디어로 전환",
         "관객이 참여하는 전시 만들기",
@@ -834,7 +840,7 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
       <div class="sec-head">
         <p class="eyebrow">PROJECT BRIEF</p>
         <h2>프로젝트의 출발점을 보내주세요</h2>
-        <p class="lead">공간, 일정, 예산의 범위를 알려주시면 가능한 방향부터 회신드립니다. 제출 내용은 안전하게 접수됩니다.</p>
+        <p class="lead">이메일과 프로젝트 목적, 만들고 싶은 경험을 먼저 알려주세요. 예산과 일정은 확인 후 이어서 여쭙습니다.</p>
       </div>
       <form class="brief-form" action="https://formspree.io/f/xaeqleva" method="POST" accept-charset="UTF-8">
         <input type="hidden" name="_subject" value="[SIA.HAUS] 프로젝트 브리프" />
@@ -857,20 +863,25 @@ footer.site{background:var(--footer-bg);padding:clamp(36px,5vw,56px) 0;
         <input type="hidden" name="relay_client_status" />
         <input type="hidden" name="relay_status" />
         <div class="brief-grid">
-          <label>회사·기관명 <input type="text" name="company" autocomplete="organization" required /></label>
-          <label>담당자명 <input type="text" name="contact_name" autocomplete="name" required /></label>
           <label>이메일 <input type="email" name="email" autocomplete="email" required /></label>
           <label>프로젝트 목적 <select name="purpose" required><option value="">선택해 주세요</option><option value="브랜드 경험을 공간으로 확장">브랜드 경험을 공간으로 확장</option><option value="건축과 외벽을 미디어로 전환">건축과 외벽을 미디어로 전환</option><option value="관객이 참여하는 전시 만들기">관객이 참여하는 전시 만들기</option><option value="도시와 공공 공간에 장면 만들기">도시와 공공 공간에 장면 만들기</option><option value="아이디어를 실제 결과물로 구현">아이디어를 실제 결과물로 구현</option></select></label>
-          <label>예상 예산 <select name="budget_range"><option value="">선택해 주세요</option><option value="5천만원 미만">5천만원 미만</option><option value="5천만원–1억원">5천만원–1억원</option><option value="1억–3억원">1억–3억원</option><option value="3억원 이상">3억원 이상</option></select></label>
-          <label>희망 일정 <select name="timeline"><option value="">선택해 주세요</option><option value="3개월 이내">3개월 이내</option><option value="3–6개월">3–6개월</option><option value="6개월 이후">6개월 이후</option></select></label>
-          <label>의사결정 단계 <select name="decision_stage"><option value="">선택해 주세요</option><option value="아이디어 검토">아이디어 검토</option><option value="내부 논의 중">내부 논의 중</option><option value="예산·일정 확정">예산·일정 확정</option><option value="제작사 선정 단계">제작사 선정 단계</option></select></label>
-          <label>공간 위치 <input type="text" name="space_location" placeholder="예: 서울 강남구, 해외" /></label>
+          <label class="brief-full">프로젝트 설명 <textarea name="description" rows="6" placeholder="만들고 싶은 경험, 필요한 산출물, 참고 링크를 자유롭게 적어주세요." required></textarea></label>
+          <label>회사·기관명 <input type="text" name="company" autocomplete="organization" /></label>
+          <label>담당자명 <input type="text" name="contact_name" autocomplete="name" /></label>
         </div>
-        <label class="brief-full">프로젝트 설명 <textarea name="description" rows="6" placeholder="만들고 싶은 경험, 필요한 산출물, 참고 링크를 자유롭게 적어주세요." required></textarea></label>
+        <details class="brief-secondary">
+          <summary>예산·일정·공간 정보를 미리 남기기 (선택)</summary>
+          <div class="brief-grid">
+            <label>예상 예산 <select name="budget_range"><option value="">선택해 주세요</option><option value="5천만원 미만">5천만원 미만</option><option value="5천만원–1억원">5천만원–1억원</option><option value="1억–3억원">1억–3억원</option><option value="3억원 이상">3억원 이상</option></select></label>
+            <label>희망 일정 <select name="timeline"><option value="">선택해 주세요</option><option value="3개월 이내">3개월 이내</option><option value="3–6개월">3–6개월</option><option value="6개월 이후">6개월 이후</option></select></label>
+            <label>의사결정 단계 <select name="decision_stage"><option value="">선택해 주세요</option><option value="아이디어 검토">아이디어 검토</option><option value="내부 논의 중">내부 논의 중</option><option value="예산·일정 확정">예산·일정 확정</option><option value="제작사 선정 단계">제작사 선정 단계</option></select></label>
+            <label>공간 위치 <input type="text" name="space_location" placeholder="예: 서울 강남구, 해외" /></label>
+          </div>
+        </details>
         <label class="brief-consent"><input type="checkbox" name="privacy_consent" value="accepted" required /> <span>개인정보 처리 안내를 확인했으며, 문의 응대를 위한 정보 처리에 동의합니다. <a href="/privacy">전문 보기</a></span></label>
         <input type="hidden" name="privacy_policy_version" value="2026-10-29" />
-        <div class="brief-actions"><button type="submit" class="brief-submit">브리프 보내기 ↗</button><p class="brief-note" role="status">제출 내용은 안전하게 접수되며, 확인 후 회신드립니다.</p></div>
-        <div class="brief-followup" hidden role="status"><strong>다음 단계</strong><span>브리프를 확인한 뒤 가능한 제작 방향과 다음 미팅 단계를 회신드립니다.</span></div>
+        <div class="brief-actions"><button type="submit" class="brief-submit">브리프 보내기 ↗</button><p class="brief-note" role="status">브리프를 먼저 보내주시면 확인 후 영업일 기준 2일 안에 1차 회신드립니다.</p></div>
+        <div class="brief-followup" hidden role="status"><strong>다음 단계</strong><span>영업일 기준 2일 안에 1차 회신드립니다. 가능한 제작 방향과 다음 단계를 함께 안내드립니다.</span></div>
       </form>
     </div>
   </section>

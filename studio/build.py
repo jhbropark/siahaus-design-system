@@ -544,6 +544,12 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
 .brief-followup{display:flex;flex-direction:column;gap:5px;margin-top:18px;padding:16px 18px;background:#efefec;border-left:2px solid var(--black);font-size:12px;line-height:1.6;color:var(--text-subtle)}
 .brief-followup strong{color:var(--text-strong);font-weight:500}
 .brief-followup[hidden]{display:none}
+.brief-secondary{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.brief-secondary summary{cursor:pointer;font-size:12px;color:var(--text-subtle);list-style:none}
+.brief-secondary summary::-webkit-details-marker{display:none}
+.brief-secondary summary::after{content:" +";float:right;color:var(--text-faint)}
+.brief-secondary[open] summary::after{content:" −"}
+.brief-secondary .brief-grid{margin-top:16px}
 /* project case study */
 .project-case-study{padding:clamp(64px,9vw,128px) 0 0}
 .project-case-study .wrap{max-width:1000px}
@@ -553,6 +559,7 @@ h2{font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-0.03em;
 .case-detail-item{background:var(--bg);padding:26px 24px;min-height:150px}
 .case-detail-item p{margin-top:12px;font-size:15px;line-height:1.7;color:var(--text-subtle)}
 .project-case-study .project-contact-cta{margin-top:30px}
+.project-contact-note{margin:12px 0 0;font-size:12px;color:var(--text-faint)}
 @media(max-width:820px){.case-grid{grid-template-columns:1fr}.case-detail-grid{grid-template-columns:1fr}.brief-grid{grid-template-columns:1fr}}
 
 /* faq */
@@ -760,20 +767,25 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
         <input type="hidden" name="relay_client_status" />
         <input type="hidden" name="relay_status" />
         <div class="brief-grid">
-          <label>회사·기관명 <input type="text" name="company" autocomplete="organization" required /></label>
-          <label>담당자명 <input type="text" name="contact_name" autocomplete="name" required /></label>
           <label>이메일 <input type="email" name="email" autocomplete="email" required /></label>
           <label>프로젝트 목적 <select name="purpose" required><option value="">선택해 주세요</option>{brief_options}</select></label>
-          <label>예상 예산 <select name="budget_range"><option value="">선택해 주세요</option>{budget_options}</select></label>
-          <label>희망 일정 <select name="timeline"><option value="">선택해 주세요</option>{timeline_options}</select></label>
-          <label>의사결정 단계 <select name="decision_stage"><option value="">선택해 주세요</option>{decision_options}</select></label>
-          <label>공간 위치 <input type="text" name="space_location" placeholder="예: 서울 강남구, 해외" /></label>
+          <label class="brief-full">프로젝트 설명 <textarea name="description" rows="6" placeholder="만들고 싶은 경험, 필요한 산출물, 참고 링크를 자유롭게 적어주세요." required></textarea></label>
+          <label>회사·기관명 <input type="text" name="company" autocomplete="organization" /></label>
+          <label>담당자명 <input type="text" name="contact_name" autocomplete="name" /></label>
         </div>
-        <label class="brief-full">프로젝트 설명 <textarea name="description" rows="6" placeholder="만들고 싶은 경험, 필요한 산출물, 참고 링크를 자유롭게 적어주세요." required></textarea></label>
+        <details class="brief-secondary">
+          <summary>예산·일정·공간 정보를 미리 남기기 (선택)</summary>
+          <div class="brief-grid">
+            <label>예상 예산 <select name="budget_range"><option value="">선택해 주세요</option>{budget_options}</select></label>
+            <label>희망 일정 <select name="timeline"><option value="">선택해 주세요</option>{timeline_options}</select></label>
+            <label>의사결정 단계 <select name="decision_stage"><option value="">선택해 주세요</option>{decision_options}</select></label>
+            <label>공간 위치 <input type="text" name="space_location" placeholder="예: 서울 강남구, 해외" /></label>
+          </div>
+        </details>
         <label class="brief-consent"><input type="checkbox" name="privacy_consent" value="accepted" required /> <span>{esc(d.get("privacy", {}).get("consent_label", "개인정보 처리 안내를 확인했으며, 문의 응대를 위한 정보 처리에 동의합니다."))} <a href="/privacy">전문 보기</a></span></label>
         <input type="hidden" name="privacy_policy_version" value="2026-10-29" />
         <div class="brief-actions"><button type="submit" class="brief-submit">{esc(brief_data.get("submit", "브리프 보내기"))} ↗</button><p class="brief-note" role="status">{esc(brief_data.get("note", ""))}</p></div>
-        <div class="brief-followup" hidden role="status"><strong>다음 단계</strong><span>브리프를 확인한 뒤 가능한 제작 방향과 다음 미팅 단계를 회신드립니다.</span></div>
+        <div class="brief-followup" hidden role="status"><strong>다음 단계</strong><span>{esc(brief_data.get("reply_time", "영업일 기준 2일 안에 1차 회신드립니다."))} 가능한 제작 방향과 다음 단계를 함께 안내드립니다.</span></div>
       </form>'''
 
     faqs = "".join(
@@ -1137,7 +1149,7 @@ def build_service_html(d: dict, service: dict) -> str:
 <script type="application/ld+json">{build_service_jsonld(d, service)}</script>
 <style>
 :root{{--service-bg:#f7f7f5;--service-line:rgba(0,0,0,.12);--service-muted:#666;--service-black:#050505}}
-*{{box-sizing:border-box}}body{{margin:0;background:var(--service-bg);color:#111;font-family:Inter,Arial,sans-serif}}a{{color:inherit;text-decoration:none}}.wrap{{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}}header{{height:64px;border-bottom:1px solid var(--service-line);background:rgba(255,255,255,.92);display:flex;align-items:center}}header .wrap{{width:100%;display:flex;justify-content:space-between;align-items:center}}.logo{{font-weight:600;font-size:14px}}nav{{display:flex;gap:22px;font-size:13px;color:#666}}main{{padding:clamp(72px,10vw,150px) 0 0}}.service-kicker{{font:500 11px/1.4 ui-monospace,monospace;letter-spacing:.18em;color:#666}}h1{{max-width:900px;margin:18px 0 24px;font-size:clamp(44px,7vw,96px);line-height:.95;letter-spacing:-.06em;font-weight:300}}.service-lead{{max-width:780px;font-size:clamp(18px,2vw,27px);line-height:1.55;color:#333}}.service-definition{{max-width:720px;margin-top:26px;font-size:16px;line-height:1.8;color:#555}}.service-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--service-line);margin-top:80px}}.service-panel{{background:var(--service-bg);padding:26px;min-height:210px}}.service-panel h2{{font-size:21px;font-weight:400;margin:0 0 20px}}.service-panel ul{{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}}.service-panel li{{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--service-line);padding-top:11px}}.service-panel li span{{font:11px ui-monospace,monospace;color:#777}}.service-related{{padding:clamp(80px,10vw,150px) 0 0}}.section-label{{font:500 11px/1.4 ui-monospace,monospace;letter-spacing:.18em;color:#666}}.service-related h2,.service-faq h2{{font-size:clamp(32px,5vw,62px);font-weight:300;letter-spacing:-.05em;margin:14px 0 34px}}.service-related-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}.service-related-card{{background:#fff;border:1px solid var(--service-line);display:flex;flex-direction:column;min-height:100%}}.service-related-media{{aspect-ratio:16/10;background:#e8e8e6;overflow:hidden}}.service-related-media img{{width:100%;height:100%;object-fit:cover;display:block}}.service-related-card>div:last-child{{padding:18px;display:flex;flex-direction:column;gap:9px}}.service-related-card span{{font:10px ui-monospace,monospace;color:#777}}.service-related-card strong{{font-size:20px;font-weight:400;line-height:1.15}}.service-faq{{padding:clamp(80px,10vw,150px) 0 0}}.service-faq-item{{border-top:1px solid var(--service-line);padding:22px 0;display:grid;grid-template-columns:1fr 1fr;gap:28px}}.service-faq-item h3{{margin:0;font-size:20px;font-weight:400}}.service-faq-item p{{margin:0;color:#555;line-height:1.75}}.service-cta{{margin:clamp(80px,10vw,150px) 0 0;padding:38px;background:#050505;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center}}.service-cta h2{{margin:0;font-size:clamp(26px,4vw,50px);font-weight:300;letter-spacing:-.05em}}.service-cta a{{border:1px solid rgba(255,255,255,.55);padding:13px 18px;font-size:12px;white-space:nowrap}}footer{{margin-top:120px;padding:32px 0;border-top:1px solid var(--service-line);font-size:12px;color:#666}}@media(max-width:820px){{nav{{gap:14px;overflow-x:auto;white-space:nowrap}}.service-grid,.service-related-grid{{grid-template-columns:1fr}}.service-faq-item{{grid-template-columns:1fr;gap:10px}}.service-cta{{display:block}}.service-cta a{{display:inline-block;margin-top:24px}}}}
+*{{box-sizing:border-box}}body{{margin:0;background:var(--service-bg);color:#111;font-family:Inter,Arial,sans-serif}}a{{color:inherit;text-decoration:none}}.wrap{{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}}header{{height:64px;border-bottom:1px solid var(--service-line);background:rgba(255,255,255,.92);display:flex;align-items:center}}header .wrap{{width:100%;display:flex;justify-content:space-between;align-items:center}}.logo{{font-weight:600;font-size:14px}}nav{{display:flex;gap:22px;font-size:13px;color:#666}}main{{padding:clamp(72px,10vw,150px) 0 0}}.service-kicker{{font:500 11px/1.4 ui-monospace,monospace;letter-spacing:.18em;color:#666}}h1{{max-width:900px;margin:18px 0 24px;font-size:clamp(44px,7vw,96px);line-height:.95;letter-spacing:-.06em;font-weight:300}}.service-lead{{max-width:780px;font-size:clamp(18px,2vw,27px);line-height:1.55;color:#333}}.service-definition{{max-width:720px;margin-top:26px;font-size:16px;line-height:1.8;color:#555}}.service-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--service-line);margin-top:80px}}.service-panel{{background:var(--service-bg);padding:26px;min-height:210px}}.service-panel h2{{font-size:21px;font-weight:400;margin:0 0 20px}}.service-panel ul{{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}}.service-panel li{{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--service-line);padding-top:11px}}.service-panel li span{{font:11px ui-monospace,monospace;color:#777}}.service-related{{padding:clamp(80px,10vw,150px) 0 0}}.section-label{{font:500 11px/1.4 ui-monospace,monospace;letter-spacing:.18em;color:#666}}.service-related h2,.service-faq h2{{font-size:clamp(32px,5vw,62px);font-weight:300;letter-spacing:-.05em;margin:14px 0 34px}}.service-related-grid{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}.service-related-card{{background:#fff;border:1px solid var(--service-line);display:flex;flex-direction:column;min-height:100%}}.service-related-media{{aspect-ratio:16/10;background:#e8e8e6;overflow:hidden}}.service-related-media img{{width:100%;height:100%;object-fit:cover;display:block}}.service-related-card>div:last-child{{padding:18px;display:flex;flex-direction:column;gap:9px}}.service-related-card span{{font:10px ui-monospace,monospace;color:#777}}.service-related-card strong{{font-size:20px;font-weight:400;line-height:1.15}}.service-faq{{padding:clamp(80px,10vw,150px) 0 0}}.service-faq-item{{border-top:1px solid var(--service-line);padding:22px 0;display:grid;grid-template-columns:1fr 1fr;gap:28px}}.service-faq-item h3{{margin:0;font-size:20px;font-weight:400}}.service-faq-item p{{margin:0;color:#555;line-height:1.75}}.service-cta{{margin:clamp(80px,10vw,150px) 0 0;padding:38px;background:#050505;color:#fff;display:flex;justify-content:space-between;gap:24px;align-items:center}}.service-cta-copy{{display:flex;flex-direction:column;gap:10px}}.service-cta h2{{margin:0;font-size:clamp(26px,4vw,50px);font-weight:300;letter-spacing:-.05em}}.service-cta-note{{margin:0;color:rgba(255,255,255,.7);font-size:12px}}.service-cta a{{border:1px solid rgba(255,255,255,.55);padding:13px 18px;font-size:12px;white-space:nowrap}}footer{{margin-top:120px;padding:32px 0;border-top:1px solid var(--service-line);font-size:12px;color:#666}}@media(max-width:820px){{nav{{gap:14px;overflow-x:auto;white-space:nowrap}}.service-grid,.service-related-grid{{grid-template-columns:1fr}}.service-faq-item{{grid-template-columns:1fr;gap:10px}}.service-cta{{display:block}}.service-cta a{{display:inline-block;margin-top:24px}}}}
 </style>
 </head>
 <body>
@@ -1150,7 +1162,7 @@ def build_service_html(d: dict, service: dict) -> str:
 <div class="service-grid"><section class="service-panel"><h2>핵심 키워드</h2><ul>{keywords_html}</ul></section><section class="service-panel"><h2>제작 구조</h2><ul>{process_html}</ul></section><section class="service-panel"><h2>시작점</h2><ul><li><strong>프로젝트 브리프</strong><span>공간 · 일정 · 예산</span></li><li><strong>레퍼런스 검토</strong><span>목적 · 관객 · 매체</span></li><li><strong>제작 방향 제안</strong><span>범위 · 결과물</span></li></ul></section></div>
 <section class="service-related"><p class="section-label">RELATED PROJECTS</p><h2>관련 프로젝트</h2><div class="service-related-grid">{"".join(related_cards)}</div></section>
 <section class="service-faq"><p class="section-label">FAQ</p><h2>자주 묻는 질문</h2>{faq_html}</section>
-<section class="service-cta"><h2>프로젝트의 출발점을 보내주세요</h2><a href="/?service_tag={esc(service["slug"])}#brief">프로젝트 브리프 작성 ↗</a></section>
+<section class="service-cta"><div class="service-cta-copy"><h2>프로젝트의 출발점을 보내주세요</h2><p class="service-cta-note">영업일 기준 2일 안에 1차 회신드립니다.</p></div><a href="/?service_tag={esc(service["slug"])}#brief">프로젝트 브리프 작성 ↗</a></section>
 </div></main><footer><div class="wrap">© {date.today().year} {esc(s["name"])} · <a href="/privacy">개인정보 처리 안내</a></div></footer>
 </body></html>'''
 
@@ -1396,7 +1408,7 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     case_study_html = ""
     if case_study and not archive_only:
         case_sections = "".join(f'<div class="case-detail-item"><span class="case-detail-label">{esc(x.get("label", ""))}</span><p>{esc(x.get("text", ""))}</p></div>' for x in case_study.get("sections", []))
-        case_study_html = f'''<section class="project-case-study"><div class="wrap"><p class="eyebrow">CASE STUDY</p><h2>{esc(case_study.get("title", display_title))}</h2><p class="case-detail-summary">{esc(case_study.get("summary", ""))}</p><div class="case-detail-grid">{case_sections}</div><a class="project-contact-cta" href="/#brief">프로젝트 브리프 작성 ↗</a></div></section>'''
+        case_study_html = f'''<section class="project-case-study"><div class="wrap"><p class="eyebrow">CASE STUDY</p><h2>{esc(case_study.get("title", display_title))}</h2><p class="case-detail-summary">{esc(case_study.get("summary", ""))}</p><div class="case-detail-grid">{case_sections}</div><a class="project-contact-cta" href="/#brief">프로젝트 브리프 작성 ↗</a><p class="project-contact-note">영업일 기준 2일 안에 1차 회신드립니다.</p></div></section>'''
 
     items = [x for x in d["work"]["items"] if x.get("slug")]
     idx = next((i for i, x in enumerate(items) if x["slug"] == slug), 0)

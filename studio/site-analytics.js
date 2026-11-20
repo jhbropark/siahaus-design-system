@@ -174,9 +174,10 @@
         }
         data.set('relay_status', relayStatus);
         data.set('relay_client_status', relayClientStatus);
+        track('brief_submit_success', { submission_status: 'success', lead_source: 'website', lead_id: leadId, service_tag: data.get('service_tag'), qa: data.get('qa') === 'true', relay_status: relayStatus, relay_client_status: relayClientStatus, landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)', utm_content: attribution.utm_content || '(none)', utm_term: attribution.utm_term || '(none)' });
         track('generate_lead', { submission_status: 'success', lead_source: 'website', lead_id: leadId, service_tag: data.get('service_tag'), qa: data.get('qa') === 'true', relay_status: relayStatus, relay_client_status: relayClientStatus, landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)' });
         if (analyticsReady && window.gtag) window.gtag('event', 'conversion', { send_to: ADS_CONVERSION, value: 1.0, currency: 'KRW' });
-        if (note) { note.textContent = '브리프가 접수되었습니다. 확인 후 회신드리겠습니다.'; note.setAttribute('data-state', 'success'); }
+        if (note) { note.textContent = '브리프가 접수되었습니다. 영업일 기준 2일 안에 1차 회신드립니다.'; note.setAttribute('data-state', 'success'); }
         if (followup) followup.hidden = false;
         form.querySelectorAll('input, select, textarea, button').forEach(function (field) { field.disabled = true; });
       } catch (error) {
