@@ -147,6 +147,22 @@ def project_description(d: dict, w: dict, case_study: dict | None = None) -> str
     return f"SIA.HAUS의{year_text} {category} 프로젝트 아카이브입니다. {label}의 이미지와 제작 기록을 소개합니다."
 
 
+def project_is_indexable(d: dict, w: dict) -> bool:
+    """Index only project pages with verified editorial content.
+
+    Gallery/archive pages remain reachable from the site, but a generic
+    archive sentence alone is not enough to present them as search landing
+    pages. The check deliberately uses only explicit copy or a case study.
+    """
+    case_study = next(
+        (c for c in d.get("case_studies", {}).get("items", [])
+         if c.get("slug") == w.get("slug")),
+        None,
+    )
+    return bool(str(w.get("description") or "").strip() or
+                str((case_study or {}).get("summary") or "").strip())
+
+
 def licensing_launched(d: dict) -> bool:
     """구독 라이선싱을 운영 중으로 서술해도 되는지.
 
@@ -635,6 +651,8 @@ def build_html(d: dict, locales: list, launched: bool) -> str:
     if len(locales) > 1:
         default = next(o for o in locales if o["locale"] == "ko")
         alternates += f'\n<link rel="alternate" hreflang="x-default" href="{esc(default["url"])}" />'
+    alternates += f'\n<link rel="alternate" type="text/plain" href="{esc(s["url"] + "llms.txt")}" title="AI-readable profile" />'
+    alternates += f'\n<link rel="sitemap" type="application/xml" href="{esc(s["url"] + "sitemap.xml")}" title="XML sitemap" />'
 
     # The main logo is neutral; project clients belong in the work cards.
     featured = ""
@@ -1252,6 +1270,7 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
     hero_description = project_description(d, w, case_study)
     has_body = True
     explicit_description = bool(str(w.get("description") or ((case_study or {}).get("summary") or "")).strip())
+    robots_directive = "index,follow" if project_is_indexable(d, w) else "noindex,follow"
     title = f'{display_title} | {s["name"]}'
     if explicit_description:
         desc = hero_description.split(". ")[0].strip().rstrip(".") + "."
@@ -1453,9 +1472,11 @@ def build_project_html(d: dict, w: dict, locales: list, launched: bool) -> str:
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}" />
-<meta name="robots" content="index,follow" />
 <link rel="canonical" href="{esc(url)}" />
+<link rel="alternate" type="text/plain" href="{esc(s["url"] + "llms.txt")}" title="AI-readable profile" />
+<link rel="sitemap" type="application/xml" href="{esc(s["url"] + "sitemap.xml")}" title="XML sitemap" />
 <meta property="og:type" content="article" />
+<meta name="robots" content="{robots_directive}" />
 <meta property="og:site_name" content="{esc(s["name"])}" />
 <meta property="og:url" content="{esc(url)}" />
 <meta property="og:title" content="{esc(title)}" />
@@ -1643,14 +1664,15 @@ def build_llms(d: dict, launched: bool) -> str:
 
     lines += [f'## {d["work"]["title"]}', "", d["work"]["lead"], ""]
     for w in d["work"]["items"]:
-        bits = [b for b in (w["name"], w["context"], w["year"]) if b]
-        lines.append(f'- {w["client"]} — ' + " · ".join(bits))
+        label = w.get("display_title") or (f'{w["client"]} — {w["name"]}' if w.get("name") else w["client"])
+        description = project_description(d, w)
+        lines.append(f'- [{label}]({s["url"]}projects/{w["slug"]}) — {description}')
     lines.append("")
 
     if d.get("case_studies", {}).get("items"):
         lines += [f'## {d["case_studies"]["title"]}', "", d["case_studies"].get("lead", ""), ""]
         for c in d["case_studies"]["items"]:
-            lines.append(f'### {c["title"]}')
+            lines.append(f'### [{c["title"]}]({s["url"]}projects/{c["slug"]})')
             lines += ["", c.get("summary", "")]
             for part in c.get("sections", []):
                 lines.append(f'- **{part["label"]}** — {part["text"]}')
@@ -1663,6 +1685,7 @@ def build_llms(d: dict, launched: bool) -> str:
             lines += [f'### {i["q"]}', "", i.get("a_spoken", i["a"]), ""]
 
     lines += ["## 링크", ""]
+    lines += [f'- [전체 AI 안내]({s["url"]}llms-full.txt) — 검증된 프로젝트·질문·출처 범위를 포함한 상세 안내']
     lines += [f'- [{l["label"]}]({l["url"]}) — {l["desc"]}' for l in d["links"]]
     lines.append("")
 
@@ -1681,13 +1704,11 @@ def build_sitemap(locales: list, today: str, project_urls: list[str] | None = No
             for x in locales
         )
         urls.append(
-            f'  <url>\n    <loc>{o["url"]}</loc>\n'
-            f'    <lastmod>{today}</lastmod>{alts}\n  </url>'
+            f'  <url>\n    <loc>{o["url"]}</loc>{alts}\n  </url>'
         )
     for pu in (project_urls or []):
         urls.append(
-            f'  <url>\n    <loc>{pu}</loc>\n'
-            f'    <lastmod>{today}</lastmod>\n  </url>'
+            f'  <url>\n    <loc>{pu}</loc>\n  </url>'
         )
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
@@ -1749,7 +1770,7 @@ def main() -> int:
 
         case_by_slug2 = {c.get("slug"): c for c in d2.get("case_studies", {}).get("items", [])}
         for w2 in d2["work"]["items"]:
-            if w2.get("slug"):
+            if w2.get("slug") and project_is_indexable(d2, w2):
                 project_urls.append(d2["site"]["url"] + "projects/" + w2["slug"] )
     out["sitemap.xml"] = build_sitemap(locales, today, project_urls + service_urls)
 

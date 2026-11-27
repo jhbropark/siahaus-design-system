@@ -50,65 +50,75 @@ AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합�
 
 
 
-- 2026 Kim Tschang-Yeul Atelier — 2026
-- This is the first IP gallery project by SIA.HAUS "ARFA" — 
-- 2025 SWL Kinetic Display Media Art ' ARIA' — 2025
-- 2025 GRAND JOSUN Anamorphic media facade — 2025
-- 시공간의 만개(滿開): 서울의 맥박 — 
-- 가평 더 — 힐링스테이파크 9Block
-- 광명동굴 레인보우 — 팩토리
-- 그랜드 조선 — 부산 미디어파사드
-- 기아 EV6 — 그린랜드
-- 기아 EV6 — 비비드 시드니 2023
-- 기아 EV6 — 팝업스토어
-- 기장 카페 — 마리솔 프로젝션 맵핑
-- 뉴발란스 플래그쉽 — 강남점
-- 대만 ACTIVA — 타이난
-- 대명 오션월드 — 라이팅 페스티벌
-- 더현대 서울 — 엔트로피 오브 네이처
-- 덕평휴게소 — 별빛정원우주
-- 롯데백화점 본점 — 미디어파사드 2023
-- 롯데월드몰 에비뉴엘 — CLUSTER
-- 베니스 — 비엔날레
-- 별마당 도서관 — 빛의도시
-- 부산 사상역 — 프로젝션 맵핑
-- 샌프란시스코 LUX — SOUND ROOM
-- 서울라이트 — 광화
-- 서울라이트 광화 — 2023
-- 송도컨벤시아 스마트마이스 — 라운지
-- 수원 스마트시티 — 소통박스
-- 수원화성 — AI GRAPHICS쇼
-- 순천시 관광안내소 — CMS 2023
-- 순천시청 홀로그램 — 디스플레이
-- 신세계백화점 본점 — 미디어파사드
-- 아이벡스 스튜디오 — 광명 이터니티 콘서트
-- 알리페이 플러스 — 팝업
-- 에버랜드 썸머 — 워터 펀 페스티벌
-- 여의도 IFC몰 — 일루미네이션
-- 영종도 파라다이스시티 — 일루미네이션
-- 인천공항 입국장 — 전통문화 미디어
-- 인천애뜰 열린광장 — LED Furniture
-- 좋알람 — Netflix Pop-up · 롯데월드타워 월드파크 잔디광장 · 2019.08.18–09.01 · 16:00–22:00 · 2019
-- 중국 항저우 — 타워
-- 코엑스 마곡 — 르웨스트 CP1 Block
-- 코엑스 SLW — 키네틱 디스플레이
-- 파크원 — 타워2
-- 풀무원 안산 — 콤플렉스 Natural gravity
-- 한국콘텐츠진흥원 뉴미디어 — 퍼포먼스
-- 현대모비스 M.Vision — X
-- 현대자동차 HMGICS — 2023
-- 휠라 신사옥 — MISTO HOLDINGS Office · 서울특별시 성북구 보문동 · 지하 3층–지상 10층 · PM
-- KTX 용산역 — LED전광판
-- LDF 하우스 — 미디어파사드 2023
-- LG ISE — 2025 아웃도어 디스플레이
-- N서울타워 NSMR — ZONE
-- SM 라이즈 — 럭키튠
+- [2026 Kim Tschang-Yeul Atelier](https://www.sia.haus/projects/behance-01) — 본 작업은 완성된 결과물로서의 물방울에 머무르지 않고, 시간의 흐름을 거슬러 변화하는 물방울의 밀도와 움직임을 통해 1980년대 김창열 화백이 가장 치열하게 몰두했던 창작의 순간을 감각적으로 복원합니다.
+- [ARFA: 첫 번째 자체 IP 갤러리 프로젝트](https://www.sia.haus/projects/behance-02) — SIA.HAUS의 BEHANCE 프로젝트 아카이브입니다. ARFA: 첫 번째 자체 IP 갤러리 프로젝트의 이미지와 제작 기록을 소개합니다.
+- [ARIA: AI 도시, 미래 서울](https://www.sia.haus/projects/behance-03) — 강남 코엑스에서 열린 Smart Life Week 2025에서 선보인 본 프로젝트는‘AI 도시, 미래 서울’을 주제로,기술과 인간이 공존하는 새로운 도시의 모습을 시각적으로 표현했습니다.
+- [Grand Josun Busan: 건축과 빛이 만나는 외벽](https://www.sia.haus/projects/behance-04) — Grand Josun Busan 외벽의 커브드 LED 미디어파사드를 활용해, 건축과 결합되는 아나몰픽 비주얼 콘텐츠를 연출한 프로젝트입니다. 해운대라는 장소적 맥락 속에서, 자연의 흐름과 도시의 빛이 교차하는 새로운 공공 시각 경험을 제안합니다.
+- [서울의 맥박: 도시에 생명력을 더하는 장면](https://www.sia.haus/projects/behance-05) — 2026년 붉은 말의 해를 상징하는 꽃으로 이루어진 말 가족은, 삭막한 도심에 생명력과 온기를 불어넣는 존재입니다. 말의 역동적인 에너지는 정체된 도시 풍경에 활기를 더하며, 전통 위에 새로운 희망이 피어나는 서울의 조화를 시각화한 작품입니다.
+- [가평 더 — 힐링스테이파크 9Block](https://www.sia.haus/projects/project-01) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 가평 더 — 힐링스테이파크 9Block의 이미지와 제작 기록을 소개합니다.
+- [광명동굴 레인보우 — 팩토리](https://www.sia.haus/projects/project-02) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 광명동굴 레인보우 — 팩토리의 이미지와 제작 기록을 소개합니다.
+- [그랜드 조선 — 부산 미디어파사드](https://www.sia.haus/projects/project-06) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 그랜드 조선 — 부산 미디어파사드의 이미지와 제작 기록을 소개합니다.
+- [기아 EV6 — 그린랜드](https://www.sia.haus/projects/project-07) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 기아 EV6 — 그린랜드의 이미지와 제작 기록을 소개합니다.
+- [기아 EV6 — 비비드 시드니 2023](https://www.sia.haus/projects/project-08) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 기아 EV6 — 비비드 시드니 2023의 이미지와 제작 기록을 소개합니다.
+- [기아 EV6 — 팝업스토어](https://www.sia.haus/projects/project-09) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 기아 EV6 — 팝업스토어의 이미지와 제작 기록을 소개합니다.
+- [기장 카페 — 마리솔 프로젝션 맵핑](https://www.sia.haus/projects/project-10) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 기장 카페 — 마리솔 프로젝션 맵핑의 이미지와 제작 기록을 소개합니다.
+- [뉴발란스 플래그쉽 — 강남점](https://www.sia.haus/projects/project-11) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 뉴발란스 플래그쉽 — 강남점의 이미지와 제작 기록을 소개합니다.
+- [대만 ACTIVA — 타이난](https://www.sia.haus/projects/project-12) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 대만 ACTIVA — 타이난의 이미지와 제작 기록을 소개합니다.
+- [대명 오션월드 — 라이팅 페스티벌](https://www.sia.haus/projects/project-13) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 대명 오션월드 — 라이팅 페스티벌의 이미지와 제작 기록을 소개합니다.
+- [더현대 서울 — 엔트로피 오브 네이처](https://www.sia.haus/projects/project-14) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 더현대 서울 — 엔트로피 오브 네이처의 이미지와 제작 기록을 소개합니다.
+- [덕평휴게소 — 별빛정원우주](https://www.sia.haus/projects/project-15) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 덕평휴게소 — 별빛정원우주의 이미지와 제작 기록을 소개합니다.
+- [롯데백화점 본점 — 미디어파사드 2023](https://www.sia.haus/projects/project-16) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 롯데백화점 본점 — 미디어파사드 2023의 이미지와 제작 기록을 소개합니다.
+- [롯데월드몰 에비뉴엘 — CLUSTER](https://www.sia.haus/projects/project-17) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 롯데월드몰 에비뉴엘 — CLUSTER의 이미지와 제작 기록을 소개합니다.
+- [베니스 — 비엔날레](https://www.sia.haus/projects/project-18) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 베니스 — 비엔날레의 이미지와 제작 기록을 소개합니다.
+- [별마당 도서관 — 빛의도시](https://www.sia.haus/projects/project-19) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 별마당 도서관 — 빛의도시의 이미지와 제작 기록을 소개합니다.
+- [부산 사상역 — 프로젝션 맵핑](https://www.sia.haus/projects/project-21) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 부산 사상역 — 프로젝션 맵핑의 이미지와 제작 기록을 소개합니다.
+- [샌프란시스코 LUX — SOUND ROOM](https://www.sia.haus/projects/project-22) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 샌프란시스코 LUX — SOUND ROOM의 이미지와 제작 기록을 소개합니다.
+- [서울라이트 — 광화](https://www.sia.haus/projects/project-23) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 서울라이트 — 광화의 이미지와 제작 기록을 소개합니다.
+- [서울라이트 광화 — 2023](https://www.sia.haus/projects/project-24) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 서울라이트 광화 — 2023의 이미지와 제작 기록을 소개합니다.
+- [송도컨벤시아 스마트마이스 — 라운지](https://www.sia.haus/projects/project-25) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 송도컨벤시아 스마트마이스 — 라운지의 이미지와 제작 기록을 소개합니다.
+- [수원 스마트시티 — 소통박스](https://www.sia.haus/projects/project-26) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 수원 스마트시티 — 소통박스의 이미지와 제작 기록을 소개합니다.
+- [수원화성 — AI GRAPHICS쇼](https://www.sia.haus/projects/project-27) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 수원화성 — AI GRAPHICS쇼의 이미지와 제작 기록을 소개합니다.
+- [순천시 관광안내소 — CMS 2023](https://www.sia.haus/projects/project-28) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 순천시 관광안내소 — CMS 2023의 이미지와 제작 기록을 소개합니다.
+- [순천시청 홀로그램 — 디스플레이](https://www.sia.haus/projects/project-29) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 순천시청 홀로그램 — 디스플레이의 이미지와 제작 기록을 소개합니다.
+- [신세계백화점 본점 — 미디어파사드](https://www.sia.haus/projects/project-30) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 신세계백화점 본점 — 미디어파사드의 이미지와 제작 기록을 소개합니다.
+- [아이벡스 스튜디오 — 광명 이터니티 콘서트](https://www.sia.haus/projects/project-32) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 아이벡스 스튜디오 — 광명 이터니티 콘서트의 이미지와 제작 기록을 소개합니다.
+- [알리페이 플러스 — 팝업](https://www.sia.haus/projects/project-33) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 알리페이 플러스 — 팝업의 이미지와 제작 기록을 소개합니다.
+- [에버랜드 썸머 — 워터 펀 페스티벌](https://www.sia.haus/projects/project-34) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 에버랜드 썸머 — 워터 펀 페스티벌의 이미지와 제작 기록을 소개합니다.
+- [여의도 IFC몰 — 일루미네이션](https://www.sia.haus/projects/project-35) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 여의도 IFC몰 — 일루미네이션의 이미지와 제작 기록을 소개합니다.
+- [영종도 파라다이스시티 — 일루미네이션](https://www.sia.haus/projects/project-36) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 영종도 파라다이스시티 — 일루미네이션의 이미지와 제작 기록을 소개합니다.
+- [인천공항 입국장 — 전통문화 미디어](https://www.sia.haus/projects/project-39) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 인천공항 입국장 — 전통문화 미디어의 이미지와 제작 기록을 소개합니다.
+- [인천애뜰 열린광장 — LED Furniture](https://www.sia.haus/projects/project-40) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 인천애뜰 열린광장 — LED Furniture의 이미지와 제작 기록을 소개합니다.
+- [좋알람 — Netflix Pop-up](https://www.sia.haus/projects/project-42) — 《좋아하면 울리는》 시즌1 공개 기념 Netflix 팝업스토어입니다.
+장소: 서울 송파구 롯데월드타워 월드파크 잔디광장
+기간: 2019년 8월 18일–9월 1일
+운영 시간: 16:00–22:00 (낮시간 자유 관람)
+내용: 반경 10m 안에 좋아하는 사람이 들어오면 알람이 울리는 ‘좋알람’ 앱을 실제로 체험하는 부스와 이벤트를 진행했습니다.
+- [중국 항저우 — 타워](https://www.sia.haus/projects/project-43) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 중국 항저우 — 타워의 이미지와 제작 기록을 소개합니다.
+- [코엑스 마곡 — 르웨스트 CP1 Block](https://www.sia.haus/projects/project-44) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 마곡 — 르웨스트 CP1 Block의 이미지와 제작 기록을 소개합니다.
+- [코엑스 SLW — 키네틱 디스플레이](https://www.sia.haus/projects/project-45) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 코엑스 SLW — 키네틱 디스플레이의 이미지와 제작 기록을 소개합니다.
+- [파크원 — 타워2](https://www.sia.haus/projects/project-47) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 파크원 — 타워2의 이미지와 제작 기록을 소개합니다.
+- [풀무원 안산 — 콤플렉스 Natural gravity](https://www.sia.haus/projects/project-48) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 풀무원 안산 — 콤플렉스 Natural gravity의 이미지와 제작 기록을 소개합니다.
+- [한국콘텐츠진흥원 뉴미디어 — 퍼포먼스](https://www.sia.haus/projects/project-49) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 한국콘텐츠진흥원 뉴미디어 — 퍼포먼스의 이미지와 제작 기록을 소개합니다.
+- [현대모비스 M.Vision — X](https://www.sia.haus/projects/project-50) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 현대모비스 M.Vision — X의 이미지와 제작 기록을 소개합니다.
+- [현대자동차 HMGICS — 2023](https://www.sia.haus/projects/project-51) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. 현대자동차 HMGICS — 2023의 이미지와 제작 기록을 소개합니다.
+- [휠라 신사옥 — MISTO HOLDINGS Office](https://www.sia.haus/projects/project-52) — 고객: 미스토홀딩스
+주관: 알스퀘어
+역할: PM
+주요 특징:
+휠라의 브랜드 헤리티지와 스포티한 감성, 컬러 포인트를 공간에 반영했습니다.
+1층에 조성된 헤리티지 라운지 등 임직원 업무 효율과 브랜드 아이덴티티를 강화하는 오피스로 설계했습니다.
+흩어져 있던 휠라 전 조직을 한 공간에 통합했습니다.
+- [KTX 용산역 — LED전광판](https://www.sia.haus/projects/project-53) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. KTX 용산역 — LED전광판의 이미지와 제작 기록을 소개합니다.
+- [LDF 하우스 — 미디어파사드 2023](https://www.sia.haus/projects/project-54) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. LDF 하우스 — 미디어파사드 2023의 이미지와 제작 기록을 소개합니다.
+- [LG ISE — 2025 아웃도어 디스플레이](https://www.sia.haus/projects/project-55) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. LG ISE — 2025 아웃도어 디스플레이의 이미지와 제작 기록을 소개합니다.
+- [N서울타워 NSMR — ZONE](https://www.sia.haus/projects/project-56) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. N서울타워 NSMR — ZONE의 이미지와 제작 기록을 소개합니다.
+- [SM 라이즈 — 럭키튠](https://www.sia.haus/projects/project-57) — SIA.HAUS의 PROJECT 프로젝트 아카이브입니다. SM 라이즈 — 럭키튠의 이미지와 제작 기록을 소개합니다.
 
 ## 작품이 아니라, 문제를 해결한 방식
 
 공개된 프로젝트 자료를 바탕으로 목적·접근·결과를 정리했습니다. 더 구체적인 범위와 일정은 브리프에서 알려주세요.
 
-### 시간의 흐름을 물방울로 복원하다
+### [시간의 흐름을 물방울로 복원하다](https://www.sia.haus/projects/behance-01)
 
 완성된 물방울 이미지가 아니라, 1980년대 김창열 화백이 몰두했던 창작의 순간을 물방울의 밀도와 움직임으로 감각적으로 복원한 작업입니다.
 - **역할** — AI GRAPHICS 프로젝트의 시각 언어와 결과물 제작
@@ -120,7 +130,7 @@ AI GRAPHICS는 생성형 AI, 3D, VFX, 모션그래픽, 공간 연출을 결합�
 - **접근** — 물방울의 밀도와 움직임을 중심으로 회화의 창작 순간을 AI GRAPHICS 언어로 확장했습니다.
 - **결과** — 김창열 아틀리에를 위한 AI GRAPHICS 프로젝트로 공개되었습니다.
 
-### ARFA: 첫 번째 자체 IP 갤러리 프로젝트
+### [ARFA: 첫 번째 자체 IP 갤러리 프로젝트](https://www.sia.haus/projects/behance-02)
 
 SIA.HAUS가 직접 개발한 IP를 갤러리 형식의 공간 경험으로 확장한 첫 번째 IP gallery project입니다.
 - **역할** — SIA.HAUS 자체 IP 개발 및 갤러리형 공간 경험 구성
@@ -132,7 +142,7 @@ SIA.HAUS가 직접 개발한 IP를 갤러리 형식의 공간 경험으로 확�
 - **접근** — 작품 단위가 아닌 IP와 공간 경험 단위로 시각 언어를 구성했습니다.
 - **결과** — SIA.HAUS의 첫 IP gallery project “ARFA”로 공개되었습니다.
 
-### ARIA: AI 도시, 미래 서울
+### [ARIA: AI 도시, 미래 서울](https://www.sia.haus/projects/behance-03)
 
 Smart Life Week 2025에서 기술과 인간이 공존하는 새로운 도시의 모습을 키네틱 디스플레이 AI GRAPHICS로 표현했습니다.
 - **역할** — 키네틱 디스플레이와 AI GRAPHICS를 결합한 전시 콘텐츠 구성
@@ -144,7 +154,7 @@ Smart Life Week 2025에서 기술과 인간이 공존하는 새로운 도시의 
 - **접근** — 키네틱 디스플레이와 AI GRAPHICS를 결합해 기술과 인간의 공존을 하나의 장면으로 구성했습니다.
 - **결과** — 강남 코엑스 Smart Life Week 2025에서 공개되었습니다.
 
-### Grand Josun Busan: 건축과 빛이 만나는 외벽
+### [Grand Josun Busan: 건축과 빛이 만나는 외벽](https://www.sia.haus/projects/behance-04)
 
 해운대의 장소성과 커브드 LED 미디어파사드를 결합해, 자연의 흐름과 도시의 빛이 교차하는 공공 시각 경험을 제안했습니다.
 - **역할** — 커브드 LED 미디어파사드용 아나몰픽 비주얼 콘텐츠 연출
@@ -156,7 +166,7 @@ Smart Life Week 2025에서 기술과 인간이 공존하는 새로운 도시의 
 - **접근** — 커브드 LED의 구조와 해운대의 장소적 맥락을 고려해 아나몰픽 비주얼 콘텐츠를 연출했습니다.
 - **결과** — Grand Josun Busan 외벽 미디어파사드 프로젝트로 공개되었습니다.
 
-### 서울의 맥박: 도시에 생명력을 더하는 장면
+### [서울의 맥박: 도시에 생명력을 더하는 장면](https://www.sia.haus/projects/behance-05)
 
 붉은 말의 해를 상징하는 꽃과 말 가족을 통해 삭막한 도심에 생명력과 온기를 불어넣고, 전통 위에 새로운 희망이 피어나는 서울을 시각화했습니다.
 - **역할** — 공공 공간을 위한 AI GRAPHICS 장면 구성
@@ -168,7 +178,7 @@ Smart Life Week 2025에서 기술과 인간이 공존하는 새로운 도시의 
 - **접근** — 꽃과 말 가족의 역동성을 활용해 전통과 새로운 희망이 공존하는 도시 이미지를 구성했습니다.
 - **결과** — 서울의 공공 AI GRAPHICS 프로젝트로 공개되었습니다.
 
-### Netflix 좋아하면 울리는: 경험하는 팝업
+### [Netflix 좋아하면 울리는: 경험하는 팝업](https://www.sia.haus/projects/project-42)
 
 《좋아하면 울리는》 시즌1 공개를 기념해, 반경 10m 안에 좋아하는 사람이 들어오면 알람이 울리는 앱을 실제 공간에서 체험하도록 구성했습니다.
 - **역할** — 드라마 앱 기능을 오프라인 브랜드 팝업 체험으로 구현
@@ -180,7 +190,7 @@ Smart Life Week 2025에서 기술과 인간이 공존하는 새로운 도시의 
 - **접근** — 앱의 알람 기능을 실제 체험 부스와 이벤트로 옮겨, 콘텐츠 세계관을 오프라인 공간에 구현했습니다.
 - **결과** — 서울 송파구 롯데월드타워 월드파크 잔디광장에서 2019년 8월 18일부터 9월 1일까지 운영되었습니다.
 
-### FILA Heritage Lounge: 브랜드가 일하는 공간
+### [FILA Heritage Lounge: 브랜드가 일하는 공간](https://www.sia.haus/projects/project-52)
 
 휠라의 브랜드 헤리티지와 스포티한 감성을 오피스 공간에 반영하고, 흩어져 있던 전 조직을 한 공간에 통합한 프로젝트입니다.
 - **역할** — 프로젝트 매니지먼트(PM)
@@ -204,7 +214,7 @@ SIA.HAUS는 서울 상암에 기반을 둔 AI GRAPHICS 스튜디오입니다. �
 
 ### 어떤 규모의 프로젝트를 진행하나요?
 
-건축 외피 전체를 사용하는 대형 미디어 파사드부터 실내 전시 공간까지 다룹니다. 롯데월드타워 잠실 미디어 파사드는 819제곱미터, 21m × 39m 규모였습니다. 밀라노 디자인위크, 베니스 비엔날레 등 국제 행사 프로젝트도 수행했습니다.
+건축 외피 전체를 사용하는 대형 미디어 파사드부터 실내 전시 공간까지 다룹니다. 밀라노 디자인위크, 베니스 비엔날레 등 국제 행사 프로젝트도 수행했습니다.
 
 ### VARIS와 SIA.HAUS는 어떤 관계인가요?
 
@@ -220,6 +230,7 @@ VARIS는 SIA.HAUS가 운영하는 AI GRAPHICS 교육 브랜드입니다. SIA.HAU
 
 ## 링크
 
+- [전체 AI 안내](https://www.sia.haus/llms-full.txt) — 검증된 프로젝트·질문·출처 범위를 포함한 상세 안내
 - [Behance 포트폴리오](https://www.behance.net/sia_haus) — 프로젝트별 상세 이미지와 제작 기록
 - [VARIS](https://varis.kr/) — SIA.HAUS가 운영하는 AI GRAPHICS 교육 브랜드
 
