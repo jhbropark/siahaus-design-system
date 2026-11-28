@@ -30,7 +30,7 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     window.gtag('js', new Date());
-    window.gtag('config', MEASUREMENT_ID, { send_page_view: true, page_title: document.title, page_location: window.location.href });
+    window.gtag('config', MEASUREMENT_ID, { send_page_view: true, page_title: document.title, page_location: window.location.href, tracking_domain: window.location.hostname });
     window.gtag('config', ADS_ID);
     var gaScript = document.createElement('script');
     gaScript.async = true;
