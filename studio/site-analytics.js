@@ -1,4 +1,3 @@
-// domain-funnel-attribution
 (function () {
   'use strict';
 
