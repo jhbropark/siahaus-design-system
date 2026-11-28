@@ -1,3 +1,4 @@
+// domain-funnel-attribution
 (function () {
   'use strict';
 
@@ -77,7 +78,14 @@
 
   function track(name, params) {
     if (!analyticsReady || !window.gtag) return;
-    window.gtag('event', name, Object.assign({ site_id: 'siahaus', form_id: FORM_ID }, params || {}));
+    params = params || {};
+    var status = params.submission_status || '';
+    var stageMap = { project_view: 'project_view', brief_click: 'cta_click', brief_start: 'form_start', brief_submit_success: 'submit_accepted', generate_lead: 'lead_generated' };
+    var conversionStage = params.conversion_stage || (name === 'brief_submit' ? (status === 'error' ? 'submit_error' : 'submit_attempt') : (stageMap[name] || name));
+    var leadType = params.lead_type || (name === 'project_view' ? 'project_interest' : (name === 'generate_lead' || name.indexOf('brief') === 0 ? 'inquiry' : 'website'));
+    var query = new URLSearchParams(window.location.search);
+    var common = { site_id: 'siahaus', form_id: FORM_ID, tracking_domain: window.location.hostname, lead_source: params.lead_source || query.get('utm_source') || 'direct', lead_type: leadType, conversion_stage: conversionStage };
+    window.gtag('event', name, Object.assign(common, params));
   }
 
   function projectSlug(href) {
@@ -149,11 +157,16 @@
       data.set('relay_client_status', 'pending');
       data.set('relay_status', 'pending');
       data.set('submitted_at', relayAttemptedAt);
+      data.set('tracking_domain', window.location.hostname);
+      data.set('lead_source', attribution.utm_source || 'website');
+      data.set('lead_type', 'inquiry');
+      data.set('conversion_stage', 'submit_attempt');
       data.set('page_url', window.location.href);
       track('brief_submit', { submission_status: 'attempt', service_tag: data.get('service_tag'), lead_id: leadId });
       try {
         var response = await fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
         if (!response.ok) throw new Error('form_submit_failed');
+        data.set('conversion_stage', 'submit_accepted');
         var relayPayload = new URLSearchParams();
         data.forEach(function (value, key) { if (typeof value === 'string') relayPayload.append(key, value); });
         var relayStatus = 'failed';
@@ -174,7 +187,7 @@
         }
         data.set('relay_status', relayStatus);
         data.set('relay_client_status', relayClientStatus);
-        track('brief_submit_success', { submission_status: 'success', lead_source: 'website', lead_id: leadId, service_tag: data.get('service_tag'), qa: data.get('qa') === 'true', relay_status: relayStatus, relay_client_status: relayClientStatus, landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)', utm_content: attribution.utm_content || '(none)', utm_term: attribution.utm_term || '(none)' });
+        track('brief_submit_success', { submission_status: 'success', lead_source: attribution.utm_source || 'website', lead_id: leadId, service_tag: data.get('service_tag'), qa: data.get('qa') === 'true', relay_status: relayStatus, relay_client_status: relayClientStatus, landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)', utm_content: attribution.utm_content || '(none)', utm_term: attribution.utm_term || '(none)' });
         track('generate_lead', { submission_status: 'success', lead_source: 'website', lead_id: leadId, service_tag: data.get('service_tag'), qa: data.get('qa') === 'true', relay_status: relayStatus, relay_client_status: relayClientStatus, landing_page: attribution.landing_page, utm_source: attribution.utm_source || '(none)', utm_medium: attribution.utm_medium || '(none)', utm_campaign: attribution.utm_campaign || '(none)' });
         if (analyticsReady && window.gtag) window.gtag('event', 'conversion', { send_to: ADS_CONVERSION, value: 1.0, currency: 'KRW' });
         if (note) { note.textContent = '브리프가 접수되었습니다. 영업일 기준 2일 안에 1차 회신드립니다.'; note.setAttribute('data-state', 'success'); }
